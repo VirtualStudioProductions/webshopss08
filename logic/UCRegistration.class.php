@@ -3,7 +3,7 @@
 //require_once("dao/DAOItem.class.php");
 require_once("UC.class.php");
 
-class UCRegistration extends UC{
+class UCRegistration extends UC {
 	
 	
 	/** DAO für die item Tabelle */
@@ -57,7 +57,6 @@ class UCRegistration extends UC{
 		$FIELD->set_v_nospace(true);		// Keine Leerzeichen
 		$FIELD->set_v_nospecial(true);		// Keine Sonderzeichen
 		$FIELD->set_v_nosql(true);			// Keine SQL Dingens
-		$FIELD->set_process_field(true);	// Verarbeiten lassen
 		$F_REGISTRATION->add_field($FIELD);
 		
 		// Passwort
@@ -65,19 +64,16 @@ class UCRegistration extends UC{
 		$FIELD->set_v_required(true);
 		$FIELD->set_v_nospace(true);
 		$FIELD->set_v_minlength(6);			// Mindestens 6 Zeichen
-		$FIELD->set_process_field(true);
 		$F_REGISTRATION->add_field($FIELD);
 		
 		// Vorname
 		$FIELD = new TextField("vorname", "Vorname", " class=\"textfield\"");
 		$FIELD->set_v_required(true);
-		$FIELD->set_process_field(true);
 		$F_REGISTRATION->add_field($FIELD);
 		
 		// Nachname
 		$FIELD = new TextField("nachname", "Nachname", " class=\"textfield\"");
 		$FIELD->set_v_required(true);
-		$FIELD->set_process_field(true);
 		$F_REGISTRATION->add_field($FIELD);
 		
 		// E-Mail
@@ -85,13 +81,11 @@ class UCRegistration extends UC{
 		$FIELD->set_v_required(true);
 		$FIELD->set_v_isunique(true);
 		$FIELD->set_v_email(true);			// Gültige E-Mail Adresse
-		$FIELD->set_process_field(true);
 		$F_REGISTRATION->add_field($FIELD);
 		
 		// Telefon
 		$FIELD = new TextField("telefon", "Telefon", " class=\"textfield\"", 20);
 		$FIELD->set_v_maxlength(20);		// Maximal 20 Zeichen
-		$FIELD->set_process_field(true);
 		$F_REGISTRATION->add_field($FIELD);
 	
 		
