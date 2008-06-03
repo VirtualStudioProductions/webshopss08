@@ -24,7 +24,7 @@ abstract class Field {
 	protected $css;
 
 	/** data will only be processed if this is set to true
-	 * (default is: false)
+	 * (default is: true)
 	 */
 	protected $process_field;
 
@@ -164,7 +164,7 @@ abstract class Field {
 		$this->name					 = $name;
 		$this->caption				 = $caption;
 		$this->css					 = $css;
-		$this->process_field		 = false;
+		$this->process_field		 = true;
 
 		// validators
 		$this->v_required			 = false;
