@@ -26,9 +26,7 @@ class TextField extends Field {
  	
 	public function TextField($name, $caption, $css = "", $maxlength = 50) {
 		
-		$this->name = $name; 
-		$this->caption = $caption; 
-		$this->css = $css;
+		$this->Field($name, $caption, $css);
 		
 		$this->maxlength = $maxlength;
 	

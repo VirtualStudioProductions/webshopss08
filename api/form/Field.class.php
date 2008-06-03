@@ -27,6 +27,12 @@ abstract class Field {
 	 * (default is: true)
 	 */
 	protected $process_field;
+	
+	/**
+	 * data will be crypted if this is set to true
+	 * (default is: false)
+	 */
+	protected $crypt;
 
 
 	
@@ -104,12 +110,13 @@ abstract class Field {
 	public function get_caption()				{ return $this->caption;		}
 	public function get_css()					{ return $this->css;			}
 	public function get_process_field()			{ return $this->process_field;	}
+	public function get_crypt()					{ return $this->crypt;			}
 	public function get_actions()				{ return $this->actions;		}
 	public function get_f_value()				{ return $this->f_value;		}
 
-	// TODO: ??????
 	public function set_value($value)			{ $this->f_value		= $value;	}
 	public function set_process_field($value)	{ $this->process_field	= $value;	}
+	public function set_crypt($value)			{ $this->crypt			= $value;	}
 	
 	// Setters for the validators
 	public function set_v_required($set)		{ $this->v_required 	 = $set; }
@@ -160,11 +167,12 @@ abstract class Field {
 
 	
 	public function Field($name, $caption, $css) {
-		
+
 		$this->name					 = $name;
 		$this->caption				 = $caption;
 		$this->css					 = $css;
 		$this->process_field		 = true;
+		$this->crypt				 = false;
 
 		// validators
 		$this->v_required			 = false;

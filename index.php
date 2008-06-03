@@ -17,9 +17,9 @@ $DATA_ACCESS = new PDO(
         DB_USER, // Username
         DB_PASS, // Passwort
         array(
-        	PDO::ATTR_PERSISTENT => true // Persistente Verbindung
+        	PDO::ATTR_PERSISTENT => false // Persistente Verbindung
     	));
-
+    	
 
 // Neues Smarty Objekt erzeugen
 $SMARTY = new Smarty();	
