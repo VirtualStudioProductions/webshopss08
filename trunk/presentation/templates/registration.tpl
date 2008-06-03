@@ -3,7 +3,7 @@
 		
 	<h1>Registrieren</h1>
 	
-	{if $msg.valid}
+	{if $smarty.get.confirm}
 	
 		<p>Vielen Dank f&uuml;r Ihre Registrierung! Sie sollten in K&uuml;rze eine
 		E-Mail erhalten, mit der Sie Ihren neuen Account aktivieren k&ouml;nnen!
@@ -12,7 +12,7 @@
 		<p>Klicken Sie <a href="index.php" title="Zur&uuml;ck zur Startseite">hier</a>,
 		um zur&uuml;ck zur Startseite zu gelangen!</p>
 		
-	{else if}
+	{else}
 	
 		<p>Damit Sie im Webshop Bestellungen abschicken k&ouml;nnen, m&uuml;ssen Sie ein
 		registrierter Kunde bei uns sein. Nutzen Sie dieses Formular um jetzt

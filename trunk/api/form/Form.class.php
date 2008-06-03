@@ -19,7 +19,7 @@ class Form {
 	 * THE FORM CLASS
 	 * comment:					powerful class for form processing
 	 * author:					Alexander Weickmann <Alexander.Weickmann@gmx.de> (Eistoeter)
-	 * release date:			08.05.2008
+	 * release date:			03.06.2008
 	 * start of the project:	29.11.2005
 	 * version:					5.1.2
 	 * requirement:				scripted for php5.1 and mysql
@@ -130,10 +130,10 @@ class Form {
 	private $custom_type;
 
 	/**
-	 * the site to which the form belongs (must implement a process_form method
+	 * the object to which the form belongs (must implement a process_form method
 	 * if the $custom_type is set to replacement or extention)
 	 */
-	private $OWNER_SITE;
+	private $OWNER_OBJECT;
 
 	/** the pdo object */
 	private $PDO_DATA_ACCESS;
@@ -204,7 +204,7 @@ class Form {
 					$sql_where,
 					$mysql_id_name,
 					$custom_type,
-					$OWNER_SITE,
+					$OWNER_OBJECT,
 					PDO $PDO_DATA_ACCESS) {
 						
 						
@@ -231,7 +231,7 @@ class Form {
 		$this->redirect				= true;
 		$this->retrieve_data		= "post";
 		$this->custom_type			= $custom_type;
-		$this->OWNER_SITE			= $OWNER_SITE;
+		$this->OWNER_OBJECT			= $OWNER_OBJECT;
 		$this->PDO_DATA_ACCESS		= $PDO_DATA_ACCESS;
 
 		// mysql
@@ -385,9 +385,6 @@ class Form {
 			$name = strtoupper($this->form_name);
 			$layout .= "\n\n<!-- ## ".$name." -->\n";
 			$layout .= "<!--  - FORM HEADER -->\n<a name=\"msg_".$this->form_name."\"></a>\n";
-			if ($msg["error"] != "" && $_POST["s_".$this->form_name.""]) {
-				$layout .= "<p style=\"text-align: center; color: #FF0000; font-weight: bold;\">Fehler: ".$msg["error"]."</p>\n";
-			}
 			if ($_GET["confirm"] != "") {
 				$layout .= "<p style=\"text-align: center; color: #00FF00; font-weight: bold;\">".$_GET["confirm"]."</p>\n";
 			}
@@ -425,6 +422,9 @@ class Form {
 						}
 						$value[1] = $this->fields[$key];
 						$replacement .= $this->fields[$key]->get_display($value);
+						if ($msg["error"][$this->fields[$key]->get_name()]) {
+							$replacement .= "<br /><span style=\"color: #FF0000;\"><strong>Fehler:</strong></span> " . $msg["error"][$this->fields[$key]->get_name()];
+						}
 					}
 
 					$layout = str_replace($search, $replacement, $layout);
@@ -486,9 +486,9 @@ class Form {
 	 * Validates the form and processes it to the mysql database.
 	 * It is also possible that a form has an extention to that
 	 * function or replaces the function completely. This must
-	 * be done in the OWNER_SITE object. If the custom_type
-	 * is not empty the function process_form of the OWNER_SITE
-	 * will be called. Of course the OWNER_SITE object must implement
+	 * be done in the OWNER_OBJECT. If the custom_type
+	 * is not empty the function process_form of the OWNER_OBJECT
+	 * will be called. Of course the OWNER_OBJECT must implement
 	 * such a function for it to work.
 	 * 
 	 * @return	$msg
@@ -498,7 +498,7 @@ class Form {
 		if ($this->custom_type == "replacement") {
 
 			// custom form processing
-			$msg = $this->OWNER_SITE->process_form();
+			$msg = $this->OWNER_OBJECT->process_form();
 
 		}
 		else {
@@ -531,13 +531,23 @@ class Form {
 						for ($p = 1; array_key_exists("".$this->namelist[$n]."_".$p."", $this->fields); $p++) {
 							
 							$key = "".$this->namelist[$n]."_".$p."";
-							if ($this->fields[$key]->get_process_field() != false) {
+							if ($this->fields[$key]->get_process_field() == true) {
 
 								$var = "".$var."`".$this->fields[$key]->get_name()."`, ";
+								
 								if (get_class($this->fields[$key]) == "FileField") {
 									$var2 = "".$var2."'".$_FILES[$this->fields[$key]->get_name()]["name"]."', ";
-								} else {
-									$var2 = "".$var2."'".$_POST[$this->fields[$key]->get_name()]."', ";
+								}
+								else {
+									
+									if ($this->fields[$key]->get_crypt() != false) {
+										$val = crypt($_POST[$this->fields[$key]->get_name()]);
+									}
+									else {
+										$val = $_POST[$this->fields[$key]->get_name()];
+									}
+									
+									$var2 = "".$var2."'".$val."', ";
 								}
 								$check = true;
 							}
@@ -578,7 +588,14 @@ class Form {
 									}
 								}
 								else {
-									$var = "".$var."`".$this->fields[$key]->get_name()."` = '".$_POST[$this->fields[$key]->get_name()]."', ";
+									if ($this->fields[$key]->get_crypt() != false) {
+										$val = crypt($_POST[$this->fields[$key]->get_name()]);
+									}
+									else {
+										$val = $_POST[$this->fields[$key]->get_name()];
+									}
+									
+									$var = "".$var."`".$this->fields[$key]->get_name()."` = '".$val."', ";
 								}
 							}
 							$check = true;
@@ -600,7 +617,7 @@ class Form {
 				// own process extention
 				if ($msg["valid"]) {
 					if ($this->custom_type == "extention") {
-						$msg = $this->OWNER_SITE->process_form();
+						$msg = $this->OWNER_OBJECT->process_form($msg);
 					}
 				}
 
@@ -652,7 +669,7 @@ class Form {
 				if ($this->fields[$key]->get_v_required() == true)
 				{
 					if ($value == "") {
-						$msg["error"] = "Das Feld <strong>".$this->fields[$key]->get_caption()."</strong> muss angegeben werden.";
+						$msg["error"][$this->namelist[$n]] = "Das Feld <strong>".$this->fields[$key]->get_caption()."</strong> muss angegeben werden.";
 						$msg["valid"] = false;
 					}
 				}
@@ -660,7 +677,7 @@ class Form {
 				// v_email
 				if ($this->fields[$key]->get_v_email() == true) {
 					if (!strpos($value, '@') || !strpos($value, '.') || strlen($value) < 5) {
-						$msg["error"] = "Das Feld <strong>".$this->fields[$key]->get_caption()."</strong> muss eine g&uuml;ltige E-Mail Adresse beinhalten.";
+						$msg["error"][$this->namelist[$n]] = "Das Feld <strong>".$this->fields[$key]->get_caption()."</strong> muss eine g&uuml;ltige E-Mail Adresse beinhalten.";
 						$msg["valid"] = false;
 					}
 				}
@@ -668,7 +685,7 @@ class Form {
 				// v_link
 				if ($this->fields[$key]->get_v_link() == true) {
 					if (!strpos($value, '.') || strlen($value) < 4) {
-						$msg["error"] = "Das Feld <strong>".$this->fields[$key]->get_caption()."</strong> muss einen g&uuml;ltiger Link beinhalten.";
+						$msg["error"][$this->namelist[$n]] = "Das Feld <strong>".$this->fields[$key]->get_caption()."</strong> muss einen g&uuml;ltiger Link beinhalten.";
 						$msg["valid"] = false;
 					}
 				}
@@ -676,7 +693,7 @@ class Form {
 				// v_numeric
 				if ($this->fields[$key]->get_v_numeric() == true) {
 					if (!is_numeric($value) && $value != "") {
-						$msg["error"] = "Das Feld <strong>".$this->fields[$key]->get_caption()."</strong> muss einen numerischen Wert beinhalten.";
+						$msg["error"][$this->namelist[$n]] = "Das Feld <strong>".$this->fields[$key]->get_caption()."</strong> muss einen numerischen Wert beinhalten.";
 						$msg["valid"] = false;
 					}
 				}
@@ -685,7 +702,7 @@ class Form {
 				if (is_integer($this->fields[$key]->get_v_maxlength()) && $this->fields[$key]->get_v_maxlength() > 0)
 				{
 					if (strlen($value) > $this->fields[$key]->get_v_maxlength()) {
-						$msg["error"] = "Das Feld <strong>".$this->fields[$key]->get_caption()."</strong> darf h&ouml;chstens ".$this->fields[$key]->get_v_maxlength()." Zeichen lang sein.";
+						$msg["error"][$this->namelist[$n]] = "Das Feld <strong>".$this->fields[$key]->get_caption()."</strong> darf h&ouml;chstens ".$this->fields[$key]->get_v_maxlength()." Zeichen lang sein.";
 						$msg["valid"] = false;
 					}
 				}
@@ -694,7 +711,7 @@ class Form {
 				if (is_integer($this->fields[$key]->get_v_minlength()) && $this->fields[$key]->get_v_minlength() > 0)
 				{
 					if (strlen($value) < $this->fields[$key]->get_v_minlength()) {
-						$msg["error"] = "Das Feld <strong>".$this->fields[$key]->get_caption()."</strong> muss mindestens ".$this->fields[$key]->get_v_minlength()." Zeichen lang sein.";
+						$msg["error"][$this->namelist[$n]] = "Das Feld <strong>".$this->fields[$key]->get_caption()."</strong> muss mindestens ".$this->fields[$key]->get_v_minlength()." Zeichen lang sein.";
 						$msg["valid"] = false;
 					}
 				}
@@ -703,7 +720,7 @@ class Form {
 				if ($this->fields[$key]->get_v_onlylowercase() == true) {
 					$var = strtolower($value);
 					if ($value != $var) {
-						$msg["error"] = "Das Feld <strong>".$this->fields[$key]->get_caption()."</strong> darf nur kleingeschriebene Zeichen beinhalten.";
+						$msg["error"][$this->namelist[$n]] = "Das Feld <strong>".$this->fields[$key]->get_caption()."</strong> darf nur kleingeschriebene Zeichen beinhalten.";
 						$msg["valid"] = false;
 					}
 				}
@@ -711,7 +728,7 @@ class Form {
 				// v_nospace
 				if ($this->fields[$key]->get_v_nospace() == true) {
 					if (strpos($value, " ")) {
-						$msg["error"] = "Das Feld <strong>".$this->fields[$key]->get_caption()."</strong> darf keine Leerzeichen beinhalten.";
+						$msg["error"][$this->namelist[$n]] = "Das Feld <strong>".$this->fields[$key]->get_caption()."</strong> darf keine Leerzeichen beinhalten.";
 						$msg["valid"] = false;
 					}
 				}
@@ -720,7 +737,7 @@ class Form {
 				if (is_numeric($this->fields[$key]->get_v_minvalue()) && $this->fields[$key]->get_v_minvalue() > 0)
 				{
 					if ($value < $this->fields[$key]->get_v_minvalue()) {
-						$msg["error"] = "Das Feld <strong>".$this->fields[$key]->get_caption()."</strong> darf nicht kleiner sein als ".$this->fields[$key]->get_v_minvalue().".";
+						$msg["error"][$this->namelist[$n]] = "Das Feld <strong>".$this->fields[$key]->get_caption()."</strong> darf nicht kleiner sein als ".$this->fields[$key]->get_v_minvalue().".";
 						$msg["valid"] = false;
 					}
 				}
@@ -729,7 +746,7 @@ class Form {
 				if (is_numeric($this->fields[$key]->get_v_maxvalue()) && $this->fields[$key]->get_v_maxvalue() > 0)
 				{
 					if ($value > $this->fields[$key]->get_v_maxvalue()) {
-						$msg["error"] = "Das Feld <strong>".$this->fields[$key]->get_caption()."</strong> darf nicht gr&ouml;ßer sein als ".$this->fields[$key]->get_v_maxvalue().".";
+						$msg["error"][$this->namelist[$n]] = "Das Feld <strong>".$this->fields[$key]->get_caption()."</strong> darf nicht gr&ouml;ßer sein als ".$this->fields[$key]->get_v_maxvalue().".";
 						$msg["valid"] = false;
 					}
 				}
@@ -752,7 +769,7 @@ class Form {
 							
 						if ($stmt1->fetch()) {
 
-							$msg["error"] = "Es existiert bereits ein Eintrag mit ".$value." als <strong>".$this->fields[$key]->get_caption()."</strong>.";
+							$msg["error"][$this->namelist[$n]] = "Es existiert bereits ein Eintrag mit ".$value." als <strong>".$this->fields[$key]->get_caption()."</strong>.";
 							$msg["valid"] = false;
 
 						}
@@ -764,7 +781,7 @@ class Form {
 				// v_confirms
 				if ($this->fields[$key]->get_v_confirms() != "") {
 					if ($_POST[$this->fields[$key]->get_v_confirms()] != $_POST[$this->fields[$key]->get_name()]) {
-						$msg["error"] = "Das Feld <strong>".$this->fields[$key]->get_caption()."</strong> enstpricht nicht dem entsprechenden Feld.";
+						$msg["error"][$this->namelist[$n]] = "Das Feld <strong>".$this->fields[$key]->get_caption()."</strong> enstpricht nicht dem entsprechenden Feld.";
 						$msg["valid"] = false;
 					}
 				}
@@ -772,7 +789,7 @@ class Form {
 				// v_nospecial
 				if ($this->fields[$key]->get_v_nospecial() == true) {
 					if (!ereg ("^[a-zA-Z0-9 ]*$", $_POST[$this->fields[$key]->get_name()])) {
-						$msg["error"] = "Das Feld <strong>".$this->fields[$key]->get_caption()."</strong> enth&auml;lt Sonderzeichen.";
+						$msg["error"][$this->namelist[$n]] = "Das Feld <strong>".$this->fields[$key]->get_caption()."</strong> enth&auml;lt Sonderzeichen.";
 						$msg["valid"] = false;
 					}
 				}
@@ -780,7 +797,7 @@ class Form {
 				// v_nosql
 				if ($this->fields[$key]->get_v_nosql() == true) {
 					if (strpos($value, '$') || strpos($value, '\"') || strpos($value, '\'')) {
-						$msg["error"] = "Das Feld <strong>".$this->fields[$key]->get_caption()."</strong> enth&auml;lt verbotene Zeichen.";
+						$msg["error"][$this->namelist[$n]] = "Das Feld <strong>".$this->fields[$key]->get_caption()."</strong> enth&auml;lt verbotene Zeichen.";
 						$msg["valid"] = false;
 					}
 				}
@@ -795,7 +812,7 @@ class Form {
 						}
 					}
 					if ($ok == false) {
-						$msg["error"] = "Das Feld <strong>".$this->fields[$key]->get_caption()."</strong> enth&auml;lt verbotene Werte.";
+						$msg["error"][$this->namelist[$n]] = "Das Feld <strong>".$this->fields[$key]->get_caption()."</strong> enth&auml;lt verbotene Werte.";
 						$msg["valid"] = false;
 					}
 				}
@@ -841,7 +858,7 @@ class Form {
 			if ($data["size"] > $_POST["MAX_FILE_SIZE"]) {
 
 				$kb = $_POST["MAX_FILE_SIZE"] / 1024;
-				$msg["error"] = "<strong>".$field->get_caption()."</strong>: Die maximale Dateigröße beträgt ".$kb." KB!";
+				$msg["error"][$field->get_name()] = "<strong>".$field->get_caption()."</strong>: Die maximale Dateigröße beträgt ".$kb." KB!";
 				$msg["valid"] = false;
 					
 			}
@@ -851,7 +868,7 @@ class Form {
 		// check if the data has been uploaded and if the file type is allowed
 		if (!is_uploaded_file($data["tmp_name"])) {
 
-			$msg["error"] = "<strong>".$field->get_caption()."</strong>: Datei konnte nicht hochgeladen werden! Datei zu groß?";
+			$msg["error"][$field->get_name()] = "<strong>".$field->get_caption()."</strong>: Datei konnte nicht hochgeladen werden! Datei zu groß?";
 			$msg["valid"] = false;
 
 		}
@@ -871,7 +888,7 @@ class Form {
 
 			if (!$var) {
 
-				$msg["error"] = "<strong>".$field->get_caption()."</strong>: Dieser Dateityp (".$data["type"].") ist nicht erlaubt!";
+				$msg["error"][$field->get_name()] = "<strong>".$field->get_caption()."</strong>: Dieser Dateityp (".$data["type"].") ist nicht erlaubt!";
 				$msg["valid"] = false;
 
 			}
@@ -890,7 +907,7 @@ class Form {
 
 			if (file_exists($file) && $data["name"] != $res[0])	{
 
-				$msg["error"] = "<strong>".$field->get_caption()."</strong>: Dieser Dateiname existiert bereits.";
+				$msg["error"][$field->get_name()] = "<strong>".$field->get_caption()."</strong>: Dieser Dateiname existiert bereits.";
 				$msg["valid"] = false;
 					
 			}
@@ -921,7 +938,7 @@ class Form {
 
 						if ($size[0] > $image_dimensions["x"] || $size[1] > $image_dimensions["y"]) {
 							
-							$msg["error"] = "<strong>".$field->get_caption()."</strong>: Die Dimensionen des Bildes übersteigen ".$image_dimensions["x"]." x ".$image_dimensions["y"]." Pixel.";
+							$msg["error"][$field->get_name()] = "<strong>".$field->get_caption()."</strong>: Die Dimensionen des Bildes übersteigen ".$image_dimensions["x"]." x ".$image_dimensions["y"]." Pixel.";
 							$msg["valid"] = false;
 							$check = false;
 							
@@ -933,7 +950,7 @@ class Form {
 							
 						if ($size[0] >= $image_dimensions["x"] || $size[1] >= $image_dimensions["y"]) {
 							
-							$msg["error"] = "<strong>".$field->get_caption()."</strong>: Die Dimensionen des Bildes sind größer als ".$image_dimensions["x"]." x ".$image_dimensions["y"]." Pixel.";
+							$msg["error"][$field->get_name()] = "<strong>".$field->get_caption()."</strong>: Die Dimensionen des Bildes sind größer als ".$image_dimensions["x"]." x ".$image_dimensions["y"]." Pixel.";
 							$msg["valid"] = false;
 							$check = false;
 							
@@ -945,7 +962,7 @@ class Form {
 							
 						if ($size[0] <= $image_dimensions["x"] || $size[1] <= $image_dimensions["y"]) {
 							
-							$msg["error"] = "<strong>".$field->get_caption()."</strong>: Die Dimensionen des Bildes sind kleiner als ".$image_dimensions["x"]." x ".$image_dimensions["y"]." Pixel.";
+							$msg["error"][$field->get_name()] = "<strong>".$field->get_caption()."</strong>: Die Dimensionen des Bildes sind kleiner als ".$image_dimensions["x"]." x ".$image_dimensions["y"]." Pixel.";
 							$msg["valid"] = false;
 							$check = false;
 							
@@ -957,7 +974,7 @@ class Form {
 							
 						if ($size[0] != $image_dimensions["x"] || $size[1] != $image_dimensions["y"]) {
 							
-							$msg["error"] = "<strong>".$field->get_caption()."</strong>: Die Dimensionen des Bildes entsprechen nicht ".$image_dimensions["x"]." x ".$image_dimensions["y"]." Pixel.";
+							$msg["error"][$field->get_name()] = "<strong>".$field->get_caption()."</strong>: Die Dimensionen des Bildes entsprechen nicht ".$image_dimensions["x"]." x ".$image_dimensions["y"]." Pixel.";
 							$msg["valid"] = false;
 							$check = false;
 							

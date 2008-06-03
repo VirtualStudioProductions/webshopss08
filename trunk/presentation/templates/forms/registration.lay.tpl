@@ -4,7 +4,7 @@
 	k&ouml;nnen Sie sich sp&auml;ter einloggen.
 </div>
 <div class="colRight">
-	{username}
+	{cu_username}
 </div>
 <div class="clear"></div>
 
@@ -16,7 +16,7 @@
 	Zeichenfolge (auch Ziffern oder Sonderzeichen).
 </div>
 <div class="colRight">
-	{passwort}
+	{cu_password}
 </div>
 <div class="clear"></div>
 
@@ -28,7 +28,7 @@
 	aktivieren, bevor Sie Ihn verwenden k&ouml;nnen.
 </div>
 <div class="colRight">
-	{email}
+	{cu_email}
 </div>
 <div class="clear"></div>
 
@@ -38,7 +38,7 @@
 	Geben Sie bitte Ihren richtigen Vornamen an.
 </div>
 <div class="colRight">
-	{vorname}
+	{cu_firstname}
 </div>
 <div class="clear"></div>
 
@@ -48,7 +48,7 @@
 	Geben Sie bitte Ihren richtigen Nachnamen an.
 </div>
 <div class="colRight">
-	{nachname}
+	{cu_lastname}
 </div>
 <div class="clear"></div>
 
@@ -59,6 +59,8 @@
 	eventuelle R&uuml;ckfragen (optional).
 </div>
 <div class="colRight">
-	{telefon}
+	{cu_phone}
 </div>
 <div class="clear"></div>
+
+{cu_number}

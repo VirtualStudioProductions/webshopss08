@@ -50,11 +50,13 @@ class HiddenField extends Field {
 	public function get_display($value) {
 		
 	 	if ($value[0] == "") {
-	 		
-	 		$value[0] = $this->value;
+	 		$val = $this->value;
+		}
+		else {
+			$val = $value[0];
 		}
 
-		return "<input type=\"hidden\" name=\"".$this->name."\" value=\"".$value[0]."\" />";
+		return "<input type=\"hidden\" name=\"".$this->name."\" value=\"".$val."\" />";
 	
 	} // # END get_display
 	
