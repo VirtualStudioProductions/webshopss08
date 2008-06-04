@@ -136,15 +136,13 @@ class UCRegistration extends UC {
 		
 		
 		// E-Mail versenden
-		if (OFFLINE_MODE == false) {
+		if (SEND_EMAILS == true) {
 			
 			$mail["to"]			= $_POST["cu_email"];
 			$mail["subject"]	= PAGE_TITLE . " Registration";
 					
 			$mail["message"] = "".$_POST["cu_username"].", willkommen bei " . PAGE_TITLE . "\n";
-			$mail["message"] .= "Dein Account wurde registriert. Du musst ihn allerdings noch aktivieren.\n\n";
-			$mail["message"] .= "Verwende diesen Link, um deinen Account zu aktivieren:\n";
-			$mail["message"] .= "link\n";
+			$mail["message"] .= "Dein Account wurde registriert.\n\n";
 			$mail["message"] .= "Wichtig: Diese E-Mail wurde dir automatisch zugesandt, bitte nicht antworten!";
 				
 			$mail["headers"] = "From: " . MAIL_FROM . "\n";										
