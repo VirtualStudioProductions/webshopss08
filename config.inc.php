@@ -4,9 +4,9 @@
 // Generelle Einstellungen
 // ------------------------------------------------------------
 
-define("OFFLINE_MODE",	true);
-define("PAGE_TITLE",	"Webshop SS 08");
-define("MAIL_FROM",		"webshopss08@starspring.de");
+define("SEND_EMAILS",		false);
+define("PAGE_TITLE",		"Webshop SS 08");
+define("MAIL_FROM",			"webshopss08@starspring.de");
 
 // ------------------------------------------------------------
 
