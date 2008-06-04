@@ -17,7 +17,7 @@ $DATA_ACCESS = new PDO(
         DB_USER, // Username
         DB_PASS, // Passwort
         array(
-        	PDO::ATTR_PERSISTENT => false // Persistente Verbindung
+        	PDO::ATTR_PERSISTENT => DB_PERSISTENT // Persistente Verbindung
     	));
     	
 
