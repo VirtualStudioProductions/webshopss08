@@ -8,12 +8,12 @@ body {
 }
 
 /* nur gültig bei div tags die eine auflistung verwenden*/
-div.categoryitem ul{
+div.categoryitem ul {
 	list-style: none outside none;
 
 }
 
-a:link{
+a:link {
 	text-decoration: none;
 }
 
@@ -47,36 +47,27 @@ h1 {
 	bottom: 0px;
 	left: 0px;
 	border: 1px solid rgb(0,0,0);
+	overflow: hidden;
 }
 
-#banner{
+#banner {
 	background-color: rgb(51,51,51);
 	background-image: url(../images/banner.jpg);
 	background-repeat: repeat-x; 
 	height: 79px;
 }
 
-#bannerleft{
+#bannerleft {
 	background-image: url(../images/banner_left.jpg);
 	background-repeat: no-repeat;
 	height: 79px;
-	width: 557px;
+	width: 600px;
 	position: absolute;
 	top: 0px;
 	left: 0px;
 }
 
-#bannerright{
-	background-image: url(../images/banner_right.jpg);
-	background-repeat: no-repeat;
-	height: 79px;
-	width: 281px;
-	position: absolute;
-	top: 0px;
-	right: 0px;
-}
-
-#mainmenu{
+#mainmenu {
 	background-color: rgb(51,51,51);
 	background-image: url(../images/mainmenu.jpg);
 	background-repeat: repeat-x;
@@ -84,7 +75,7 @@ h1 {
 }
 
 
-#menuleft{
+#menuleft {
 	background-color: rgb(51,51,51);
 	background-image: url(../images/menuleft.jpg);
 	background-repeat: repeat-y;
@@ -95,7 +86,7 @@ h1 {
 	width: 199px;
 }
 
-#content{
+#content {
 	background-color: rgb(250,250,250);
 	background-image: url(../images/content_inlay.jpg);
 	background-repeat: no-repeat;
@@ -108,25 +99,27 @@ h1 {
 	padding: 10px;
 }
 
-#footer{
+#footer {
 	background-color: rgb(51,51,51);
 	background-image: url(../images/footer.jpg);
 	background-position: bottom left;
 	background-repeat: repeat-x;
 	position: absolute;
+	color: #222222;
 	bottom: 0px;
 	left: 0px;
 	right: 0px;
 	height: 19px;
-	font-size: 8pt;
+	font-size: 0.8em;
 	line-height: 19px;
 	text-align: center;
+	font-weight: bold;
 }
 
 /*************************/
 /*         Klassen       */
 /*************************/
-.menuitem{
+.menuitem {
 	display: inline;
 	float: right;
 	font-weight: bold;
@@ -135,7 +128,7 @@ h1 {
 	margin-right: 10px;
 }
 
-.categoryitem{
+.categoryitem {
 	color: rgb(51,51,51);
 	background-color: rgb(250,250,250);
 	width: 180px;
@@ -144,37 +137,37 @@ h1 {
 	font-size: 0.8em;
 }
 
-.category{
+.category {
 	color: rgb(250,250,250);
 	background-color: none;
 	margin: 0px auto 0 5px;
 	font-weight: bold;
 }
 
-.itemtitle{
+.itemtitle {
 	border: 1px solid rgb(51,51,51);
 	margin: 5px 5px 0 5px;
 	padding: 0 5px 0 5px;
 }
 
-.itemfooter{
+.itemfooter {
 	border: 1px solid rgb(255,51,51);
 	margin: 5px 5px 0 5px;
 }
 
-.imagebox{
+.imagebox {
 	border: 1px solid rgb(51,51,51);
 	margin: 5px 5px 0 5px;
 	padding: 0px 5px 5px 5px;
 	width: 202px;
 }
 
-.image{
+.image {
 	border: 1px solid rgb(100,100,100);
 	margin: 5px 0 0 0;
 }
 
-.itemdescription{
+.itemdescription {
 	position: absolute;
 	left: 223px;
 	right: 0px;

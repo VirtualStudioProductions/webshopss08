@@ -1,5 +1,5 @@
 	<div id="footer">
-		&copy 2008 blubb blubb alle werden abgemahnt die diese page ansehen!
+		Copyright &copy 2008 by Pointer Hell :: Alle Rechte vorbehalten
 	</div>
 	
 </div> <!-- Ende Sitebox-->
