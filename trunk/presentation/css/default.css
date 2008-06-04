@@ -74,6 +74,11 @@ h1 {
 	height: 28px;
 }
 
+#mainmenu:hover {
+	color: #ffff00;
+	text-decoration: none;
+}
+
 
 #menuleft {
 	background-color: rgb(51,51,51);
