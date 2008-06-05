@@ -18,6 +18,7 @@ define("MAIL_FROM",			"webshopss08@starspring.de");
 define("TPL_ENDING",		".tpl");
 define("TPL_ItemOverview",	"itemoverview" . TPL_ENDING);
 define("TPL_Registration",	"registration" . TPL_ENDING);
+define("TPL_Login",			"login" . TPL_ENDING);
 define("TPL_Article",		"article" . TPL_ENDING);
 
 // ------------------------------------------------------------

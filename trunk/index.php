@@ -9,7 +9,11 @@ require_once("api/smarty/Smarty.class.php");
 // Seiten einbinden
 require_once("presentation/sites/SITEItemOverview.class.php");
 require_once("presentation/sites/SITERegistration.class.php");
+require_once("presentation/sites/SITELogin.class.php");
 require_once("presentation/sites/SITEArticle.class.php");
+
+// Session-Sitzung starten
+session_start();
 
 // Datenbankverbindung herstellen
 $DATA_ACCESS = new PDO(
@@ -30,7 +34,16 @@ $SMARTY = new Smarty();
 switch ($_GET["site"]) {
 	
 	case "registration":
-		$SITE = new SITERegistration($SMARTY);
+		if ($_SESSION["USER"] == null) {
+			$SITE = new SITERegistration($SMARTY);
+		}
+		else {
+			$SITE = new SITELogin($SMARTY);
+		}
+		break;
+		
+	case "login":
+		$SITE = new SITELogin($SMARTY);
 		break;
 	
 	case "article":

@@ -59,7 +59,7 @@ class TextArea extends Field {
 			
 		$FIELD = $value[1];
 
-		return "<textarea name=\"".$this->name."\" rows=\"".$this->rows."\" cols=\"".$this->cols."\" maxlength=\"".$this->maxlength."\"".$this->css." ".$FIELD->get_actions().">".$value[0]."</textarea>";
+		return "<textarea id=\"".$this->name."\" name=\"".$this->name."\" rows=\"".$this->rows."\" cols=\"".$this->cols."\" maxlength=\"".$this->maxlength."\"".$this->css." ".$FIELD->get_actions().">".$value[0]."</textarea>";
 	
 	} // # END get_display
 	

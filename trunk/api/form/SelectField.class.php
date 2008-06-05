@@ -87,7 +87,7 @@ class SelectField extends Field {
 	 	$options = $this->options;
 		$count_options = count($options);
 		$FIELD = $value[1];
-	 	$replacement = "<select name=\"".$this->name."\"".$this->css." ".$FIELD->get_actions().">\n";
+	 	$replacement = "<select id=\"".$this->name."\" name=\"".$this->name."\"".$this->css." ".$FIELD->get_actions().">\n";
 	 	
 		for ($i = 1; $i <= $count_options; $i++) {
 			

@@ -13,12 +13,14 @@ div.categoryitem ul {
 
 }
 
-a:link {
+a {
 	text-decoration: none;
+	color: #0000ff;
 }
 
 a:visited {
 	text-decoration: none;
+	color: #0000ff;
 }
 
 a:hover {
@@ -40,6 +42,10 @@ h2 {
 	padding-bottom: 8px;
 	font-size: 1.4em;
 	font-weight: bold;
+}
+
+input {
+	padding: 1px;
 }
 
 
@@ -88,12 +94,12 @@ h2 {
 }
 
 #mainmenu a {
-	color: #ffffff;
+	color: #ffff00;
 }
 
 #mainmenu a:hover {
 	color: #ffff00;
-	text-decoration: none;
+	text-decoration: underline;
 }
 
 #menuleft {
@@ -126,7 +132,7 @@ h2 {
 	background-position: bottom left;
 	background-repeat: repeat-x;
 	position: absolute;
-	color: #222222;
+	color: #fff;
 	bottom: 0px;
 	left: 0px;
 	right: 0px;
@@ -135,6 +141,14 @@ h2 {
 	line-height: 19px;
 	text-align: center;
 	font-weight: bold;
+}
+
+#footer a {
+	color: #ffffff;
+}
+
+#footer a:hover {
+	color: #ffff00;
 }
 
 #footer p {

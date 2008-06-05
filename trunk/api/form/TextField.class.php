@@ -51,7 +51,7 @@ class TextField extends Field {
 			
 		$FIELD = $value[1];
 		
-		return "<input type=\"text\" name=\"".$this->name."\" value=\"".$value[0]."\" maxlength=\"".$this->maxlength."\"".$this->css." dir=\"".$FIELD->get_v_dir()."\" ".$FIELD->get_actions().$FIELD->get_v_readonly()." />";
+		return "<input type=\"text\" id=\"".$this->name."\" name=\"".$this->name."\" value=\"".$value[0]."\" maxlength=\"".$this->maxlength."\"".$this->css." dir=\"".$FIELD->get_v_dir()."\" ".$FIELD->get_actions().$FIELD->get_v_readonly()." />";
 	
 	} // # END get_display
 	

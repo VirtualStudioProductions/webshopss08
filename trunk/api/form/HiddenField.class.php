@@ -56,7 +56,7 @@ class HiddenField extends Field {
 			$val = $value[0];
 		}
 
-		return "<input type=\"hidden\" name=\"".$this->name."\" value=\"".$val."\" />";
+		return "<input type=\"hidden\" id=\"".$this->name."\" name=\"".$this->name."\" value=\"".$val."\" />";
 	
 	} // # END get_display
 	

@@ -1,6 +1,6 @@
 .colLeft {
 	float: left;
-	width: 40%;
+	width: 100px;
 	padding: 5px;
 	margin-top: 10px;
 }
@@ -13,7 +13,11 @@
 	margin-left: 25px;
 	margin-top: 10px;
 	float: left;
-	padding: 20px 5px 5px 5px;
+	padding: 5px 5px 5px 5px;
+}
+
+.textfield {
+	width: 200px;
 }
 
 .form {
@@ -22,8 +26,4 @@
 	margin-right: 10px;
 	border: 1px solid #333333;
 	background-color: #f1f1f1;
-}
-
-.textfield {
-	width: 200px;
 }
