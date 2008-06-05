@@ -1,7 +1,7 @@
 <?php
 
-//require_once("api/form/Form.class.php");
-//require_once("api/form/Field.class.php");
+require_once("api/form/Form.class.php");
+require_once("api/form/Field.class.php");
 require_once("logic/UCLogin.class.php");
 require_once("SITE.class.php");
 
