@@ -6,7 +6,7 @@
 <link rel="stylesheet" href="presentation/css/default.css" type="text/css" />
 {if $smarty.get.site == "registration"}<link rel="stylesheet" href="presentation/css/registration.css" type="text/css" />
 {/if}
-<title>Webshop Sommersemester 2008</title>
+<title>{$PAGE_TITLE}</title>
 </head>
 
 <body>
@@ -14,14 +14,12 @@
 <div id="sitebox">
 
 	<div id="banner">
-		<div id="bannerleft"></div>
+		<div id="bannerleft"><h1 class="hidden">{$PAGE_TITLE}</h1></div>
 	</div>
 	
 	<div id="mainmenu">
-		<a class="menuitem" href="#">Warenkorb</a>
-		<div class="menuitem">::</div>
-		<a class="menuitem" title="Registrieren Sie sich und werden Sie Kunde!" href="index.php?site=registration">Registrieren</a>
-		<div class="menuitem">::</div>
-		<a class="menuitem" href="#">Login</a>
+		<a href="#">Login</a> ::
+		<a title="Registrieren Sie sich und werden Sie Kunde!" href="index.php?site=registration">Registrieren</a> ::
+		<a href="#">Warenkorb</a>		
 	</div>
 

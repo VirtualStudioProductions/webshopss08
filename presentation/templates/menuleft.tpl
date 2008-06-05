@@ -1,4 +1,5 @@
 <div id="menuleft">
+	<h2 class="hidden">Kategorien-&Uuml;bersicht</h2>
 	{foreach from=$categories item=currentCategory}
 		<div class ="category">
 			<a href="index.php?site=detail">{$currentCategory.name}</a>
