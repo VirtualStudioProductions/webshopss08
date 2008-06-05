@@ -149,6 +149,7 @@ form {
 
 #footer a {
 	color: #ffffff;
+	text-decoration: underline;
 }
 
 #footer a:hover {
@@ -172,7 +173,6 @@ form {
 
 .category {
 	color: rgb(250, 250, 250);
-	background-color: none;
 	margin: 0px auto 0 5px;
 	font-weight: bold;
 }
