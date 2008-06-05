@@ -45,7 +45,7 @@ class SITELogin extends SITE {
 
 		
 		// Logout-Funktion
-		if ($_GET["logout"] == true) {
+		if ($_GET["logout"] == true && $_SESSION["USER"] != null) {
 			$this->useCase->logout();
 		}
 		

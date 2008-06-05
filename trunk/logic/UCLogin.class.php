@@ -111,7 +111,7 @@ class UCLogin extends UC {
 	/**
 	 * Diese Methode ersetzt die Standard-Formular-Verarbeitung
 	 * der Form-API. Es ist dabei wichtig, dass diese Methode
-	 * process_form hat und eine $msg übergeben bekommt. Diese $msg
+	 * process_form heißt und eine $msg übergeben bekommt. Diese $msg
 	 * kann per Default auf ein leeres Array gesetzt werden.
 	 * 
 	 * Diese Methode wird nur aufgerufen, wenn beim Formular-Konstruktor
