@@ -10,6 +10,7 @@ require_once("api/smarty/Smarty.class.php");
 require_once("presentation/sites/SITEItemOverview.class.php");
 require_once("presentation/sites/SITERegistration.class.php");
 require_once("presentation/sites/SITELogin.class.php");
+require_once("presentation/sites/SITEImpressum.class.php");
 require_once("presentation/sites/SITEArticle.class.php");
 
 // Session-Sitzung starten
@@ -44,6 +45,10 @@ switch ($_GET["site"]) {
 		
 	case "login":
 		$SITE = new SITELogin($SMARTY);
+		break;
+		
+	case "impressum":
+		$SITE = new SITEImpressum($SMARTY);
 		break;
 	
 	case "article":

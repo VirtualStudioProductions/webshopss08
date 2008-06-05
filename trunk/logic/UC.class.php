@@ -3,7 +3,7 @@
 require_once("dao/DAOCategory.class.php");
 
 
-abstract class UC {
+class UC {
 	
 	
 	/** 
