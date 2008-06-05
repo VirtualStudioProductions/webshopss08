@@ -38,7 +38,7 @@ class UCRegistration extends UC {
 		
 		// Formular-Eigenschaften
 		$F_REGISTRATION->set_show_reset_button(false);			// Reset Button ausschalten
-		$F_REGISTRATION->set_submit_value("Registrieren!");		// Text des Submit Buttons
+		$F_REGISTRATION->set_submit_value("Jetzt registrieren!");		// Text des Submit Buttons
 		$F_REGISTRATION->set_css(" class=\"form\"");			// CSS für das Formular
 		$F_REGISTRATION->set_submit_css(" class=\"submit\"");	// CSS für Submit-Button
 		

@@ -5,6 +5,10 @@
 	margin-top: 10px;
 }
 
+.colLeft p {
+	display: inline;
+}
+
 .colRight {
 	margin-left: 25px;
 	margin-top: 10px;

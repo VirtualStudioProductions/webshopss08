@@ -36,6 +36,12 @@ h1 {
 	font-weight: bold;
 }
 
+h2 {
+	padding-bottom: 8px;
+	font-size: 1.4em;
+	font-weight: bold;
+}
+
 
 /* id's werden immer mit einer # angegeben*/
 /* steht z.b. ein div vor der raute: div#sitebox dann kann die id nur auf div tags angewendet werden*/
@@ -53,7 +59,7 @@ h1 {
 }
 
 #banner {
-	background-color: rgb(51,51,51);
+	background-color: #343434;
 	background-image: url(../images/banner.jpg);
 	background-repeat: repeat-x; 
 	height: 79px;
@@ -70,14 +76,28 @@ h1 {
 }
 
 #mainmenu {
-	background-color: rgb(51,51,51);
+	background-color: #343434;
 	background-image: url(../images/mainmenu.jpg);
 	background-repeat: repeat-x;
 	height: 28px;
+	font-weight: bold;
+	line-height: 28px;
+	color: #ffffff;
+	text-align: right;
+	padding-right: 10px;
+}
+
+#mainmenu a {
+	color: #ffffff;
+}
+
+#mainmenu a:hover {
+	color: #ffff00;
+	text-decoration: none;
 }
 
 #menuleft {
-	background-color: rgb(51,51,51);
+	background-color: #343434;
 	background-image: url(../images/menuleft.jpg);
 	background-repeat: repeat-y;
 	position: absolute;
@@ -101,7 +121,7 @@ h1 {
 }
 
 #footer {
-	background-color: rgb(51,51,51);
+	background-color: #343434;
 	background-image: url(../images/footer.jpg);
 	background-position: bottom left;
 	background-repeat: repeat-x;
@@ -117,23 +137,14 @@ h1 {
 	font-weight: bold;
 }
 
+#footer p {
+	display: inline;
+}
+
 
 /*************************/
 /*         Klassen       */
 /*************************/
-.menuitem {
-	display: inline;
-	float: right;
-	font-weight: bold;
-	line-height: 28px;
-	color: #ffffff;
-	margin-right: 10px;
-}
-
-.menuitem:hover {
-	color: #ffff00;
-	text-decoration: none;
-}
 
 .categoryitem {
 	color: rgb(51,51,51);
@@ -187,4 +198,9 @@ h1 {
 
 .clear {
 	clear: both;
+}
+
+.hidden {
+	visibility: hidden;
+	display: none;
 }

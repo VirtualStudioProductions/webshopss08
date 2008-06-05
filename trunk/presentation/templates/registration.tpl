@@ -1,7 +1,7 @@
 <div id="content">
 		
 		
-	<h1>Registrieren</h1>
+	<h2>Registrieren</h2>
 	
 	{if $smarty.get.confirm}
 	
