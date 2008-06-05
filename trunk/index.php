@@ -60,6 +60,7 @@ switch ($_GET["site"]) {
 		break;
 		
 }
+
 // Am Objekt SITE die Funktion display aufrufen, um die Seite anzuzeigen
 $SITE->display();
 

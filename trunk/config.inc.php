@@ -7,6 +7,7 @@
 define("SEND_EMAILS",		false);
 define("PAGE_TITLE",		"Webshop SS 08");
 define("MAIL_FROM",			"webshopss08@starspring.de");
+define("TRACE_TIMEOUT",		60 * 60 * 24 *30);
 
 // ------------------------------------------------------------
 
@@ -37,6 +38,7 @@ define("DB_PERSISTENT",		false);
 
 define("DB_PREFIX",			"ws_");
 define("TBL_CUSTOMER",		DB_PREFIX . "customer");
+define("TBL_TRACE",			DB_PREFIX . "trace");
 define("TBL_ARTICLE",		DB_PREFIX . "article");
 
 // ------------------------------------------------------------

@@ -57,6 +57,7 @@ class UCRegistration extends UC {
 		$FIELD->set_v_nospace(true);		// Keine Leerzeichen
 		$FIELD->set_v_nospecial(true);		// Keine Sonderzeichen
 		$FIELD->set_v_nosql(true);			// Keine SQL Dingens
+		$FIELD->set_v_minlength(6);
 		$F_REGISTRATION->add_field($FIELD);
 		
 		// Passwort
