@@ -43,7 +43,6 @@ class UCLogin extends UC {
 		// Formular-Eigenschaften
 		$F_LOGIN->set_show_reset_button(false);			// Reset Button ausschalten
 		$F_LOGIN->set_submit_value("Login!");			// Text des Submit Buttons
-		$F_LOGIN->set_css(" class=\"form\"");			// CSS für das Formular
 		
 		// action Attribut des form Elementes überschreiben
 		$F_LOGIN->set_action($_SERVER["PHP_SELF"] . "?site=" . $_GET["site"]);

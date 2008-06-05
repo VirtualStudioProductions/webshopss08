@@ -1,4 +1,3 @@
-
 /* ohne raute und punkt wir damit direkt ein standard html befehl angesprochen*/
 body {
 	font-family: Verdana, Arial;
@@ -10,7 +9,6 @@ body {
 /* nur gültig bei div tags die eine auflistung verwenden*/
 div.categoryitem ul {
 	list-style: none outside none;
-
 }
 
 a {
@@ -48,11 +46,17 @@ input {
 	padding: 1px;
 }
 
+form {
+	padding: 10px;
+	margin-left: 10px;
+	margin-right: 10px;
+	border: 1px solid #333333;
+	background-color: #f1f1f1;
+}
 
 /* id's werden immer mit einer # angegeben*/
-/* steht z.b. ein div vor der raute: div#sitebox dann kann die id nur auf div tags angewendet werden*/
-/* eine id darf in einem html dokument nur einmal vorkommen! */
-
+	/* steht z.b. ein div vor der raute: div#sitebox dann kann die id nur auf div tags angewendet werden*/
+	/* eine id darf in einem html dokument nur einmal vorkommen! */
 #sitebox {
 	margin: 10px;
 	position: absolute;
@@ -60,14 +64,14 @@ input {
 	right: 0px;
 	bottom: 0px;
 	left: 0px;
-	border: 1px solid rgb(0,0,0);
+	border: 1px solid rgb(0, 0, 0);
 	overflow: hidden;
 }
 
 #banner {
 	background-color: #343434;
 	background-image: url('../images/banner.jpg');
-	background-repeat: repeat-x; 
+	background-repeat: repeat-x;
 	height: 79px;
 }
 
@@ -114,7 +118,7 @@ input {
 }
 
 #content {
-	background-color: rgb(250,250,250);
+	background-color: rgb(250, 250, 250);
 	background-image: url('../images/contentinlay.jpg');
 	background-repeat: no-repeat;
 	position: absolute;
@@ -155,47 +159,44 @@ input {
 	display: inline;
 }
 
-
-/*************************/
-/*         Klassen       */
-/*************************/
-
+/*************************/ /*         Klassen       */
+	/*************************/
 .categoryitem {
-	color: rgb(51,51,51);
-	background-color: rgb(250,250,250);
+	color: rgb(51, 51, 51);
+	background-color: rgb(250, 250, 250);
 	width: 180px;
-/*	border: 1px solid black;*/
+	/*	border: 1px solid black;*/
 	font-weight: normal;
 	font-size: 0.8em;
 }
 
 .category {
-	color: rgb(250,250,250);
+	color: rgb(250, 250, 250);
 	background-color: none;
 	margin: 0px auto 0 5px;
 	font-weight: bold;
 }
 
 .itemtitle {
-	border: 1px solid rgb(51,51,51);
+	border: 1px solid rgb(51, 51, 51);
 	margin: 5px 5px 0 5px;
 	padding: 0 5px 0 5px;
 }
 
 .itemfooter {
-	border: 1px solid rgb(255,51,51);
+	border: 1px solid rgb(255, 51, 51);
 	margin: 5px 5px 0 5px;
 }
 
 .imagebox {
-	border: 1px solid rgb(51,51,51);
+	border: 1px solid rgb(51, 51, 51);
 	margin: 5px 5px 0 5px;
 	padding: 0px 5px 5px 5px;
 	width: 202px;
 }
 
 .image {
-	border: 1px solid rgb(100,100,100);
+	border: 1px solid rgb(100, 100, 100);
 	margin: 5px 0 0 0;
 }
 
@@ -205,7 +206,7 @@ input {
 	right: 0px;
 	top: 30px;
 	width: auto;
-	border: 1px solid rgb(51,51,51);
+	border: 1px solid rgb(51, 51, 51);
 	margin: 0px 5px 0 0px;
 	padding: 0 5px 0 5px;
 }
