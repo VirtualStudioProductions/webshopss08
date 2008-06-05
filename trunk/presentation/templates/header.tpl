@@ -4,6 +4,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /> <!-- tags ohne ende tag können so vereinfacht geschlossen werden -->
 <link rel="stylesheet" href="presentation/css/default.css" type="text/css" />
+<link rel="stylesheet" href="presentation/css/mobile.css" type="text/css" media="handheld" />
 {if $smarty.get.site == "registration"}<link rel="stylesheet" href="presentation/css/registration.css" type="text/css" />
 {/if}
 <title>{$PAGE_TITLE}</title>

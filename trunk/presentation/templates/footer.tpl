@@ -1,4 +1,5 @@
 	<div id="footer">
+		<span>&nbsp;</span>
 		<p>Copyright &copy 2008 by Pointer Hell :: Alle Rechte vorbehalten</p>
 	</div>
 	

@@ -61,9 +61,6 @@
 <div class="colRight">
 	{cu_phone}
 </div>
-<div class="clear"></div>
+<div class="clear"><br /></div>
 
 {cu_number}
-
-<!-- Wenn CSS deaktiviert wurde den Button etwas nach unten verschieben -->
-<p class="hidden"></p>

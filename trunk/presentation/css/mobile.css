@@ -1,0 +1,36 @@
+@import url('default.css');
+
+#sitebox {
+	width: 290px;
+}
+
+#bannerleft {
+	background-image: url('../images/mobile/bannerleft.jpg');
+}
+
+#menuleft {
+	width: 290px;
+	height: 170px;
+	bottom: auto;
+	background-repeat: repeat-y;
+	background-image: url('../images/mobile/menuleft.jpg');
+	border-bottom: 1px solid #333333;
+	overflow: auto;
+}
+
+#content {
+	top: 278px;
+	left: 0;
+	bottom: 13px;
+	border-top: 1px solid #333333;
+}
+
+#footer {
+	background-image: url('../images/mobile/footer.jpg');
+	height: 29px;
+	line-height: 12px;
+}
+
+#footer span {
+	font-size: 13pt;
+}
