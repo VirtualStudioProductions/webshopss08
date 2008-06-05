@@ -3,6 +3,7 @@
 require_once("dao/DAOCustomer.class.php");
 require_once("UC.class.php");
 
+
 class UCRegistration extends UC {
 	
 	
@@ -12,7 +13,7 @@ class UCRegistration extends UC {
 	
 	public function UCRegistration() {
 		
-		parent::UC(); //Aufruf Elternkonstruktor
+		parent::UC(); // Aufruf Elternkonstruktor
 		$this->DAOCustomer = new DAOCustomer();
 	
 	} // # END UCRegistration
@@ -37,15 +38,14 @@ class UCRegistration extends UC {
 							$DATA_ACCESS);
 		
 		// Formular-Eigenschaften
-		$F_REGISTRATION->set_show_reset_button(false);			// Reset Button ausschalten
+		$F_REGISTRATION->set_show_reset_button(false);					// Reset Button ausschalten
 		$F_REGISTRATION->set_submit_value("Jetzt registrieren!");		// Text des Submit Buttons
-		$F_REGISTRATION->set_css(" class=\"form\"");			// CSS für das Formular
-		$F_REGISTRATION->set_submit_css(" class=\"submit\"");	// CSS für Submit-Button
+		$F_REGISTRATION->set_css(" class=\"form\"");					// CSS für das Formular
 		
 		// action Attribut des form Elementes überschreiben
 		$F_REGISTRATION->set_action($_SERVER["PHP_SELF"] . "?site=" . $_GET["site"]);
 		
-		// Automatische Weiterleitung ausschalten
+		// Automatische Weiterleitung Pfad angeben
 		$F_REGISTRATION->set_redirect_url("?site=".$_GET["site"]."&confirm=true");
 		
 		
@@ -104,6 +104,11 @@ class UCRegistration extends UC {
 	} // # END createRegistrationForm
 	
 	
+	/**
+	 * Baut die Kundennummer für den neuen Kunden zusammen.
+	 *
+	 * @return Eine eindeutige Kundennummer
+	 */
 	private function computeCustomerNumber() {
 		
 		$lastID = $this->DAOCustomer->getLastID();
@@ -130,7 +135,20 @@ class UCRegistration extends UC {
 	} // # END computeCustomerNumber
 	
 	
-	public function process_form($msg = "") {
+	/**
+	 * Diese Methode erweitert die Standard-Formular-Verarbeitung
+	 * der Form-API. Es ist dabei wichtig, dass diese Methode
+	 * process_form hat und eine $msg übergeben bekommt. Diese $msg
+	 * kann per Default auf ein leeres Array gesetzt werden.
+	 * 
+	 * Diese Methode wird nur aufgerufen, wenn beim Formular-Konstruktor
+	 * bei CUSTOM_TYPE entweder "extention" oder "replacement" angegeben
+	 * wurde und das OWNER_OBJECT dieser UC ist.
+	 *
+	 * @param $msg		Für Fehler-Tracking
+	 * @return $msg
+	 */
+	public function process_form($msg = array()) {
 		
 		// Erweiterte Formular-Verarbeitung für die Registrierung
 		

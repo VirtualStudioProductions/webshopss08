@@ -388,6 +388,9 @@ class Form {
 			if ($_GET["confirm"] != "") {
 				$layout .= "<p style=\"text-align: center; color: #00FF00; font-weight: bold;\">".$_GET["confirm"]."</p>\n";
 			}
+			if ($msg["general_error"] != "") {
+				print "<p><span style=\"color: #FF0000;\"><strong>Fehler:</strong></span> " . $msg["general_error"] . "</p>";
+			}
 			$layout .= "<form action=\"".$this->action."#msg_".$this->form_name."\" method=\"".$this->method."\"".$this->enctype."".$this->css.">\n";
 			if ($this->sql_where != "") {
 				$layout .= "<input type=\"hidden\" name=\"id\" value=\"".$res["".$this->sql_id.""]."\" />\n";
@@ -422,8 +425,8 @@ class Form {
 						}
 						$value[1] = $this->fields[$key];
 						$replacement .= $this->fields[$key]->get_display($value);
-						if ($msg["error"][$this->fields[$key]->get_name()]) {
-							$replacement .= "<br /><span style=\"color: #FF0000;\"><strong>Fehler:</strong></span> " . $msg["error"][$this->fields[$key]->get_name()];
+						if ($msg["error"][$this->fields[$key]->get_name()] && $msg["general_error"] == "") {
+							$replacement .= "<br /><p><span style=\"color: #FF0000;\"><strong>Fehler:</strong></span> " . $msg["error"][$this->fields[$key]->get_name()] . "</p>";
 						}
 					}
 
@@ -445,10 +448,10 @@ class Form {
 				// footer
 				$layout .= "\n\n<!--  - FORM FOOTER -->\n";
 				if ($this->show_submit_button == true) {
-					$layout .= "<input name=\"s_".$this->form_name."\" type=\"submit\" value=\"".$this->submit_value."\"".$this->submit_css." />\n";
+					$layout .= "<input id=\"s_".$this->form_name."\" name=\"s_".$this->form_name."\" type=\"submit\" value=\"".$this->submit_value."\"".$this->submit_css." />\n";
 				}
 				if ($this->show_reset_button == true) {
-					$layout .= "<input type=\"reset\" value=\"".$this->reset_value."\"".$this->reset_css." />\n";
+					$layout .= "<input id=\"r_".$this->form_name."\" name=\"r_".$this->form_name."\" type=\"reset\" value=\"".$this->reset_value."\"".$this->reset_css." />\n";
 				}
 				if ($this->show_form_end == true) {
 					$layout .= "</form>\n";

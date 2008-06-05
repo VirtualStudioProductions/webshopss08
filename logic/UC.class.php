@@ -1,4 +1,5 @@
 <?php
+
 require_once("dao/DAOCategory.class.php");
 
 

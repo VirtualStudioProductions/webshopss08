@@ -94,7 +94,7 @@ class FileField extends Field {
 	 */
 	public function get_display($value) {
 		
-		return "<input type=\"file\" name=\"".$this->name."\"".$this->css." />";
+		return "<input type=\"file\" id=\"".$this->name."\" name=\"".$this->name."\"".$this->css." />";
 	
 	} // # END get_display
 	

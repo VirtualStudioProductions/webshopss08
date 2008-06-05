@@ -111,7 +111,7 @@ class RadioButton extends Field {
 				$caption_right = "<span".$this->options[$i]->get_caption_css().">".$this->options[$i]->get_caption()."</span>";
 			}
 			
-		    $replacement .= "".$caption_left." <input type=\"radio\" name=\"".$this->name."\" value=\"".$this->options[$i]->get_value()."\"".$this->options[$i]->get_css()."".$var." /> ".$caption_right."\n";
+		    $replacement .= "".$caption_left." <input type=\"radio\" id=\"".$this->name."\" name=\"".$this->name."\" value=\"".$this->options[$i]->get_value()."\"".$this->options[$i]->get_css()."".$var." /> ".$caption_right."\n";
 		    unset ($var, $caption_left, $caption_right);
 		
 		 }

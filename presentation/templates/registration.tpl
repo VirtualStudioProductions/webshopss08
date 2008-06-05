@@ -18,7 +18,7 @@
 		registrierter Kunde bei uns sein. Nutzen Sie dieses Formular um jetzt
 		Kunde zu werden.</p>
 		
-		{$F_REGISTRATION->display($msg)}
+		<br />{$F_REGISTRATION->display($msg)}<br />
 		
 	{/if}
 		

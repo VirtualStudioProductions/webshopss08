@@ -1,29 +1,28 @@
 <?php
 
-require_once("api/form/Form.class.php");
-require_once("api/form/Field.class.php");
-require_once("logic/UCRegistration.class.php");
+//require_once("api/form/Form.class.php");
+//require_once("api/form/Field.class.php");
+require_once("logic/UCLogin.class.php");
 require_once("SITE.class.php");
 
 
-class SITERegistration extends SITE {
+class SITELogin extends SITE {
 		
 	
-	/** Das Registrierungs-Formular */
-	protected $F_REGISTRATION;
+	/** Das Login-Formular */
+	protected $F_LOGIN;
 	
 	
-	public function SITERegistration($TEMPLATE_ENGINE) {
+	public function SITELogin($TEMPLATE_ENGINE) {
 		
 		// super Konstruktor aufrufen
-		parent::SITE($TEMPLATE_ENGINE, new UCRegistration());
+		parent::SITE($TEMPLATE_ENGINE, new UCLogin());
 		
 		// Attribute initialisieren
-		$this->template = TPL_Registration;
+		$this->template = TPL_Login;
 		
-		
-		// Registration Formular erzeugen
-		$this->F_REGISTRATION = $this->useCase->createRegistrationForm();
+		// Login Formular erzeugen
+		$this->F_LOGIN = $this->useCase->createLoginForm();
 										
 										
 		// Private Funktion fillTemplate aufrufen
@@ -33,15 +32,21 @@ class SITERegistration extends SITE {
 		$this->actions();
 		
 		
-	} // # END SITERegistration
+	} // # END SITELogin
 	
 	
 	private function actions() {
 		
 		// Formularverarbeitung
-		if ($_POST["s_" . $this->F_REGISTRATION->get_form_name()]) {
-			$msg = $this->F_REGISTRATION->process_form();
+		if ($_POST["s_" . $this->F_LOGIN->get_form_name()]) {
+			$msg = $this->F_LOGIN->process_form();
 			$this->TEMPLATE_ENGINE->assign("msg", $msg);
+		}
+
+		
+		// Logout-Funktion
+		if ($_GET["logout"] == true) {
+			$this->useCase->logout();
 		}
 		
 		
@@ -56,8 +61,8 @@ class SITERegistration extends SITE {
 		parent::fillTemplate(); //Zuerst die von SITE.class.php geerbte fillTemplate Funktion aufrufen um die Kategorieansicht anzuzeigen
 		
 		// Formular an das Template zuweisen
-		$this->TEMPLATE_ENGINE->assign("F_REGISTRATION", $this->F_REGISTRATION);
-	
+		$this->TEMPLATE_ENGINE->assign("F_LOGIN", $this->F_LOGIN);
+			
 		
 	} // # END fillTemplate
 

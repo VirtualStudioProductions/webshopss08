@@ -8,9 +8,16 @@
 	background-image: url('../images/mobile/bannerleft.jpg');
 }
 
+#mainmenu {
+	height: 43px;
+	line-height: 19px;
+	background-image: url('../images/mobile/mainmenu.jpg');
+}
+
 #menuleft {
 	width: 290px;
-	height: 170px;
+	height: 165px;
+	top: 122px;
 	bottom: auto;
 	background-repeat: repeat-y;
 	background-image: url('../images/mobile/menuleft.jpg');
