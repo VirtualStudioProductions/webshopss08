@@ -23,14 +23,20 @@ if ($_GET["tested"] != true && !$_POST) {
 // Session-Sitzung starten
 session_start();
 
-// Datenbankverbindung herstellen
-$DATA_ACCESS = new PDO(
+// versuche Datenbankverbindung herzustellen
+try{
+	$DATA_ACCESS = new PDO(
         "mysql:host=" . DB_HOST . ";dbname=" . DB_NAME, // Treiberangaben
         DB_USER, // Username
         DB_PASS, // Passwort
         array(
         	PDO::ATTR_PERSISTENT => DB_PERSISTENT // Persistente Verbindung
     	));
+
+	} catch(PDOException $e) {
+    	echo $e->getMessage(); //evtl noch anders behandeln falls die db connection fehlschlägt
+		}
+    	
     	
 
 // Neues Smarty Objekt erzeugen
