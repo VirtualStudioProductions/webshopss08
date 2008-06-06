@@ -18,17 +18,8 @@ class DAOCategory {
 		
 		$stmt = $DATA_ACCESS->prepare($sql);
 		$stmt->execute();
-
-		array($arr);
-		$i=0;
-		//gibt schön alle db inhalte zurück
-		while ( $cell = $stmt->fetch( PDO::FETCH_ASSOC ) ) {
-		//print_r($cell);
-		//echo("");
-		$arr[$i]["name"] = $cell["name"];
-		$i=$i+1; 
-		}
-
+		//alle Spalteneinträge in Array $arr schreiben
+		$arr = $stmt->fetchAll( PDO::FETCH_ASSOC );
 		return $arr;
 	
 	} // # END getAllCategories
