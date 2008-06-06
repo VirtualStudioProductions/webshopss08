@@ -8,6 +8,7 @@
 
 
 {* der alte content von menuleft.tpl *}
+{*
 			<a class= "category" href="index.php?site=detail">CPUs</a>
 			<div class ="category">
 				Soundkarten
@@ -34,7 +35,7 @@
 				</div>
 			</div>
 
-
+*}
 </div>
 
 

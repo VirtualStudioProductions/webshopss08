@@ -34,6 +34,7 @@ abstract class SITE {
 
 		// Das $categories Array ist nun unter dem Namen "categories" im Template verfügbar
 		$this->TEMPLATE_ENGINE->assign("categories", $categories);
+		
 		$this->TEMPLATE_ENGINE->assign("PAGE_TITLE", PAGE_TITLE);
 	
 	} // # END fillTemplate
