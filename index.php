@@ -13,6 +13,12 @@ require_once("presentation/sites/SITELogin.class.php");
 require_once("presentation/sites/SITEImpressum.class.php");
 require_once("presentation/sites/SITEArticle.class.php");
 
+// Cookies testen
+if ($_GET["tested"] != true) {
+	setcookie("webshoptest", "active", time() + 60 * 60 * 24 * 10);
+	header("Location: " . $_SERVER["PHP_SELF"] . "?site=" . $_GET["site"] . "&tested=true");
+}
+
 // Session-Sitzung starten
 session_start();
 

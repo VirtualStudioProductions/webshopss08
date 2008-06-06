@@ -7,7 +7,7 @@
 define("SEND_EMAILS",		false);
 define("PAGE_TITLE",		"Webshop SS 08");
 define("MAIL_FROM",			"webshopss08@starspring.de");
-define("TRACE_TIMEOUT",		60 * 60 * 24 *30);
+define("TRACE_TIMEOUT",		60 * 60 * 24 * 30);
 
 // ------------------------------------------------------------
 

@@ -20,13 +20,13 @@
 	
 	<div id="mainmenu">
 		{if $smarty.session.USER == null}
-			<a title="Loggen Sie sich jetzt ein um erweiterte Funktionalit&auml;t nutzen zu k&ouml;nnen!" href="index.php?site=login">Login</a>
+			<a title="Loggen Sie sich jetzt ein um erweiterte Funktionalit&auml;t nutzen zu k&ouml;nnen!" href="{$smarty.server.PHP_SELF}?site=login">Login</a>
 		{else}
 			{$smarty.session.USER.cu_username} eingeloggt ::
-			<a title="Logout!" href="index.php?site=login&logout=true">Logout</a>
+			<a title="Logout!" href="{$smarty.server.PHP_SELF}?site=login&logout=true">Logout</a>
 		{/if} ::
 		{if $smarty.session.USER == null}
-			<a title="Registrieren Sie sich und werden Sie Kunde!" href="index.php?site=registration">Registrieren</a> ::
+			<a title="Registrieren Sie sich und werden Sie Kunde!" href="{$smarty.server.PHP_SELF}?site=registration">Registrieren</a> ::
 		{/if}
 		<a href="#">Warenkorb</a>		
 	</div>
