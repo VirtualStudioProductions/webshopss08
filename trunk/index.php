@@ -13,7 +13,8 @@ require_once("presentation/sites/SITELogin.class.php");
 require_once("presentation/sites/SITEImpressum.class.php");
 require_once("presentation/sites/SITEArticle.class.php");
 
-// Cookies testen
+// Cookies testen, nur falls noch nicht getestet für diese Seite und keine POST-Daten gesendet
+// wurden.
 if ($_GET["tested"] != true && !$_POST) {
 	setcookie("webshoptest", "active", time() + 60);
 	header("Location: " . $_SERVER["PHP_SELF"] . "?site=" . $_GET["site"] . "&tested=true");
