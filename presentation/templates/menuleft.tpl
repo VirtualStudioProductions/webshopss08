@@ -1,20 +1,22 @@
 <div id="menuleft">
 	<h2 class="hidden">Kategorien-&Uuml;bersicht</h2>
 	{foreach from=$categories item=currentCategory}
-		<div class ="category">
+		<div class="category">
 			<a href="index.php?site=detail">{$currentCategory.name}</a>
 		</div>	
 	{/foreach}
 
 
 {* der alte content von menuleft.tpl *}
-{*
-			<a class= "category" href="index.php?site=detail">CPUs</a>
+
 			<div class ="category">
-				Soundkarten
+				<a href="index.php?site=detail">ab hier statisch</a>
 			</div>
 			<div class ="category">
-				Arbeitsspeicher
+				<a href="index.php?site=detail">Soundkarten</a>
+			</div>
+			<div class ="category">
+				<a href="index.php?site=detail">Arbeitsspeicher</a>
 				<div class="categoryitem">
 					<ul>
 						<li>DDR2-667</li>
@@ -35,7 +37,7 @@
 				</div>
 			</div>
 
-*}
+
 </div>
 
 
