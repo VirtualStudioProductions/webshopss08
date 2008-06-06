@@ -7,10 +7,10 @@ require_once("config.inc.php");
 require_once("api/smarty/Smarty.class.php");
 
 // Seiten einbinden
-require_once("presentation/sites/SITEItemOverview.class.php");
 require_once("presentation/sites/SITERegistration.class.php");
 require_once("presentation/sites/SITELogin.class.php");
 require_once("presentation/sites/SITEImpressum.class.php");
+require_once("presentation/sites/SITEStartpage.class.php");
 require_once("presentation/sites/SITEArticle.class.php");
 
 // Cookies testen, nur falls noch nicht getestet für diese
@@ -63,7 +63,7 @@ switch ($_GET["site"]) {
 		break;
 	
 	default:
-		$SITE = new SITEItemOverview($SMARTY);
+		$SITE = new SITEStartpage($SMARTY);
 		break;
 		
 }
