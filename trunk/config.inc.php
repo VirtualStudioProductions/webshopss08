@@ -41,6 +41,7 @@ define("TBL_CUSTOMER",		DB_PREFIX . "customer");
 define("TBL_TRACE",			DB_PREFIX . "trace");
 define("TBL_ARTICLE",		DB_PREFIX . "article");
 define("TBL_CATEGORY",		DB_PREFIX . "category");
+define("TBL_SUBCATEGORY",	DB_PREFIX . "subcategory");
 
 // ------------------------------------------------------------
 

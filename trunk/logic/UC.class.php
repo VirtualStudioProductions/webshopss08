@@ -75,6 +75,14 @@ class UC {
 		return $this->DAOCategory->getAllCategories();
 	
 	} // # END listAllCategories
+
+	//braucht den Kategorienamen um die Unterkategorien zurückliefern zu können. Zirkelschluss? ->in DTO verlagern?
+	public function listAllSubCategories($c_name) {
+	
+	return $this->DAOCategory->getSelectedSubcategories($c_name);
+	
+	} // # END listAllSubCategories
+	
 	
 }
 ?>
