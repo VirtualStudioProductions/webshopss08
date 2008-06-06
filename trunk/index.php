@@ -14,7 +14,7 @@ require_once("presentation/sites/SITEImpressum.class.php");
 require_once("presentation/sites/SITEArticle.class.php");
 
 // Cookies testen
-if ($_GET["tested"] != true) {
+if ($_GET["tested"] != true && !$_POST) {
 	setcookie("webshoptest", "active", time() + 60);
 	header("Location: " . $_SERVER["PHP_SELF"] . "?site=" . $_GET["site"] . "&tested=true");
 }
