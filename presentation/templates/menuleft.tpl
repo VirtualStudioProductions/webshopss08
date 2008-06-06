@@ -1,14 +1,30 @@
 <div id="menuleft">
 	<h2 class="hidden">Kategorien-&Uuml;bersicht</h2>
-	{foreach from=$categories item=currentCategory}
-		<div class="category">
-			<a href="index.php?site=detail">{$currentCategory.name}</a>
-		</div>	
+	{foreach from=$categories item=currentCategory} {*Alle Kategorien anzeigen*}
+		
+		{if $currentCategory.name eq $c_name} {*wir sind bei der ausgewählten Kategorie -> diese auflisten und ihre Unterkategorien mit anzeigen*}
+			<div class="category">
+				<a href="index.php?site=detail">{$currentCategory.name}</a>
+			</div>	
+		
+			<div class="categoryitem">
+				<ul>
+				{foreach from=$subcategories item=currentsubcategory}
+					<li>{$currentsubcategory.name}</li>
+				{/foreach}
+				</ul>
+			</div>
+		{else} {*es handelt sich nicht um die ausgewählte Kategorie, deshalb nur den Kategorienamen anzeigen*}
+			<div class="category">
+				<a href="index.php?site=detail">{$currentCategory.name}</a>
+			</div>	
+		{/if}
 	{/foreach}
 
+</div>
 
 {* der alte content von menuleft.tpl *}
-
+{*
 			<div class ="category">
 				<a href="index.php?site=detail">ab hier statisch</a>
 			</div>
@@ -36,9 +52,9 @@
 					</ul>
 				</div>
 			</div>
+*}
 
 
-</div>
 
 
 
