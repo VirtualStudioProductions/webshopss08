@@ -24,14 +24,9 @@ class UC {
 		$this->DAOCategory	= new DAOCategory();
 		$this->DAOTrace		= new DAOTrace();
 		
-		// Prüfen, ob Cookies bei dem Besucher aktiviert sind
-		if ($_SESSION["COOKIES_ACTIVE"] == "") {
-			$this->testCookiesEnabled();
-		}
-		
 		// Besucher verfolgen, aber nur falls dieser
 		// Cookies aktiviert hat
-		if ($_SESSION["COOKIES_ACTIVE"] == "cookies_activated") {
+		if ($_COOKIE["webshoptest"] != "") {
 			$this->traceUser();
 		}
 		
@@ -39,25 +34,6 @@ class UC {
 		$this->DAOTrace->deleteTimedOutTraces();
 		
 	} // # END UC
-	
-	
-	private function testCookiesEnabled() {
-		
-		if ($_GET["cookietest"] == true) {
-			if ($_COOKIE["webshoptest"] != "") {
-				$_SESSION["COOKIES_ACTIVE"] = "cookies_activated";
-			}
-			else {
-				$_SESSION["COOKIES_ACTIVE"] = "cookies_deactivated";
-			}
-			header("Location: " . $_SERVER["PHP_SELF"]);
-		}
-		else {
-			setcookie("webshoptest", "active", time() + 8);
-			header("Location: " . $_SERVER["PHP_SELF"] . "?cookietest=true");
-		}
-		
-	} // # END testCookiesEnabled
 	
 	
 	/**
