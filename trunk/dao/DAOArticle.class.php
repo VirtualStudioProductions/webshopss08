@@ -34,6 +34,27 @@ class DAOArticle {
 	
 	} // # END getArticle
 	
+	
+	/**
+	 * liefert alle Artikel einer Kategorie zurück. Diese werden im Main Window angezeigt sobald der User auf eine der Kategorien klickt
+	 * evtl könnt man hier auch die Anzahl der zurückgegebenen Artikel begrenzen und dann mehrere Seiten draus machn
+	 * @param String $category 
+	 */
+	public function getAllCategoryArticles($category){
+		
+		
+	}
+	
+	/**
+	 * liefert alle Artikel einer UnterKategorie zurück. Diese werden im Main Window angezeigt sobald der User auf eine Unterkategorien klickt
+	 * evtl könnt man hier auch die Anzahl der zurückgegebenen Artikel begrenzen und dann mehrere Seiten draus machn
+	 * @param String $subcategory 
+	 */
+	public function getAllSubCategoryArticles($subcategory){
+		
+		
+	}
+	
 }
 
 ?>

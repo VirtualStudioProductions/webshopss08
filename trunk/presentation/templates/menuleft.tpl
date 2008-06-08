@@ -23,7 +23,7 @@
 
 </div>
 
-{* der alte content von menuleft.tpl *}
+{* der alte statische testcontent von menuleft.tpl dient als Übersicht, wie das ganze gedacht ist*}
 {*
 			<div class ="category">
 				<a href="index.php?site=detail">ab hier statisch</a>
