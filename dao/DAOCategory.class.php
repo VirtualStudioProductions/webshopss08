@@ -24,7 +24,12 @@ class DAOCategory {
 	
 	} // # END getAllCategories
 	
-	
+/**
+ * liefert ein Array mit allen Unterkategorienamen einer Kategorie zurück
+ *
+ * @param String $catname; hier wird der Kategoriename angegeben zu dem die Unterkategorien gesucht werden
+ * @return returned ein assoziatives Array z.B. [0] => Array([name] => Unterkategorie)
+ */	
 	public function getSelectedSubcategories($catname){
 		
 		global $DATA_ACCESS;
