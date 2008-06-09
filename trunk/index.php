@@ -20,7 +20,11 @@ if ($_GET["tested"] != true && !$_POST) {
 	if ($_SERVER["argv"][0] != "") {
 		$and = "&";
 	}
-	header("Location: " . $_SERVER["PHP_SELF"] . "?tested=true" . $and . $_SERVER["argv"][0]);
+	header("Location: "
+				. $_SERVER["PHP_SELF"]
+				. "?tested=true"
+				. $and
+				. $_SERVER["argv"][0]);
 }
 
 // Session-Sitzung starten

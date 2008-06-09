@@ -55,6 +55,10 @@ form {
 	background-color: #f1f1f1;
 }
 
+img {
+	border: 0;
+}
+
 /* id's werden immer mit einer # angegeben*/
 	/* steht z.b. ein div vor der raute: div#sitebox dann kann die id nur auf div tags angewendet werden*/
 	/* eine id darf in einem html dokument nur einmal vorkommen! */
@@ -84,6 +88,7 @@ form {
 	position: absolute;
 	top: 0px;
 	left: 0px;
+	display: block;
 }
 
 #mainmenu {
