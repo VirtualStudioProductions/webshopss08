@@ -42,7 +42,16 @@ abstract class SITE {
 		$subcategories = $this->useCase->listAllSubCategories($c_name);
 		$this->TEMPLATE_ENGINE->assign("subcategories", $subcategories);
 		
+		// Seitentitel zuweisen
 		$this->TEMPLATE_ENGINE->assign("PAGE_TITLE", PAGE_TITLE);
+		
+		// Flag zuweisen, ob Cookies verfügbar sind
+		if ($_COOKIE["webshoptest"] != "") {
+			$this->TEMPLATE_ENGINE->assign("cookiesEnabled", true);
+		}
+		else {
+			$this->TEMPLATE_ENGINE->assign("cookiesEnabled", false);
+		}
 	
 	} // # END fillTemplate
 	
