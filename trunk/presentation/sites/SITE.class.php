@@ -35,9 +35,10 @@ abstract class SITE {
 		// Das $categories Array ist nun unter dem Namen "categories" im Template verfügbar
 		$this->TEMPLATE_ENGINE->assign("categories", $categories);
 		
-		//Testweise hier ein fester Wert für die ausgewählte Kategorie
-		$c_name = "CPUs";
-		$this->TEMPLATE_ENGINE->assign("c_name", $c_name); //im Template auhc verfügbar als c_name
+		//gewählte Kategorie einlesen und ans Template weiterreichen:
+		$c_name = $_GET["cat"];
+		//$c_name = "CPUs";
+		$this->TEMPLATE_ENGINE->assign("c_name", $c_name); //im Template auch verfügbar als c_name
 		
 		$subcategories = $this->useCase->listAllSubCategories($c_name);
 		$this->TEMPLATE_ENGINE->assign("subcategories", $subcategories);
