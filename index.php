@@ -17,14 +17,14 @@ require_once("presentation/sites/SITEArticle.class.php");
 // Seite und keine POST-Daten gesendet wurden.
 if ($_GET["tested"] != true && !$_POST) {
 	setcookie("webshoptest", "active", time() + 60);
-	header("Location: " . $_SERVER["PHP_SELF"] . "?site=" . $_GET["site"] . "&tested=true");
+	header("Location: " . $_SERVER["PHP_SELF"] . "?tested=true&" . $_SERVER["argv"][0]);
 }
 
 // Session-Sitzung starten
 session_start();
 
 // versuche Datenbankverbindung herzustellen
-try{
+try {
 	$DATA_ACCESS = new PDO(
         "mysql:host=" . DB_HOST . ";dbname=" . DB_NAME, // Treiberangaben
         DB_USER, // Username
@@ -33,9 +33,10 @@ try{
         	PDO::ATTR_PERSISTENT => DB_PERSISTENT // Persistente Verbindung
     	));
 
-	} catch(PDOException $e) {
-    	echo $e->getMessage(); //evtl noch anders behandeln falls die db connection fehlschlägt
-		}
+} 
+catch(PDOException $e) {
+   	echo $e->getMessage(); //evtl noch anders behandeln falls die db connection fehlschlägt
+}
     	
     	
 
