@@ -173,6 +173,7 @@ abstract class Field {
 		$this->css					 = $css;
 		$this->process_field		 = true;
 		$this->crypt				 = false;
+		$this->v_dir				 = "ltr";
 
 		// validators
 		$this->v_required			 = false;

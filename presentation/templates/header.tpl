@@ -15,7 +15,8 @@
 <div id="sitebox">
 
 	<div id="banner">
-		<div id="bannerleft"><h1 class="hidden">{$PAGE_TITLE}</h1></div>
+		<h1 class="hidden">{$PAGE_TITLE}</h1>
+		<a href="{$smarty.server.PHP_SELF}?index.php" title="Zur Startseite" id="bannerleft"></a>
 	</div>
 	
 	<div id="mainmenu">
