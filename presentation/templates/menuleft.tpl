@@ -4,7 +4,7 @@
 		
 		{if $currentCategory.name eq $c_name} {*wir sind bei der ausgewählten Kategorie -> diese auflisten und ihre Unterkategorien mit anzeigen*}
 			<div class="category">
-				<a href="index.php?site=detail">{$currentCategory.name}</a>
+				<a href="index.php?cat={$currentCategory.name}">{$currentCategory.name}</a>
 			</div>	
 		
 			<div class="categoryitem">
@@ -16,7 +16,7 @@
 			</div>
 		{else} {*es handelt sich nicht um die ausgewählte Kategorie, deshalb nur den Kategorienamen anzeigen*}
 			<div class="category">
-				<a href="index.php?site=detail">{$currentCategory.name}</a>
+				<a href="index.php?cat={$currentCategory.name}">{$currentCategory.name}</a>
 			</div>	
 		{/if}
 	{/foreach}
