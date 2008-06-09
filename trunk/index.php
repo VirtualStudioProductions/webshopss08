@@ -17,7 +17,10 @@ require_once("presentation/sites/SITEArticle.class.php");
 // Seite und keine POST-Daten gesendet wurden.
 if ($_GET["tested"] != true && !$_POST) {
 	setcookie("webshoptest", "active", time() + 60);
-	header("Location: " . $_SERVER["PHP_SELF"] . "?tested=true&" . $_SERVER["argv"][0]);
+	if ($_SERVER["argv"][0] != "") {
+		$and = "&";
+	}
+	header("Location: " . $_SERVER["PHP_SELF"] . "?tested=true" . $and . $_SERVER["argv"][0]);
 }
 
 // Session-Sitzung starten
