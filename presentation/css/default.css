@@ -51,12 +51,17 @@ input, textarea {
 	padding: 2px;
 }
 
+textarea {
+	border: 1px solid #000095;
+	color: #000095;
+}
+
 form {
 	padding: 10px;
 	margin-left: 10px;
 	margin-right: 10px;
 	border: 1px solid #333333;
-	background-color: #f7f7f7;
+	background-color: #e8eaf7;
 }
 
 img {
@@ -246,4 +251,10 @@ img {
 
 p.center {
 	text-align: center;
+}
+
+input.textfield {
+	width: 200px;
+	border: 1px solid #000095;
+	color: #000095;
 }
