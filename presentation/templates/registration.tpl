@@ -6,8 +6,11 @@
 		E-Mail erhalten, welche Ihnen die erfolgreiche Registrierung best&auml;tigt.
 		Wir w&uuml;nschen Ihnen einen angenehmen Einkauf in unserem Webshop!</p>
 		
-		<p>Klicken Sie <a href="index.php" title="Zur&uuml;ck zur Startseite">hier</a>,
-		um zur&uuml;ck zur Startseite zu gelangen!</p>
+		<p>
+			Klicken Sie
+			<a href="{$smarty.server.PHP_SELF}?handheld={$smarty.get.handheld}" title="Zur&uuml;ck zur Startseite">hier</a>,
+			um zur&uuml;ck zur Startseite zu gelangen!
+		</p>
 		
 	{else}
 	

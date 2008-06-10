@@ -12,6 +12,7 @@
 		</p>
 		
 		<p>
-			Klicken Sie bitte <a href="{$smarty.server.PHP_SELF}?site={$smarty.get.site}">hier</a>,
+			Klicken Sie bitte
+			<a href="{$smarty.server.PHP_SELF}?site={$smarty.get.site}&handheld={$smarty.get.handheld}">hier</a>,
 			sobald Sie Cookies aktiviert haben.
 		</p>
