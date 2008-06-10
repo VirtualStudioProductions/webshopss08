@@ -47,6 +47,9 @@ class UCLogin extends UC {
 		// action Attribut des form Elementes überschreiben
 		$F_LOGIN->set_action($_SERVER["PHP_SELF"] . "?site=" . $_GET["site"]);
 		
+		// Zu Beginn fokusiertes Feld festlegen
+		$F_LOGIN->set_focus_field("username");
+		
 		
 		// Formular Felder hinzufügen
 		

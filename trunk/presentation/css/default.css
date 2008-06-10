@@ -149,6 +149,10 @@ img {
 	text-decoration: underline;
 }
 
+#contentwidth {
+	max-width: 700px;
+}
+
 #footer {
 	background-color: #999999;
 	background-image: url('../images/footer.jpg');

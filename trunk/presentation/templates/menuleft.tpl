@@ -57,11 +57,7 @@
 
 
 
+	<!-- Begin des Contents -->
+	<div id="content">
 
-
-
-
-
-
-				
-
+		<div id="contentwidth">

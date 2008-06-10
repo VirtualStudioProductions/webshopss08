@@ -1,6 +1,3 @@
-<div id="content">
-		
-		
 	{if $smarty.session.USER == null || !$cookiesEnabled}
 	
 		<h2>Login</h2>
@@ -43,6 +40,3 @@
 		{include file="nocookies.tpl"}
 	
 	{/if}
-		
-			
-</div>	<!-- Ende content-->

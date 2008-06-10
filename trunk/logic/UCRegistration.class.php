@@ -47,6 +47,9 @@ class UCRegistration extends UC {
 		// Automatische Weiterleitung Pfad angeben
 		$F_REGISTRATION->set_redirect_url("?site=".$_GET["site"]."&confirm=true");
 		
+		// Zu Beginn fokusiertes Feld festlegen
+		$F_REGISTRATION->set_focus_field("cu_username");
+		
 		
 		// Formular Felder hinzufügen
 		
