@@ -1,6 +1,3 @@
-<div id="content">
-		
-		
 	<h2>Impressum</h2>
 	
 	
@@ -175,7 +172,3 @@
 	sowie Hand-Held Ger&auml;te. Die Webseite wurde XHTML-konform programmiert.</p>
 	
 	<p>Stand: Juni, 2008</p><br />
-
-		
-			
-</div>	<!-- Ende content-->

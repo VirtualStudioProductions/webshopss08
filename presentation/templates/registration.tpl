@@ -1,6 +1,3 @@
-<div id="content">
-		
-		
 	<h2>Registrieren</h2>
 	
 	{if $smarty.get.confirm}
@@ -21,6 +18,3 @@
 		<br />{$F_REGISTRATION->display($msg)}<br />
 		
 	{/if}
-		
-			
-</div>	<!-- Ende content-->

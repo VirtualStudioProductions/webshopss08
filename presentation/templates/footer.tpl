@@ -1,3 +1,7 @@
+		</div>
+
+	</div> <!-- Ende content -->
+
 	<div id="footer">
 		<span>&nbsp;</span>
 		<p>

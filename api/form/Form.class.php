@@ -137,6 +137,9 @@ class Form {
 
 	/** the pdo object */
 	private $PDO_DATA_ACCESS;
+	
+	/** The field that is focused from the beginning */
+	private $focus_field;
 
 
 	/** MySQL */
@@ -182,6 +185,7 @@ class Form {
 	public function set_reset_css($css)				{ $this->reset_css				= $css; }
 	public function set_submit_css($css)			{ $this->submit_css				= $css; }
 	public function set_redirect($set)				{ $this->redirect				= $set; }
+	public function set_focus_field($set)			{ $this->focus_field			= $set; }
 	public function set_redirect_url($set)			{ $this->redirect_url			= $set; }
 	public function set_enable_messages($set)		{ $this->set_enable_messages	= $set; }
 	public function set_retrieve_data($method)		{ $this->retrieve_data			= $method; }
@@ -456,6 +460,11 @@ class Form {
 				if ($this->show_form_end == true) {
 					$layout .= "</form>\n";
 				}
+				$layout .="<script type=\"text/javascript\">\n";
+				$layout .= "<!--\n";
+				$layout .= "document.getElementById('".$this->focus_field."').focus();\n";
+				$layout .= "-->\n";
+				$layout .= "</script>\n";
 				$layout .= "<!--  ## ".$name." END -->\n\n";
 
 			}
