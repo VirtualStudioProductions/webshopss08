@@ -2,7 +2,7 @@
 body {
 	font-family: Verdana, Arial;
 	font-size: 80%;
-	line-height: 1.9em;
+	line-height: 1.8em;
 	background-color: #cccccc;
 }
 
@@ -47,8 +47,8 @@ h3 {
 	font-size: 1.1em;
 }
 
-input {
-	padding: 1px;
+input, textarea {
+	padding: 2px;
 }
 
 form {
@@ -56,7 +56,7 @@ form {
 	margin-left: 10px;
 	margin-right: 10px;
 	border: 1px solid #333333;
-	background-color: #f1f1f1;
+	background-color: #f7f7f7;
 }
 
 img {
@@ -150,7 +150,7 @@ img {
 }
 
 #contentwidth {
-	max-width: 700px;
+	max-width: 750px;
 }
 
 #footer {
@@ -242,4 +242,8 @@ img {
 .hidden {
 	visibility: hidden;
 	display: none;
+}
+
+p.center {
+	text-align: center;
 }

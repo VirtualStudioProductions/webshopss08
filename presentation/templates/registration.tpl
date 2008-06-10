@@ -1,6 +1,6 @@
 	<h2>Registrieren</h2>
 	
-	{if $smarty.get.confirm}
+	{if $smarty.get.confirm == 1}
 	
 		<p>Vielen Dank f&uuml;r Ihre Registrierung! Sie sollten in K&uuml;rze eine
 		E-Mail erhalten, welche Ihnen die erfolgreiche Registrierung best&auml;tigt.
