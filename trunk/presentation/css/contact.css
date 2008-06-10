@@ -1,0 +1,21 @@
+.colLeft {
+	float: left;
+	width: 185px;
+	padding: 5px;
+	margin-top: 10px;
+}
+
+.colLeft p {
+	display: inline;
+}
+
+.colRight {
+	margin-left: 25px;
+	margin-top: 10px;
+	float: left;
+	padding: 5px 5px 5px 5px;
+}
+
+.textfield {
+	width: 200px;
+}

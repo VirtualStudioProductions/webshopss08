@@ -41,11 +41,8 @@ class UCRegistration extends UC {
 		$F_REGISTRATION->set_show_reset_button(false);					// Reset Button ausschalten
 		$F_REGISTRATION->set_submit_value("Jetzt registrieren!");		// Text des Submit Buttons
 		
-		// action Attribut des form Elementes überschreiben
-		$F_REGISTRATION->set_action($_SERVER["PHP_SELF"] . "?site=" . $_GET["site"]);
-		
-		// Automatische Weiterleitung Pfad angeben
-		$F_REGISTRATION->set_redirect_url("?site=".$_GET["site"]."&confirm=true");
+		// Automatische Weiterleitung um GET-Parameter erweitern
+		$F_REGISTRATION->set_redirect_url("&confirm=1");
 		
 		// Zu Beginn fokusiertes Feld festlegen
 		$F_REGISTRATION->set_focus_field("cu_username");
@@ -59,8 +56,8 @@ class UCRegistration extends UC {
 		$FIELD->set_v_isunique(true);		// Einzigartig
 		$FIELD->set_v_nospace(true);		// Keine Leerzeichen
 		$FIELD->set_v_nospecial(true);		// Keine Sonderzeichen
-		$FIELD->set_v_nosql(true);			// Keine SQL Dingens
 		$FIELD->set_v_minlength(6);
+		$FIELD->set_v_maxlength(50);
 		$F_REGISTRATION->add_field($FIELD);
 		
 		// Passwort
@@ -68,17 +65,20 @@ class UCRegistration extends UC {
 		$FIELD->set_v_required(true);
 		$FIELD->set_v_nospace(true);
 		$FIELD->set_v_minlength(6);			// Mindestens 6 Zeichen
+		$FIELD->set_v_maxlength(50);
 		$FIELD->set_crypt(true);			// Verschlüsseln
 		$F_REGISTRATION->add_field($FIELD);
 		
 		// Vorname
 		$FIELD = new TextField("cu_firstname", "Vorname", " class=\"textfield\"");
 		$FIELD->set_v_required(true);
+		$FIELD->set_v_maxlength(50);
 		$F_REGISTRATION->add_field($FIELD);
 		
 		// Nachname
 		$FIELD = new TextField("cu_lastname", "Nachname", " class=\"textfield\"");
 		$FIELD->set_v_required(true);
+		$FIELD->set_v_maxlength(50);
 		$F_REGISTRATION->add_field($FIELD);
 		
 		// E-Mail
@@ -86,6 +86,7 @@ class UCRegistration extends UC {
 		$FIELD->set_v_required(true);
 		$FIELD->set_v_isunique(true);
 		$FIELD->set_v_email(true);			// Gültige E-Mail Adresse
+		$FIELD->set_v_maxlength(50);
 		$F_REGISTRATION->add_field($FIELD);
 		
 		// Telefon
@@ -166,7 +167,7 @@ class UCRegistration extends UC {
 			$mail["message"] .= "Dein Account wurde registriert.\n\n";
 			$mail["message"] .= "Wichtig: Diese E-Mail wurde dir automatisch zugesandt, bitte nicht antworten!";
 				
-			$mail["headers"] = "From: " . MAIL_FROM . "\n";										
+			$mail["headers"] = "From: " . EMAIL . "\n";										
 					
 			$send = mail($mail["to"], $mail["subject"], $mail["message"], $mail["headers"]);
 		

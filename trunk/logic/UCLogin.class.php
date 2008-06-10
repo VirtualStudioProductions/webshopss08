@@ -44,9 +44,6 @@ class UCLogin extends UC {
 		$F_LOGIN->set_show_reset_button(false);			// Reset Button ausschalten
 		$F_LOGIN->set_submit_value("Login!");			// Text des Submit Buttons
 		
-		// action Attribut des form Elementes überschreiben
-		$F_LOGIN->set_action($_SERVER["PHP_SELF"] . "?site=" . $_GET["site"]);
-		
 		// Zu Beginn fokusiertes Feld festlegen
 		$F_LOGIN->set_focus_field("username");
 		
@@ -152,7 +149,7 @@ class UCLogin extends UC {
 			}
 			else {
 				// Weiterleiten um nervigen Dialog des Browsers bei Refresh zu vermeiden
-				header("Location: " . $_SERVER["PHP_SELF"] . "?site=" . $_GET["site"]);
+				$this->F_LOGIN->redirectOnValid($msg);
 			}
 			
 		}

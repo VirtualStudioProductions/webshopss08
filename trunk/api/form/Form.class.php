@@ -19,9 +19,9 @@ class Form {
 	 * THE FORM CLASS
 	 * comment:					powerful class for form processing
 	 * author:					Alexander Weickmann <Alexander.Weickmann@gmx.de> (Eistoeter)
-	 * release date:			03.06.2008
+	 * release date:			10.06.2008
 	 * start of the project:	29.11.2005
-	 * version:					5.1.2
+	 * version:					5.2
 	 * requirement:				scripted for php5.1 and mysql
 	 * description:				this class was coded only to simplify data-processing coming
 	 *                          from standard forms (for example guestbooks, newsscripts,
@@ -113,7 +113,7 @@ class Form {
 	/** redirect after successful form processing? */
 	private $redirect;
 
-	/** if $redirect is true the redirect will go to this url */
+	/** additional get parameters for the redirection */
 	private $redirect_url;
 
 	/**
@@ -193,6 +193,7 @@ class Form {
 
 	public function get_form_name()					{ return $this->form_name;	}
 	public function get_sql_insert_id()				{ return $this->sql_insert_id; }
+	public function get_redirect_url()				{ return $this->redirect_url;	}
 
 
 
@@ -222,7 +223,7 @@ class Form {
 		$this->layout				= "".$this->layout_dir."".$this->form_name.".lay.tpl";
 		$this->MAX_FILE_SIZE		= 25600;
 		$this->enctype				= "";
-		$this->action				= $_SERVER["PHP_SELF"];
+		$this->action				= $_SERVER["PHP_SELF"] . "?" . $_SERVER["argv"][0];
 		$this->method				= "post";
 		$this->show_reset_button	= true;
 		$this->show_submit_button	= true;
@@ -491,6 +492,30 @@ class Form {
 		}
 		
 	} // # END display
+	
+	
+	
+	/**
+	 * Leitet auf die eigene Seite weiter. Dies ist nützlich, um zu verhindern,
+	 * dass der Benutzer bei einem Refresh einen Dialog vom Browser angezeigt bekommt,
+	 * der ihn frägt, ob er erneut POST-Daten senden möchte, obwohl das Formular
+	 * bereits erfolgreich verarbeitet wurde.
+	 * 
+	 * @param 	msg
+	 * 			The error tracking variable is used to determine if the form
+	 * 			was sent valid.
+	 */
+	public function redirectOnValid($msg) {
+		
+		if ($msg["valid"]) {
+			header("Location: "
+				. $_SERVER["PHP_SELF"]
+				. "?"
+				. $_SERVER["argv"][0]
+				. $this->redirect_url);
+		}
+		
+	} // # END redirect
 
 
 
@@ -633,8 +658,9 @@ class Form {
 					}
 				}
 
+				// Automatische Weiterleitung
 				if ($this->redirect == true) {
-					header("Location: " . $_SERVER["PHP_SELF"] . $this->redirect_url);
+					$this->redirectOnValid($msg);
 				}
 			}
 		}
@@ -695,9 +721,9 @@ class Form {
 				}
 
 				// v_link
-				if ($this->fields[$key]->get_v_link() == true) {
+				if ($this->fields[$key]->get_v_link() == true && $value != "") {
 					if (!strpos($value, '.') || strlen($value) < 4) {
-						$msg["error"][$this->namelist[$n]] = "Das Feld <strong>".$this->fields[$key]->get_caption()."</strong> muss einen g&uuml;ltiger Link beinhalten.";
+						$msg["error"][$this->namelist[$n]] = "Das Feld <strong>".$this->fields[$key]->get_caption()."</strong> muss einen g&uuml;ltigen Link beinhalten.";
 						$msg["valid"] = false;
 					}
 				}
@@ -773,12 +799,6 @@ class Form {
 						$stmt1->bindParam(":value", $value);
 						$stmt1->execute();
 
-						/*$query2 = "SELECT `".$this->sql_id."` FROM `".$this->sql_tblname."` WHERE `".$this->fields[$key]->get_name()."` = :value";
-						$stmt2 = $this->PDO_DATA_ACCESS->prepare($query2);
-						$stmt2->bindParam(":value", $value);
-						$stmt2->execute();
-						$res = $stmt2->fetch();*/
-							
 						if ($stmt1->fetch()) {
 
 							$msg["error"][$this->namelist[$n]] = "Es existiert bereits ein Eintrag mit ".$value." als <strong>".$this->fields[$key]->get_caption()."</strong>.";

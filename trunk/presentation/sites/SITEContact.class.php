@@ -2,27 +2,27 @@
 
 require_once("api/form/Form.class.php");
 require_once("api/form/Field.class.php");
-require_once("logic/UCLogin.class.php");
+require_once("logic/UCContact.class.php");
 require_once("SITE.class.php");
 
 
-class SITELogin extends SITE {
+class SITEContact extends SITE {
 		
 	
-	/** Das Login-Formular */
-	protected $F_LOGIN;
+	/** Das Kontakt-Formular */
+	protected $F_CONTACT;
 	
 	
-	public function SITELogin($TEMPLATE_ENGINE) {
+	public function SITEContact($TEMPLATE_ENGINE) {
 		
 		// super Konstruktor aufrufen
-		parent::SITE($TEMPLATE_ENGINE, new UCLogin());
+		parent::SITE($TEMPLATE_ENGINE, new UCContact());
 		
 		// Attribute initialisieren
-		$this->template = TPL_Login;
+		$this->template = TPL_Contact;
 		
-		// Login Formular erzeugen
-		$this->F_LOGIN = $this->useCase->createLoginForm();
+		// Kontakt Formular erzeugen
+		$this->F_CONTACT = $this->useCase->createContactForm();
 										
 										
 		// Private Funktion fillTemplate aufrufen
@@ -38,16 +38,10 @@ class SITELogin extends SITE {
 	private function actions() {
 		
 		// Formularverarbeitung
-		if ($_POST["s_" . $this->F_LOGIN->get_form_name()]) {
-			$msg = $this->F_LOGIN->process_form();
+		if ($_POST["s_" . $this->F_CONTACT->get_form_name()]) {
+			$msg = $this->F_CONTACT->process_form();
 			$this->TEMPLATE_ENGINE->assign("msg", $msg);
-		}
-
-		
-		// Logout-Funktion
-		if ($_GET["logout"] == 1 && $_SESSION["USER"] != null) {
-			$this->useCase->logout();
-		}
+		}		
 		
 		
 	} // # END actions
@@ -61,8 +55,8 @@ class SITELogin extends SITE {
 		parent::fillTemplate(); //Zuerst die von SITE.class.php geerbte fillTemplate Funktion aufrufen um die Kategorieansicht anzuzeigen
 		
 		// Formular an das Template zuweisen
-		$this->TEMPLATE_ENGINE->assign("F_LOGIN", $this->F_LOGIN);
-			
+		$this->TEMPLATE_ENGINE->assign("F_CONTACT", $this->F_CONTACT);
+					
 		
 	} // # END fillTemplate
 
