@@ -79,7 +79,7 @@ class UCLogin extends UC {
 	public function logout() {
 		
 		$_SESSION["USER"] = null;
-		header("Location: " . $_SERVER["PHP_SELF"] . "?site=login");
+		header("Location: " . $_SERVER["PHP_SELF"] . "?site=login&handheld=" . $_GET["handheld"]);
 	
 	} // # END logout
 	

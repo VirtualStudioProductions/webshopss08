@@ -5,7 +5,7 @@
 		<p>Ihre Kontaktanfrage wurde abgeschickt! Wir werden uns so bald wie m&ouml;glich
 		mit Ihnen in Verbindung setzen.</p>
 		
-		<p>Klicken Sie <a href="{$smarty.server.PHP_SELF}" title="Zur&uuml;ck zur Startseite">hier</a>,
+		<p>Klicken Sie <a href="{$smarty.server.PHP_SELF}?handheld={$smarty.get.handheld}" title="Zur&uuml;ck zur Startseite">hier</a>,
 		um zur&uuml;ck zur Startseite zu gelangen!</p>
 		
 	{else}

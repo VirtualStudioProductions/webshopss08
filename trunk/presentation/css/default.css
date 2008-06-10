@@ -89,6 +89,25 @@ img {
 	height: 79px;
 }
 
+#designselection {
+	position: absolute;
+	z-index: 2;
+	display: block;
+	border-right: 1px solid #000000;
+	border-bottom: 1px solid #000000;
+	background-color: #000000;
+	width: 55px;
+	height: 13px;
+	line-height: 11px;
+	padding: 1px;
+	font-size: 0.8em;
+}
+
+#designselection:hover {
+	color: #000000;
+	background-color: #ffffff;
+}
+
 #bannerleft {
 	background-image: url('../images/bannerleft.jpg');
 	background-repeat: no-repeat;

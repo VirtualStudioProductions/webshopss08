@@ -1,17 +1,28 @@
 @import url('default.css');
 
+body {
+	line-height: 1.4em;
+}
+
 input, textarea {
-	font-size: 0.95em;
+	font-size: 1.0em;
 }
 
 #sitebox {
-	width: 312px;
 	margin: 3px;
 }
 
 #banner {
 	background-image: url('../images/mobile/banner.jpg');
 	height: 42px;
+}
+
+#designselection {
+	width: 37px;
+	height: 13px;
+	line-height: 11px;
+	padding: 1px;
+	font-size: 0.7em;
 }
 
 #bannerleft {
@@ -34,7 +45,7 @@ input, textarea {
 	bottom: auto;
 	font-size: 0.85em;
 	line-height: 15px;
-	background-repeat: repeat-y;
+	background-repeat: repeat-x;
 	background-image: url('../images/mobile/menuleft.jpg');
 	border-bottom: 1px solid #333333;
 	overflow: auto;
