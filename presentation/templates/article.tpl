@@ -3,13 +3,14 @@
 				<h2>{$article.ar_title}</h2>
 			</div>
 			
-			<div class="itemprice">
-				{$article.ar_price} &euro;			
+			<div class="itemstatus">
+				<div class="itemprice">
+					{$article.ar_price} &euro;			
+				</div>
+				<div class="stock">
+					{$article.ar_stock} St&uuml;ck auf Lager
+				</div>
 			</div>
-			<div class="stock">
-				{$article.ar_stock} St&uuml;ck auf Lager
-			</div>
-			
 			<a title="In den Warenkorb einf&uuml;gen" href="" class="shoppingcart">
 				<img src="presentation/images/shoppingcart.jpg" alt="In den Warenkorb legen" />
 			</a>
