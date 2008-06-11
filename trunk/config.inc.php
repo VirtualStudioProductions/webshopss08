@@ -23,6 +23,7 @@ define("TPL_Impressum",		"impressum" 	. TPL_ENDING);
 define("TPL_Contact",		"contact"	 	. TPL_ENDING);
 define("TPL_Startpage",		"startpage" 	. TPL_ENDING);
 define("TPL_Article",		"article" 		. TPL_ENDING);
+define("TPL_Category",		"subcategories"	. TPL_ENDING);
 
 // ------------------------------------------------------------
 

@@ -83,11 +83,17 @@ class UC {
 	
 	} // # END listAllCategories
 
-	//braucht den Kategorienamen um die Unterkategorien zurückliefern zu können. Zirkelschluss? ->in DTO verlagern?
+	//braucht die Kategorie id um die Unterkategorien zurückliefern zu können. Zirkelschluss? ->in DTO verlagern?
 	public function listAllSubCategories($c_id) {
 	
-	return $this->DAOCategory->getSelectedSubcategories($c_id);
+	$db_raw = $this->DAOCategory->getSelectedSubcategories($c_id);	
+	$i = 0;
+	foreach ($db_raw as &$value) {
+    	$db_raw[$i]["name"] = htmlentities($value["name"]);
+    	$i++;
+	}
 	
+	return $db_raw;
 	} // # END listAllSubCategories
 	
 	
