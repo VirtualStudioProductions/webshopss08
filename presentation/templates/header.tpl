@@ -29,7 +29,10 @@
 		{if $smarty.session.USER == null}
 			<a title="Loggen Sie sich jetzt ein um erweiterte Funktionalit&auml;t nutzen zu k&ouml;nnen!" href="{$smarty.server.PHP_SELF}?site=login&handheld={$smarty.get.handheld}">Login</a>
 		{else}
-			{$smarty.session.USER.cu_username} eingeloggt ::
+			{$smarty.session.USER.cu_username} ::
+			{if $smarty.session.USER.cu_admin == 1}
+				<a href="{$smarty.server.PHP_SELF}?site=admin&handheld={$smarty.get.handheld}" title="Zum Administrations-Bereich">Admin</a> ::
+			{/if}
 			<a title="Logout!" href="{$smarty.server.PHP_SELF}?site=login&handheld={$smarty.get.handheld}&logout=1">Logout</a>
 		{/if} ::
 		{if $smarty.session.USER == null}

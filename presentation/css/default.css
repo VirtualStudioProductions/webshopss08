@@ -166,12 +166,13 @@ img {
 
 #content a {
 	color: #0000ff;
-	text-decoration: none;
+	text-decoration: underline;
 }
 
 #content a:hover {
 	background-color: transparent;
 	text-decoration: underline;
+	color: #000000;
 }
 
 #contentwidth {
