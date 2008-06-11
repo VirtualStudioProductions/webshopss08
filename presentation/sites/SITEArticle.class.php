@@ -26,7 +26,8 @@ class SITEArticle extends SITE {
 		
 		parent::fillTemplate(); //Zuerst die von SITE.class.php geerbte fillTemplate Funktion aufrufen um die Kategorieansicht anzuzeigen
 		print $arNumber;
-		$article = $useCase->getArticle($arNumber);
+		// Immer mit this auf Attribute zugreifen !!
+		$article = $this->useCase->getArticle($arNumber);
 		print_r($article);		
 	} // # END fillTemplate
 
