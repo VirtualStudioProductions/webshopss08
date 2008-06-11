@@ -226,7 +226,7 @@ img {
 	font-size: 0.8em;
 }
 
-.categoryitem a:hover{
+.categoryitem a:hover {
 	background-color: #bbbbff;
 }
 
@@ -234,6 +234,23 @@ img {
 	color: rgb(250, 250, 250);
 	margin: 0px auto 0 5px;
 	font-weight: bold;
+}
+
+.subcategoryitembig{
+	color: #00ff00;
+	position: absolute;
+	left: 100px;
+	top: 100px;
+	font-size: 2em;
+}
+
+.subcategoryitembig a {
+	color: #000000;
+}
+
+.subcategoryitembig a:hover {
+	color: #ff0000;
+	text-decoration: underline;
 }
 
 .itemtitle {
