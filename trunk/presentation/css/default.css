@@ -23,7 +23,7 @@ a:visited {
 }
 
 a:hover {
-	color: #ff0000;
+	background-color: #000055;
 	text-decoration: underline;
 }
 
@@ -211,12 +211,21 @@ img {
 /*         Klassen       */
 /*************************/
 .categoryitem {
-	color: rgb(51, 51, 51);
 	background-color: rgb(250, 250, 250);
 	width: 180px;
 	/*	border: 1px solid black;*/
+
+}
+
+/*für alle a tags innerhalb der klasse categoryitem:*/
+.categoryitem a {
+	color: rgb(51, 51, 51);
 	font-weight: normal;
 	font-size: 0.8em;
+}
+
+.categoryitem a:hover{
+	background-color: #bbbbff;
 }
 
 .category {

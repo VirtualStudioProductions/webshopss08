@@ -35,12 +35,11 @@ abstract class SITE {
 		// Das $categories Array ist nun unter dem Namen "categories" im Template verfügbar
 		$this->TEMPLATE_ENGINE->assign("categories", $categories);
 		
-		//gewählte Kategorie einlesen und ans Template weiterreichen:
-		$c_name = $_GET["cat"];
-		//$c_name = "CPUs";
-		$this->TEMPLATE_ENGINE->assign("c_name", $c_name); //im Template auch verfügbar als c_name
+		//gewählte Kategorie id einlesen und ans Template weiterreichen:
+		$c_id = $_GET["cat"];
+		$this->TEMPLATE_ENGINE->assign("c_id", $c_id); //im Template auch verfügbar als c_name
 		
-		$subcategories = $this->useCase->listAllSubCategories($c_name);
+		$subcategories = $this->useCase->listAllSubCategories($c_id);
 		$this->TEMPLATE_ENGINE->assign("subcategories", $subcategories);
 		
 		// Seitentitel zuweisen

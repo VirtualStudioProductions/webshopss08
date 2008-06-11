@@ -71,15 +71,22 @@ class UC {
 	
 	
 	public function listAllCategories() {
+	$db_raw = $this->DAOCategory->getAllCategories();
 	
-		return $this->DAOCategory->getAllCategories();
+	$i = 0;
+	foreach ($db_raw as &$value) {
+    $db_raw[$i]["name"] = htmlentities($value["name"]);
+    $i++;
+	}
+	//print_r ($db_raw);
+		return $db_raw;
 	
 	} // # END listAllCategories
 
 	//braucht den Kategorienamen um die Unterkategorien zurückliefern zu können. Zirkelschluss? ->in DTO verlagern?
-	public function listAllSubCategories($c_name) {
+	public function listAllSubCategories($c_id) {
 	
-	return $this->DAOCategory->getSelectedSubcategories($c_name);
+	return $this->DAOCategory->getSelectedSubcategories($c_id);
 	
 	} // # END listAllSubCategories
 	

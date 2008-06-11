@@ -2,21 +2,22 @@
 	<h2 class="hidden">Kategorien-&Uuml;bersicht</h2>
 	{foreach from=$categories item=currentCategory} {*Alle Kategorien anzeigen*}
 		
-		{if $currentCategory.name eq $c_name} {*wir sind bei der ausgewählten Kategorie -> diese auflisten und ihre Unterkategorien mit anzeigen*}
+		{if $currentCategory.id eq $c_id} {*wir sind bei der ausgewählten Kategorie -> diese auflisten und ihre Unterkategorien mit anzeigen*}
 			<div class="category">
-				<a href="index.php?cat={$currentCategory.name}">{$currentCategory.name}</a>
+				<a href="index.php?cat={$currentCategory.id}">{$currentCategory.name}</a>
 			</div>	
 		
 			<div class="categoryitem">
 				<ul>
-				{foreach from=$subcategories item=currentsubcategory}
-					<li>{$currentsubcategory.name}</li>
+				{foreach from=$subcategories item=currentSubCategory}
+					<li><a href="index.php?cat={$currentCategory.id}&sub={$currentSubCategory.id}">{$currentSubCategory.name}</a></li>
+					{*<li>{$currentSubCategory.name}</li>*}
 				{/foreach}
 				</ul>
 			</div>
 		{else} {*es handelt sich nicht um die ausgewählte Kategorie, deshalb nur den Kategorienamen anzeigen*}
 			<div class="category">
-				<a href="index.php?cat={$currentCategory.name}">{$currentCategory.name}</a>
+				<a href="index.php?cat={$currentCategory.id}">{$currentCategory.name}</a>
 			</div>	
 		{/if}
 	{/foreach}
