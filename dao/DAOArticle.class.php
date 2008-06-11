@@ -12,13 +12,7 @@ class DAOArticle {
 	
 	public function getArticle($arNumber){
 		
-		$DATA_ACCESS = new PDO(
-					"mysql:host=" . DB_HOST . ";dbname=" . DB_NAME,
-					DB_USER,
-					DB_PASS,
-					array(
-					PDO::ATTR_PERSISTENT => true
-					));
+		global $DATA_ACCESS;
 					
 		$sql="SELECT `ar_number`, `ar_title`, `ar_price`, `ar_description`, `ar_stock`, `ar_picture` " .
 		  "FROM " . TBL_ARTICLE . " " .
