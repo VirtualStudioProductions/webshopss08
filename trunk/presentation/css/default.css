@@ -244,13 +244,13 @@ img {
 	color: #F10000;
 	font-size: 3em;
 	font-weight: bold;
-	float: left;
+	
 	line-height: 60px;
 	margin-right: 30px;		
 }
 
-.shoppingcart {
-		
+.itemstatus {
+	float: left;	
 }
 
 .itemfooter {
