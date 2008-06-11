@@ -73,6 +73,18 @@ switch ($_GET["site"]) {
 		require_once("presentation/sites/SITEContact.class.php");
 		$SITE = new SITEContact($SMARTY);
 		break;
+		
+	case "admin":
+		// Nur falls wirklich ein Admin eingeloggt ist
+		if ($_SESSION["user"]["cu_admin"] != 1) {
+			// Falls nicht leite den User auf die Startseite um
+			header("Location: " . $_SERVER["PHP_SELF"] . "?handheld=" . $_GET["handheld"]);
+		}
+		else {
+			require_once("presentation/sites/SITEAdmin.class.php");
+			$SITE = new SITEAdmin($SMARTY);
+		}
+		break;
 	
 	case "article":
 		require_once("presentation/sites/SITEArticle.class.php");
