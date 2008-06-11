@@ -1,27 +1,23 @@
 <?php
 
-require_once("logic/UCArticle.class.php");
+require_once("logic/UCBasket.class.php");
 require_once("SITE.class.php");
 
 
-class SITEArticle extends SITE {
+class SITEBasket extends SITE {
 	
-	private $arNumber;
 	
-	public function SITEArticle($TEMPLATE_ENGINE, $arNumber) {
+	public function SITEBasket($TEMPLATE_ENGINE) {
 		
 		// Äquivalent zum "super" Aufruf in Java*
-		parent::SITE($TEMPLATE_ENGINE, new UCArticle());
+		parent::SITE($TEMPLATE_ENGINE, new UCBasket());
 		
-		$this->template = TPL_Article;
-				
-		//Artikelnummer als Attribut für fillTemplate hinterlegen
-		$this->arNumber = $arNumber;
+		$this->template = TPL_Basket;
 		
 		// Private Funktion fillTemplate aufrufen
 		$this->fillTemplate();
 		
-	} // # END SITEArticle
+	} // # END SITEItemOverview
 	
 	
 	/**

@@ -12,7 +12,7 @@
 						{$article.ar_stock} St&uuml;ck auf Lager
 					</div>
 				</div>
-				<a title="In den Warenkorb einf&uuml;gen" href="" class="shoppingcart">
+				<a title="In den Warenkorb einf&uuml;gen" href="index.php?site=basket&arNumber={$article.arNumber}" class="shoppingcart">
 					<img src="presentation/images/shoppingcart.jpg" alt="In den Warenkorb legen" />
 				</a>
 			</div>
