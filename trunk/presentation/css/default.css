@@ -241,6 +241,15 @@ img {
 	width: 100%;
 }
 
+.itemstatus {
+	float: left;
+}
+
+.itembuyarea {
+	float: right;
+	margin-bottom: 10px;	
+}
+
 .itemprice {
 	color: #F10000;
 	font-size: 3em;
@@ -250,8 +259,11 @@ img {
 	margin-right: 30px;		
 }
 
-.itemstatus {
-	float: left;	
+.itemstock {
+	color: #F10000;
+	font-weight: bold;
+	margin-left: 5px;
+	margin-top: -10px;
 }
 
 .itemfooter {
@@ -260,7 +272,7 @@ img {
 }
 
 .imagebox {
-	padding: 0px 15px 5px 5px;
+	padding: 15px 15px 5px 5px;
 	width: 202px;
 	float: left;
 }
