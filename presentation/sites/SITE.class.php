@@ -37,7 +37,7 @@ abstract class SITE {
 		
 		//gewählte Kategorie id einlesen und ans Template weiterreichen:
 		$c_id = $_GET["cat"];
-		$this->TEMPLATE_ENGINE->assign("c_id", $c_id); //im Template auch verfügbar als c_name
+		$this->TEMPLATE_ENGINE->assign("c_id", $c_id); //im Template auch verfügbar als c_id
 		
 		$subcategories = $this->useCase->listAllSubCategories($c_id);
 		$this->TEMPLATE_ENGINE->assign("subcategories", $subcategories);
