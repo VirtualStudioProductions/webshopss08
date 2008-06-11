@@ -90,6 +90,11 @@ switch ($_GET["site"]) {
 		require_once("presentation/sites/SITEArticle.class.php");
 		$SITE = new SITEArticle($SMARTY, $_GET["arNumber"]);
 		break;
+		
+	case "category":
+		require_once("presentation/sites/SITECategory.class.php");
+		$SITE = new SITECategory($SMARTY);
+		break;
 	
 	default:
 		require_once("presentation/sites/SITEStartpage.class.php");
