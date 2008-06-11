@@ -6,11 +6,18 @@
 			<div class="itemprice">
 				{$article.ar_price} &euro;			
 			</div>
-			<div class="buybutton">
-				<img src="presentation/images/"
+			<div class="stock">
+				{$article.ar_stock} St&uuml;ck auf Lager
+			</div>
+			
+			<a title="In den Warenkorb einf&uuml;gen" href="" class="shoppingcart">
+				<img src="presentation/images/shoppingcart.jpg" alt="In den Warenkorb legen" />
+			</a>
+			
+			
 			
 			<div class="imagebox">
-				<img class="image" src="presentation/images/article_{$article.ar_number}.jpg" alt="{$article.ar_title}" width="200" height="150"></img>
+				<img class="image" src="presentation/images/article_{$article.ar_number}.jpg" alt="{$article.ar_title}" width="200" height="150" />
 			</div>
 			
 			<div class="itemdescription">
