@@ -1,12 +1,10 @@
 <?php
 
 /**
- * Zuständig für sämtliche Operationen, die auf die Artikel-Tabelle
- * des Webshops angewandt werden.
+ * Zuständig für sämtliche Operationen, bei Bestellung.
  */ 
 
-class DAOArticle {
-	
+class DAOBasket {
 	
 	public function getArticle($arNumber){
 		
