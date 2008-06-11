@@ -14,7 +14,7 @@ class DAOArticle {
 		
 		global $DATA_ACCESS;
 					
-		$sql="SELECT `ar_number`, `ar_title`, `ar_price`, `ar_description`, `ar_stock`, `ar_picture` " .
+		$sql="SELECT `ar_number`, `ar_title`, `ar_price`, `ar_description`, `ar_stock` " .
 		  "FROM " . TBL_ARTICLE . " " .
 		  "WHERE `ar_number` = :arNumber;";
 
