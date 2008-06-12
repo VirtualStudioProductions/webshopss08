@@ -13,10 +13,10 @@ class SITERegistration extends SITE {
 	protected $F_REGISTRATION;
 	
 	
-	public function SITERegistration($TEMPLATE_ENGINE) {
+	public function SITERegistration() {
 		
 		// super Konstruktor aufrufen
-		parent::SITE($TEMPLATE_ENGINE, new UCRegistration());
+		parent::SITE(new UCRegistration());
 		
 		// Attribute initialisieren
 		$this->template = TPL_Registration;

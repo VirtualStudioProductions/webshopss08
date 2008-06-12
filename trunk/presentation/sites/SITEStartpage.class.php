@@ -7,10 +7,10 @@ require_once("logic/UC.class.php");
 class SITEStartpage extends SITE {
 	
 	
-	public function SITEStartpage($TEMPLATE_ENGINE) {
+	public function SITEStartpage() {
 		
 		// super Konstruktor aufrufen
-		parent::SITE($TEMPLATE_ENGINE, new UC());
+		parent::SITE(new UC());
 		
 		// Attribute initialisieren
 		$this->template = TPL_Startpage;

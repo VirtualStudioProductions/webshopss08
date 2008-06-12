@@ -8,10 +8,10 @@ class SITEArticle extends SITE {
 	
 	private $arNumber;
 	
-	public function SITEArticle($TEMPLATE_ENGINE, $arNumber) {
+	public function SITEArticle($arNumber) {
 		
 		// Äquivalent zum "super" Aufruf in Java*
-		parent::SITE($TEMPLATE_ENGINE, new UCArticle());
+		parent::SITE(new UCArticle());
 		
 		$this->template = TPL_Article;
 				

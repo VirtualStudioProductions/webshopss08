@@ -13,10 +13,10 @@ class SITEContact extends SITE {
 	protected $F_CONTACT;
 	
 	
-	public function SITEContact($TEMPLATE_ENGINE) {
+	public function SITEContact() {
 		
 		// super Konstruktor aufrufen
-		parent::SITE($TEMPLATE_ENGINE, new UCContact());
+		parent::SITE(new UCContact());
 		
 		// Attribute initialisieren
 		$this->template = TPL_Contact;

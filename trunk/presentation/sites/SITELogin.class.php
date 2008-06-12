@@ -13,10 +13,10 @@ class SITELogin extends SITE {
 	protected $F_LOGIN;
 	
 	
-	public function SITELogin($TEMPLATE_ENGINE) {
+	public function SITELogin() {
 		
 		// super Konstruktor aufrufen
-		parent::SITE($TEMPLATE_ENGINE, new UCLogin());
+		parent::SITE(new UCLogin());
 		
 		// Attribute initialisieren
 		$this->template = TPL_Login;

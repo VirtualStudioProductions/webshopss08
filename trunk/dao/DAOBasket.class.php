@@ -2,19 +2,22 @@
 
 /**
  * Zuständig für sämtliche Operationen, bei Bestellung.
- */ 
+ */
 
-class DAOBasket {
+
+require_once("DAO.class.php");
+
+
+
+class DAOBasket extends DAO {
 	
 	public function getArticle($arNumber){
 		
-		global $DATA_ACCESS;
-					
 		$sql="SELECT `ar_number`, `ar_title`, `ar_price`, `ar_description`, `ar_stock` " .
 		  "FROM " . TBL_ARTICLE . " " .
 		  "WHERE `ar_number` = :arNumber;";
 
-		$stmt = $DATA_ACCESS->prepare($sql);
+		$stmt = $this->DATA_ACCESS->prepare($sql);
 		$stmt->bindValue(":arNumber", $arNumber);
 		$stmt->execute();
 		

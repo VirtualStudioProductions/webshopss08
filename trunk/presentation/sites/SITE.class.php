@@ -4,7 +4,7 @@ abstract class SITE {
 	
 	
 	/** Der UseCase, den diese Seite erfüllt */
-	//protected $useCase;
+	protected $useCase;
 	
 	/** Das Template, das dieser Seite zugewiesen ist */
 	protected $template;
@@ -16,10 +16,12 @@ abstract class SITE {
 	protected $TEMPLATE_ENGINE;
 	
 	
-	public function SITE($TEMPLATE_ENGINE, $useCase) {
+	public function SITE($useCase) {
 
-		$this->useCase = $useCase;
-		$this->TEMPLATE_ENGINE = $TEMPLATE_ENGINE;
+		global $TEMPLATE_ENGINE; // Aus index.php
+		
+		$this->useCase			= $useCase;
+		$this->TEMPLATE_ENGINE	= $TEMPLATE_ENGINE;
 	
 	} // # END SITE
 	
