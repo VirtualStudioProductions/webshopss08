@@ -7,10 +7,10 @@ require_once("SITE.class.php");
 class SITEBasket extends SITE {
 	
 	
-	public function SITEBasket($TEMPLATE_ENGINE) {
+	public function SITEBasket() {
 		
 		// Äquivalent zum "super" Aufruf in Java*
-		parent::SITE($TEMPLATE_ENGINE, new UCBasket());
+		parent::SITE(new UCBasket());
 		
 		$this->template = TPL_Basket;
 		

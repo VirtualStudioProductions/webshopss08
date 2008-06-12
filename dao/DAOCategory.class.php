@@ -2,21 +2,21 @@
 /**
  * Zuständig für sämtliche Operationen, die auf die Kategorie-Tabelle
  * des Webshops angewandt werden.
- */ 
+ */
 
 
-class DAOCategory {
-	
+require_once("DAO.class.php");
+
+
+class DAOCategory extends DAO {
 	
 
 	public function getAllCategories(){
-	
-		global $DATA_ACCESS; //Zugriff auf die DB Verbindung die in der index.php aufgebaut wird
 		
 		$sql="SELECT `cat_name` AS `name`, `cat_id` AS `id`" .
 		  "FROM " . TBL_CATEGORY . " ORDER BY `cat_name` ASC ";
 		
-		$stmt = $DATA_ACCESS->prepare($sql);
+		$stmt = $this->DATA_ACCESS->prepare($sql);
 		$stmt->execute();
 		//alle Spalteneinträge in Array $arr schreiben
 		$arr = $stmt->fetchAll( PDO::FETCH_ASSOC );
@@ -32,7 +32,6 @@ class DAOCategory {
  */	
 	public function getSelectedSubcategories($cat_id){
 		
-		global $DATA_ACCESS;
 		$sql="SELECT `sub_name` AS `name`, `sub_id` AS `id` 
 		FROM " . TBL_CATEGORY . " AS cat JOIN " . 
      	TBL_SUBCATEGORY . " AS sub " . 
@@ -40,7 +39,7 @@ class DAOCategory {
 		" WHERE cat.cat_id = :cat_id " . 
      	" ORDER BY `sub_name` ASC ";
 		
-		$stmt = $DATA_ACCESS->prepare($sql);
+		$stmt = $this->DATA_ACCESS->prepare($sql);
 		$stmt->bindValue(":cat_id", $cat_id, PDO::PARAM_STR);
 		$stmt->execute();
 		$arr = $stmt->fetchAll( PDO::FETCH_ASSOC);

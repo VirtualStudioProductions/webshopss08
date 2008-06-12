@@ -7,10 +7,10 @@ require_once("logic/UC.class.php");
 class SITEImpressum extends SITE {
 	
 	
-	public function SITEImpressum($TEMPLATE_ENGINE) {
+	public function SITEImpressum() {
 		
 		// super Konstruktor aufrufen
-		parent::SITE($TEMPLATE_ENGINE, new UC());
+		parent::SITE(new UC());
 		
 		// Attribute initialisieren
 		$this->template = TPL_Impressum;

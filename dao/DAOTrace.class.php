@@ -3,10 +3,13 @@
 /**
  * Zuständig für sämtliche Operationen, die auf die
  * Trace - Tabelle des Webshops angewandt werden.
- */ 
+ */
 
 
-class DAOTrace {
+require_once("DAO.class.php");
+
+
+class DAOTrace extends DAO {
 	
 	
 	/**
@@ -15,13 +18,12 @@ class DAOTrace {
 	 */
 	public function deleteTimedOutTraces() {
 		
-		global $DATA_ACCESS;
-		
 		$query = "DELETE FROM `" . TBL_TRACE . "` WHERE `tr_unixTimeStamp` < :traceTimeout";
-		$stmt = $DATA_ACCESS->prepare($query);
+		$stmt = $this->DATA_ACCESS->prepare($query);
 		$stmt->bindValue(":traceTimeout", time() - TRACE_TIMEOUT, PDO::PARAM_INT);
 		
 		$stmt->execute();
+		
 		
 	} // # END deleteTimedOutTraces
 	
@@ -35,8 +37,6 @@ class DAOTrace {
 	 * @param String $site Die Seite, die der Besucher anschaut.
 	 */
 	public function insertNewTrace($identifier, $date, $time, $site) {
-		
-		global $DATA_ACCESS;
 		
 		if ($site == "") {
 			$site = "startpage";
@@ -52,7 +52,7 @@ class DAOTrace {
 		$query = "INSERT INTO `" . TBL_TRACE . "`
 					(`tr_identifier`, `tr_date`, `tr_time`, `tr_site`, `tr_loggedInAs`, `tr_unixTimeStamp`)
 					VALUES (:identifier, :date, :time, :site, :loggedInAs, :unixTimeStamp)";
-		$stmt = $DATA_ACCESS->prepare($query);
+		$stmt = $this->DATA_ACCESS->prepare($query);
 		
 		$stmt->bindValue(":identifier", $identifier, PDO::PARAM_STR);
 		$stmt->bindValue(":date", $date);
@@ -63,6 +63,7 @@ class DAOTrace {
 		
 		$stmt->execute();
 	
+		
 	} // # END insertNewTrace
 	
 }

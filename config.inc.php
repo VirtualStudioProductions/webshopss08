@@ -21,7 +21,7 @@ define("TPL_Registration",	"registration"	. TPL_ENDING);
 define("TPL_Login",			"login" 		. TPL_ENDING);
 define("TPL_Impressum",		"impressum" 	. TPL_ENDING);
 define("TPL_Contact",		"contact"	 	. TPL_ENDING);
-define("TPL_Admin",			"admin"	 		. TPL_ENDING);
+define("TPL_Admin",			"admin/admin"	. TPL_ENDING);
 define("TPL_Startpage",		"startpage" 	. TPL_ENDING);
 define("TPL_Article",		"article" 		. TPL_ENDING);
 define("TPL_Category",		"subcategories"	. TPL_ENDING);

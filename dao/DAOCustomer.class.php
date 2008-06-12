@@ -3,10 +3,13 @@
 /**
  * Zuständig für sämtliche Operationen, die auf die
  * Kunde - Tabelle des Webshops angewandt werden.
- */ 
+ */
 
 
-class DAOCustomer {
+require_once("DAO.class.php");
+
+
+class DAOCustomer extends DAO {
 	
 	
 	/**
@@ -17,10 +20,8 @@ class DAOCustomer {
 	 */
 	public function getLastID() {
 		
-		global $DATA_ACCESS;
-		
 		$query = "SELECT `cu_id` FROM `" . TBL_CUSTOMER . "` ORDER BY `cu_id` DESC LIMIT 0, 1";
-		$stmt = $DATA_ACCESS->prepare($query);
+		$stmt = $this->DATA_ACCESS->prepare($query);
 		$stmt->execute();
 	
 		$result = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -28,6 +29,7 @@ class DAOCustomer {
 		
 		return $result["cu_id"];
 	
+		
 	} // # END getLastID
 	
 	
@@ -40,10 +42,8 @@ class DAOCustomer {
 	 */
 	public function getPasswordFromUsername($username) {
 		
-		global $DATA_ACCESS;
-		
 		$query = "SELECT `cu_password` FROM `" . TBL_CUSTOMER . "` WHERE `cu_username` = :username";
-		$stmt = $DATA_ACCESS->prepare($query);
+		$stmt = $this->DATA_ACCESS->prepare($query);
 		$stmt->bindValue(":username", $username, PDO::PARAM_STR);
 		$stmt->execute();
 		
@@ -51,6 +51,7 @@ class DAOCustomer {
 		
 		
 		return $result["cu_password"];
+		
 		
 	} // # END getPasswordFromUsername
 	
@@ -65,10 +66,8 @@ class DAOCustomer {
 	 */
 	public function getSpecificCustomerFromUsername($username) {
 		
-		global $DATA_ACCESS;
-		
 		$query = "SELECT * FROM `" . TBL_CUSTOMER . "` WHERE `cu_username` = :username";
-		$stmt = $DATA_ACCESS->prepare($query);
+		$stmt = $this->DATA_ACCESS->prepare($query);
 		$stmt->bindValue(":username", $username, PDO::PARAM_STR);
 		$stmt->execute();
 		
@@ -77,7 +76,8 @@ class DAOCustomer {
 		
 		return $result;
 		
-	}
+		
+	} // # END getSpecificCustomerFromUsername
 	
 }
 

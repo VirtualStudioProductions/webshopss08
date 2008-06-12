@@ -7,7 +7,7 @@ class SITECategory extends SITE {
 		public function SITECategory($TEMPLATE_ENGINE) {
 		
 		// Äquivalent zum "super" Aufruf in Java*
-		parent::SITE($TEMPLATE_ENGINE, new UC());
+		parent::SITE(new UC());
 		
 		$this->template = TPL_Category;
 				
