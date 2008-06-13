@@ -19,7 +19,7 @@
 		<h1 class="hidden">{$PAGE_TITLE}</h1>
 		<a href="{$smarty.server.PHP_SELF}?handheld={$smarty.get.handheld}" title="Zur Startseite" id="bannerleft"></a>
 		{if $smarty.get.handheld != 1}
-			<a href="{$smarty.server.PHP_SELF}?site={$smarty.get.site}&handheld=1" title="Verwende Handheld-Design" id="designselection">Handheld</a>
+			<a href="{$smarty.server.PHP_SELF}?site={$smarty.get.site}&amp;handheld=1" title="Verwende Handheld-Design" id="designselection">Handheld</a>
 		{else}
 			<a href="{$smarty.server.PHP_SELF}?site={$smarty.get.site}" title="Verwende normales Design" id="designselection">Normal</a>
 		{/if}
@@ -31,12 +31,12 @@
 		{else}
 			{$smarty.session.USER.cu_username} ::
 			{if $smarty.session.USER.cu_admin == 1}
-				<a href="{$smarty.server.PHP_SELF}?site=admin&handheld={$smarty.get.handheld}" title="Zum Administrations-Bereich">Admin</a> ::
+				<a href="{$smarty.server.PHP_SELF}?site=admin&amp;handheld={$smarty.get.handheld}" title="Zum Administrations-Bereich">Admin</a> ::
 			{/if}
-			<a title="Logout!" href="{$smarty.server.PHP_SELF}?site=login&handheld={$smarty.get.handheld}&logout=1">Logout</a>
+			<a title="Logout!" href="{$smarty.server.PHP_SELF}?site=login&amp;handheld={$smarty.get.handheld}&amp;logout=1">Logout</a>
 		{/if} ::
 		{if $smarty.session.USER == null}
-			<a title="Registrieren Sie sich und werden Sie Kunde!" href="{$smarty.server.PHP_SELF}?site=registration&handheld={$smarty.get.handheld}">Registrieren</a> ::
+			<a title="Registrieren Sie sich und werden Sie Kunde!" href="{$smarty.server.PHP_SELF}?site=registration&amp;handheld={$smarty.get.handheld}">Registrieren</a> ::
 		{/if}
 		<a href="#">Warenkorb</a>
 	</div>

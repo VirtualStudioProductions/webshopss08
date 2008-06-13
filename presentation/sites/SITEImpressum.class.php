@@ -18,7 +18,7 @@ class SITEImpressum extends SITE {
 		// Private Funktion fillTemplate aufrufen
 		$this->fillTemplate();		
 		
-	} // # END SITELogin
+	} // # END SITEImpressum
 	
 	
 	/**

@@ -47,13 +47,15 @@ h3 {
 	font-size: 1.1em;
 }
 
-input, textarea {
-	padding: 2px;
+h4 {
+	font-size: 1.0em;
+	margin-top: 25px;
 }
 
-textarea {
+input, textarea {
 	border: 1px solid #000095;
 	color: #000095;
+	padding: 2px;
 }
 
 form {
@@ -67,6 +69,21 @@ form {
 img {
 	border: 0;
 }
+
+td {
+	background-color: #ffffff;
+	padding: 3px;
+}
+
+th {
+	background-color: #e8eaf7;
+	padding: 3px;
+}
+
+table {
+	background-color: #000095;
+}
+
 
 /* id's werden immer mit einer # angegeben*/
 	/* steht z.b. ein div vor der raute: div#sitebox dann kann die id nur auf div tags angewendet werden*/
@@ -177,6 +194,7 @@ img {
 
 #contentwidth {
 	max-width: 750px;
+	padding-bottom: 10px;
 }
 
 #footer {
@@ -321,6 +339,4 @@ p.center {
 
 input.textfield {
 	width: 200px;
-	border: 1px solid #000095;
-	color: #000095;
 }
