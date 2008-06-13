@@ -37,7 +37,8 @@ class DAOArticle extends DAO {
 	public function getAllCategoryArticles($category){
 		
 		
-	}
+	} // # END getAllCategoryArticles
+	
 	
 	/**
 	 * liefert alle Artikel einer UnterKategorie zurück. Diese werden im Main Window angezeigt sobald der User auf eine Unterkategorien klickt
@@ -47,7 +48,25 @@ class DAOArticle extends DAO {
 	public function getAllSubCategoryArticles($subcategory){
 		
 		
-	}
+	} // # END getAllSubCategoryArticles
+	
+	
+	/**
+	 * Holt alle Artikel aus der Datenbank.
+	 *
+	 * @return array Assoziatives Array mit allen Artikeln
+	 */
+	public function getAllArticles() {
+		
+		$query = "SELECT * FROM `" . TBL_ARTICLE . "` ORDER BY `ar_number` ASC";
+		$stmt = $this->DATA_ACCESS->prepare($query);
+		$stmt->execute();
+		$articles = $stmt->fetchAll(PDO::FETCH_ASSOC);
+		
+		return $articles;
+		
+		
+	} // # END getAllArticles
 	
 }
 

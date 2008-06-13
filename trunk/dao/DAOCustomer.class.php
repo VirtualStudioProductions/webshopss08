@@ -79,6 +79,24 @@ class DAOCustomer extends DAO {
 		
 	} // # END getSpecificCustomerFromUsername
 	
+	
+	/**
+	 * Holt alle Kunden aus der Datenbank.
+	 *
+	 * @return array Assoziatives Array mit allen Kunden
+	 */
+	public function getAllCustomers() {
+		
+		$query = "SELECT * FROM `" . TBL_CUSTOMER . "` ORDER BY `cu_number` ASC";
+		$stmt = $this->DATA_ACCESS->prepare($query);
+		$stmt->execute();
+		$customers = $stmt->fetchAll(PDO::FETCH_ASSOC);
+		
+		return $customers;
+		
+		
+	} // # END getAllCustomers
+	
 }
 
 ?>

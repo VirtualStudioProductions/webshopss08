@@ -56,15 +56,15 @@ switch ($_GET["site"]) {
 		break;
 		
 		
-	/*case "adminbasedata":
+	case "adminbasedata":
 		
 		// nur falls wirklich ein Admin eingeloggt ist
 		require_once("admincheck.inc.php");
 		
 		require_once("presentation/sites/admin/SITEAdminBaseData.class.php");
-		$SITE = new SITEAdmin();
+		$SITE = new SITEAdminBaseData();
 		
-		break;*/
+		break;
 	
 		
 	case "article":

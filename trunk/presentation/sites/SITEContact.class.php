@@ -32,7 +32,7 @@ class SITEContact extends SITE {
 		$this->actions();
 		
 		
-	} // # END SITELogin
+	} // # END SITEContact
 	
 	
 	private function actions() {

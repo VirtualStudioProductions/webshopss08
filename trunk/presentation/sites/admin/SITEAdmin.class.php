@@ -21,7 +21,7 @@ class SITEAdmin extends SITE {
 		// Private Funktion fillTemplate aufrufen
 		$this->fillTemplate();		
 		
-	} // # END SITEStartpage
+	} // # END SITEAdmin
 	
 	
 	/**

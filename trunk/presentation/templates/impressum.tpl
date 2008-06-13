@@ -171,4 +171,4 @@
 	Webbrowsern kompatibel und optimiert f&uuml;r eine Aufl&ouml;sung ab 800 * 600 Pixel
 	sowie Hand-Held Ger&auml;te. Die Webseite wurde XHTML-konform programmiert.</p>
 	
-	<p>Stand: Juni, 2008</p><br />
+	<p>Stand: Juni, 2008</p>
