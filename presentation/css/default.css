@@ -1,14 +1,16 @@
-/* ohne raute und punkt wir damit direkt ein standard html befehl angesprochen*/
+/************************************/ 
+/*			STANDARD-HTML			*/
+/************************************/
+
+/* Ohne Raute und Punkt wird damit direkt
+ * ein Standard HTML-Befehl angesprochen
+ */
+ 
 body {
 	font-family: Verdana, Arial;
 	font-size: 80%;
 	line-height: 1.8em;
 	background-color: #cccccc;
-}
-
-/* nur gültig bei div tags die eine auflistung verwenden*/
-div.categoryitem ul {
-	list-style: none outside none;
 }
 
 a {
@@ -53,9 +55,12 @@ h4 {
 }
 
 input, textarea {
+	padding: 2px;
+}
+
+textarea {
 	border: 1px solid #000095;
 	color: #000095;
-	padding: 2px;
 }
 
 form {
@@ -84,10 +89,28 @@ table {
 	background-color: #000095;
 }
 
+/* Nur gültig bei div Tags, die eine
+ * Auflistung verwenden
+ */
+div.categoryitem ul {
+	list-style: none outside none;
+}
 
-/* id's werden immer mit einer # angegeben*/
-	/* steht z.b. ein div vor der raute: div#sitebox dann kann die id nur auf div tags angewendet werden*/
-	/* eine id darf in einem html dokument nur einmal vorkommen! */
+
+
+/************************/ 
+/*			IDs			*/
+/************************/
+
+/* IDs werden immer mit einer # angegeben
+ * Steht z.b. ein div vor der Raute:
+ * div#sitebox, dann kann die ID nur auf
+ * div Tags angewendet werden
+ */
+
+/* Eine ID darf in einem HTML-Dokument nur
+ * einmal vorkommen!
+ */
 #sitebox {
 	margin: 10px;
 	position: absolute;
@@ -227,9 +250,12 @@ table {
 	display: inline;
 }
 
-/*************************/ 
-/*         Klassen       */
-/*************************/
+
+
+/****************************/ 
+/*			KLASSEN			*/
+/****************************/
+
 .categoryitem {
 	background-color: rgb(250, 250, 250);
 	width: 180px;
@@ -237,7 +263,9 @@ table {
 
 }
 
-/*für alle a tags innerhalb der klasse categoryitem:*/
+/* Für alle a Tags innerhalb der Klasse
+ * categoryitem:
+ */
 .categoryitem a {
 	color: rgb(51, 51, 51);
 	font-weight: normal;
@@ -254,7 +282,7 @@ table {
 	font-weight: bold;
 }
 
-.subcategoryitembig{
+.subcategoryitembig {
 	color: #00ff00;
 	position: absolute;
 	left: 100px;
@@ -337,6 +365,33 @@ p.center {
 	text-align: center;
 }
 
-input.textfield {
+/* Klassen für Formulare: */
+
+.textField {
+	border: 1px solid #000095;
+	color: #000095;
 	width: 200px;
+}
+
+.smallTextField {
+	border: 1px solid #000095;
+	color: #000095;
+	width: 70px;
+}
+
+.formColLeft {
+	float: left;
+	width: 40%;
+	margin-top: 10px;
+}
+
+.formColLeft p {
+	display: inline;
+}
+
+.formColRight {
+	margin-left: 25px;
+	margin-top: 6px;
+	float: left;
+	padding: 5px;
 }

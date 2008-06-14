@@ -19,9 +19,9 @@ class Form {
 	 * THE FORM CLASS
 	 * comment:					powerful class for form processing
 	 * author:					Alexander Weickmann <Alexander.Weickmann@gmx.de> (Eistoeter)
-	 * release date:			10.06.2008
+	 * release date:			14.06.2008
 	 * start of the project:	29.11.2005
-	 * version:					5.2
+	 * version:					5.3
 	 * requirement:				scripted for php5.1 and mysql
 	 * description:				this class was coded only to simplify data-processing coming
 	 *                          from standard forms (for example guestbooks, newsscripts,
@@ -44,7 +44,7 @@ class Form {
 	const ERROR_WARNING = 3;
 	
 	/** path to the layout files */
-	private $layout_dir = "presentation/templates/forms/";
+	private $layout_dir;
 	
 	/** the fields of the form */
 	private $fields;
@@ -115,6 +115,18 @@ class Form {
 
 	/** additional get parameters for the redirection */
 	private $redirect_url;
+	
+	/** display a confirmation on success? */
+	private $confirmation_on_success;
+	
+	/** the message to be displayed on success */
+	private $confirmation_on_success_msg;
+	
+	/**
+	 * the page will be automatically scrolled to the form
+	 * if this is set to true
+	 */
+	private $jump_to_anchor;
 
 	/**
 	 * if this is "session" the values for the fields will be loaded from $_SESSION
@@ -169,31 +181,33 @@ class Form {
 	/** To interact with the form object from the outside */
 
 	
-	public function set_error_color($color)			{ $this->error_color			= $color; }
-	public function set_warning_color($color)		{ $this->warning_color			= $color; }
-	public function set_fatal_color($color)			{ $this->fatal_color			= $color; }
+	public function set_error_color($color)						{ $this->error_color						= $color; }
+	public function set_warning_color($color)					{ $this->warning_color						= $color; }
+	public function set_fatal_color($color)						{ $this->fatal_color						= $color; }
 
-	public function set_MAX_FILE_SIZE($size)		{ $this->MAX_FILE_SIZE			= $size; }
-	public function set_action($action)				{ $this->action					= $action; }
-	public function set_method($method)				{ $this->method					= $method; }
-	public function set_show_reset_button($set)		{ $this->show_reset_button		= $set; }
-	public function set_show_submit_button($set)	{ $this->show_submit_button		= $set; }
-	public function set_show_form_end($set)			{ $this->show_form_end			= $set; }
-	public function set_submit_value($value)		{ $this->submit_value			= $value; }
-	public function set_reset_value($value)			{ $this->reset_value			= $value; }
-	public function set_css($css)					{ $this->css					= $css; }
-	public function set_reset_css($css)				{ $this->reset_css				= $css; }
-	public function set_submit_css($css)			{ $this->submit_css				= $css; }
-	public function set_redirect($set)				{ $this->redirect				= $set; }
-	public function set_focus_field($set)			{ $this->focus_field			= $set; }
-	public function set_redirect_url($set)			{ $this->redirect_url			= $set; }
-	public function set_enable_messages($set)		{ $this->set_enable_messages	= $set; }
-	public function set_retrieve_data($method)		{ $this->retrieve_data			= $method; }
-	public function set_lay_folder($lay_folder)		{ $this->layout					= $this->layout_dir . $lay_folder . "/" .$this->form_name . ".lay.tpl"; }
+	public function set_MAX_FILE_SIZE($size)					{ $this->MAX_FILE_SIZE						= $size; }
+	public function set_action($action)							{ $this->action								= $action; }
+	public function set_method($method)							{ $this->method								= $method; }
+	public function set_show_reset_button($set)					{ $this->show_reset_button					= $set; }
+	public function set_show_submit_button($set)				{ $this->show_submit_button					= $set; }
+	public function set_show_form_end($set)						{ $this->show_form_end						= $set; }
+	public function set_submit_value($value)					{ $this->submit_value						= $value; }
+	public function set_reset_value($value)						{ $this->reset_value						= $value; }
+	public function set_css($css)								{ $this->css								= $css; }
+	public function set_reset_css($css)							{ $this->reset_css							= $css; }
+	public function set_submit_css($css)						{ $this->submit_css							= $css; }
+	public function set_redirect($set)							{ $this->redirect							= $set; }
+	public function set_focus_field($set)						{ $this->focus_field						= $set; }
+	public function set_redirect_url($set)						{ $this->redirect_url						= $set; }
+	public function set_confirmation_on_success($set)			{ $this->confirmation_on_success			= $set; }
+	public function set_confirmation_on_success_msg($msg)		{ $this->confirmation_on_success_msg		= $msg; }
+	public function set_jump_to_anchor($set)					{ $this->jump_to_anchor						= $set; }
+	public function set_retrieve_data($method)					{ $this->retrieve_data						= $method; }
+	public function set_lay_folder($lay_folder)					{ $this->layout								= $this->layout_dir . $lay_folder . "/" .$this->form_name . ".lay.tpl"; }
 
-	public function get_form_name()					{ return $this->form_name;	}
-	public function get_sql_insert_id()				{ return $this->sql_insert_id; }
-	public function get_redirect_url()				{ return $this->redirect_url;	}
+	public function get_form_name()								{ return $this->form_name;	}
+	public function get_sql_insert_id()							{ return $this->sql_insert_id; }
+	public function get_redirect_url()							{ return $this->redirect_url;	}
 
 
 
@@ -204,6 +218,7 @@ class Form {
 	
 	public function Form(
 					$form_name,
+					$layout_dir,
 					$namelist,
 					$sql_tblname,
 					$sql_where,
@@ -213,36 +228,41 @@ class Form {
 					PDO $PDO_DATA_ACCESS) {
 						
 						
-		$this->namelist				= $namelist;
-		$this->error_color			= "#00BBBB";
-		$this->warning_color		= "#00BB00";
-		$this->fatal_color			= "#BB0000";
+		$this->namelist					= $namelist;
+		$this->error_color				= "#00BBBB";
+		$this->warning_color			= "#00BB00";
+		$this->fatal_color				= "#BB0000";
 
 		// general
-		$this->form_name			= $form_name;
-		$this->layout				= "".$this->layout_dir."".$this->form_name.".lay.tpl";
-		$this->MAX_FILE_SIZE		= 25600;
-		$this->enctype				= "";
-		$this->action				= $_SERVER["PHP_SELF"] . "?" . $_SERVER["argv"][0];
-		$this->method				= "post";
-		$this->show_reset_button	= true;
-		$this->show_submit_button	= true;
-		$this->show_form_end		= true;
-		$this->submit_value			= "Abschicken!";
-		$this->reset_value			= "Rückgängig!";
-		$this->css					= "";
-		$this->reset_css			= "";
-		$this->submit_css			= "";
-		$this->redirect				= true;
-		$this->retrieve_data		= "post";
-		$this->custom_type			= $custom_type;
-		$this->OWNER_OBJECT			= $OWNER_OBJECT;
-		$this->PDO_DATA_ACCESS		= $PDO_DATA_ACCESS;
+		$this->form_name					= $form_name;
+		$this->layout_dir					= $layout_dir;
+		$this->layout						= "".$this->layout_dir."".$this->form_name.".lay.tpl";
+		$this->MAX_FILE_SIZE				= 25600;
+		$this->enctype						= "";
+		$this->action						= $_SERVER["PHP_SELF"] . "?" . $_SERVER["argv"][0];
+		$this->method						= "post";
+		$this->show_reset_button			= true;
+		$this->show_submit_button			= true;
+		$this->show_form_end				= true;
+		$this->submit_value					= "Abschicken!";
+		$this->reset_value					= "Rückgängig!";
+		$this->css							= "";
+		$this->reset_css					= "";
+		$this->submit_css					= "";
+		$this->redirect						= true;
+		$this->redirect_url					= "";
+		$this->confirmation_on_success		= false;
+		$this->confirmation_on_success_msg	= "Vorgang war erfolgreich!";
+		$this->jump_to_anchor				= true;
+		$this->retrieve_data				= "post";
+		$this->custom_type					= $custom_type;
+		$this->OWNER_OBJECT					= $OWNER_OBJECT;
+		$this->PDO_DATA_ACCESS				= $PDO_DATA_ACCESS;
 
 		// mysql
-		$this->sql_tblname			= $sql_tblname;
-		$this->sql_where			= $sql_where;
-		$this->sql_id				= $mysql_id_name;
+		$this->sql_tblname					= $sql_tblname;
+		$this->sql_where					= $sql_where;
+		$this->sql_id						= $mysql_id_name;
 		
 	} // # END Form
 
@@ -390,13 +410,16 @@ class Form {
 			$name = strtoupper($this->form_name);
 			$layout .= "\n\n<!-- ## ".$name." -->\n";
 			$layout .= "<!--  - FORM HEADER -->\n<a name=\"msg_".$this->form_name."\"></a>\n";
-			if ($_GET["confirm"] != "") {
-				$layout .= "<p style=\"text-align: center; color: #00FF00; font-weight: bold;\">".$_GET["confirm"]."</p>\n";
+			if ($_GET["confirm"] == 1) {
+				$layout .= "<p style=\"color: #007700; font-weight: bold;\">".$this->confirmation_on_success_msg."</p>\n";
 			}
 			if ($msg["general_error"] != "") {
 				print "<p><span style=\"color: #FF0000;\"><strong>Fehler:</strong></span> " . $msg["general_error"] . "</p>";
 			}
-			$layout .= "<form action=\"".$this->action."#msg_".$this->form_name."\" method=\"".$this->method."\"".$this->enctype."".$this->css.">\n";
+			if ($this->jump_to_anchor == true) {
+				$anchor = "#msg_" . $this->form_name;
+			}
+			$layout .= "<form id=\"f_".$this->form_name."\" action=\"".$this->action . $anchor . "\" method=\"".$this->method."\"".$this->enctype."".$this->css.">\n";
 			if ($this->sql_where != "") {
 				$layout .= "<input type=\"hidden\" name=\"id\" value=\"".$res["".$this->sql_id.""]."\" />\n";
 			}
@@ -508,14 +531,22 @@ class Form {
 	public function redirectOnValid($msg) {
 		
 		if ($msg["valid"]) {
+			
+			if ($this->confirmation_on_success == true && $_GET["confirm"] != 1) {
+				$confirm = "&confirm=1";
+			}
+			
 			header("Location: "
 				. $_SERVER["PHP_SELF"]
 				. "?"
 				. $_SERVER["argv"][0]
+				. $confirm
 				. $this->redirect_url);
+		
 		}
 		
-	} // # END redirect
+		
+	} // # END redirectOnValid
 
 
 

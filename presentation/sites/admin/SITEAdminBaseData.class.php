@@ -1,10 +1,16 @@
 <?php
 
+require_once("api/form/Form.class.php");
+require_once("api/form/Field.class.php");
 require_once("presentation/sites/SITE.class.php");
 require_once("logic/admin/UCAdminBaseData.class.php");
 
 
 class SITEAdminBaseData extends SITE {
+	
+	
+	/** Das Datensatz hinzufügen - Formular */
+	protected $F_NEWDATA;
 	
 	
 	public function SITEAdminBaseData() {
@@ -14,11 +20,27 @@ class SITEAdminBaseData extends SITE {
 
 		// Attribute initialisieren
 		$this->template = TPL_AdminBaseData;
+		$this->F_NEWDATA = $this->useCase->createNewDataForm();
 														
 		// Private Funktion fillTemplate aufrufen
-		$this->fillTemplate();		
+		$this->fillTemplate();
+		
+		// Private Funktion actions aufrufen
+		$this->actions();
 		
 	} // # END SITEAdminBaseData
+	
+	
+	private function actions() {
+		
+		// Formularverarbeitung
+		if ($_POST["s_" . $this->F_NEWDATA->get_form_name()]) {
+			$msg = $this->F_NEWDATA->process_form();
+			$this->TEMPLATE_ENGINE->assign("msg", $msg);
+		}
+		
+		
+	} // # END actions
 	
 	
 	/**
@@ -27,34 +49,12 @@ class SITEAdminBaseData extends SITE {
 	protected function fillTemplate() {
 		
 		parent::fillTemplate(); //Zuerst die von SITE.class.php geerbte fillTemplate Funktion aufrufen um die Kategorieansicht anzuzeigen
-
-		// Richtige Bezeichnung zuweisen
-		switch ($_GET["basedata"]) {
-			
-			case "article":
-				$baseDataTitle = "Artikel";
-				break;
-				
-			case "customer":
-				$baseDataTitle = "Kunden";
-				break;
-				
-			case "category":
-				$baseDataTitle = "Kategorien";
-				break;
-				
-			case "subcategory":
-				$baseDataTitle = "Unter-Kategorien";
-				break;
-				
-			default:
-				// Weiterleitung zur Hauptseite, falls kein Fall zutrifft
-				header("Location: " . $_SERVER["PHP_SELF"] . "?site=admin&handheld=" . $_GET["handheld"]);
-				break;
-								
-		}
 		
-		$this->TEMPLATE_ENGINE->assign("baseDataTitle", $baseDataTitle);
+		$this->TEMPLATE_ENGINE->assign("baseDataTitle", $this->useCase->getBaseDataTitle());
+		
+		// Das Formular erzeugen, mit dem neue Datensätze angelegt werden können
+		// und an das Template zuweisen
+		$this->TEMPLATE_ENGINE->assign("F_NEWDATA", $this->F_NEWDATA);
 		
 		// Alle Einträge zum jeweiligen Stammdatum aus der Logik holen
 		// und an das Template zuweisen

@@ -32,6 +32,7 @@ class UCLogin extends UC {
 		// Login Formular erzeugen
 		$F_LOGIN = new Form(
 							"login",
+							FORM_LAYOUT_DIR,
 							array("username", "password"),
 							"",
 							"",
@@ -51,7 +52,7 @@ class UCLogin extends UC {
 		// Formular Felder hinzufügen
 		
 		// Username
-		$FIELD = new TextField("username", "Username", " class=\"textfield\"");
+		$FIELD = new TextField("username", "Username", " class=\"textField\"");
 		$FIELD->set_v_required(true);		// Pflichtfeld
 		$FIELD->set_v_isunique(true);		// Einzigartig
 		$FIELD->set_v_nospace(true);		// Keine Leerzeichen
@@ -60,7 +61,7 @@ class UCLogin extends UC {
 		$F_LOGIN->add_field($FIELD);
 		
 		// Passwort
-		$FIELD = new PasswordField("password", "Passwort", " class=\"textfield\"");
+		$FIELD = new PasswordField("password", "Passwort", " class=\"textField\"");
 		$FIELD->set_v_required(true);
 		$FIELD->set_v_nospace(true);
 		$FIELD->set_v_minlength(6);			// Mindestens 6 Zeichen
@@ -79,7 +80,7 @@ class UCLogin extends UC {
 	public function logout() {
 		
 		$_SESSION["USER"] = null;
-		header("Location: " . $_SERVER["PHP_SELF"] . "?site=login&handheld=" . $_GET["handheld"]);
+		header("Location: " . $_SERVER["PHP_SELF"] . "?site=startpage&handheld=" . $_GET["handheld"]);
 	
 	} // # END logout
 	

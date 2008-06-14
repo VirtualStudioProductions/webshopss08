@@ -12,9 +12,7 @@
 		
 		<h4>Neuen {$baseDataTitle} - Datensatz anlegen</h4>
 		
-		<ul>
-			<li><a href="{$smarty.server.PHP_SELF}?site=adminbasedata&amp;basedata={$smarty.get.basedata}&amp;new=1&amp;handheld={$smarty.get.handheld}" title="Neuen {$baseDataTitle} - Datensatz anlegen">Neuer {$baseDataTitle} - Datensatz</a></li>
-		</ul>
+		{$F_NEWDATA->display($msg)}
 		
 		
 		<h4>Bestehende {$baseDataTitle} bearbeiten oder l&ouml;schen</h4>

@@ -28,8 +28,9 @@ class UCRegistration extends UC {
 		// Registration Formular erzeugen
 		$F_REGISTRATION = new Form(
 							"registration",
+							FORM_LAYOUT_DIR,
 							array("cu_username", "cu_password", "cu_firstname",
-							"cu_lastname", "cu_phone", "cu_email", "cu_number"),
+									"cu_lastname", "cu_phone", "cu_email", "cu_number"),
 							TBL_CUSTOMER,
 							"",					// keine WHERE Klausel nötig
 							"id",
@@ -41,8 +42,8 @@ class UCRegistration extends UC {
 		$F_REGISTRATION->set_show_reset_button(false);					// Reset Button ausschalten
 		$F_REGISTRATION->set_submit_value("Jetzt registrieren!");		// Text des Submit Buttons
 		
-		// Automatische Weiterleitung um GET-Parameter erweitern
-		$F_REGISTRATION->set_redirect_url("&confirm=1");
+		// Bestätigung bei Erfolg anzeigen lassen
+		$F_REGISTRATION->set_confirmation_on_success(true);
 		
 		// Zu Beginn fokusiertes Feld festlegen
 		$F_REGISTRATION->set_focus_field("cu_username");
@@ -51,7 +52,7 @@ class UCRegistration extends UC {
 		// Formular Felder hinzufügen
 		
 		// Username
-		$FIELD = new TextField("cu_username", "Username", " class=\"textfield\"");
+		$FIELD = new TextField("cu_username", "Username", " class=\"textField\"");
 		$FIELD->set_v_required(true);		// Pflichtfeld
 		$FIELD->set_v_isunique(true);		// Einzigartig
 		$FIELD->set_v_nospace(true);		// Keine Leerzeichen
@@ -61,7 +62,7 @@ class UCRegistration extends UC {
 		$F_REGISTRATION->add_field($FIELD);
 		
 		// Passwort
-		$FIELD = new PasswordField("cu_password", "Passwort", " class=\"textfield\"");
+		$FIELD = new PasswordField("cu_password", "Passwort", " class=\"textField\"");
 		$FIELD->set_v_required(true);
 		$FIELD->set_v_nospace(true);
 		$FIELD->set_v_minlength(6);			// Mindestens 6 Zeichen
@@ -70,19 +71,19 @@ class UCRegistration extends UC {
 		$F_REGISTRATION->add_field($FIELD);
 		
 		// Vorname
-		$FIELD = new TextField("cu_firstname", "Vorname", " class=\"textfield\"");
+		$FIELD = new TextField("cu_firstname", "Vorname", " class=\"textField\"");
 		$FIELD->set_v_required(true);
 		$FIELD->set_v_maxlength(50);
 		$F_REGISTRATION->add_field($FIELD);
 		
 		// Nachname
-		$FIELD = new TextField("cu_lastname", "Nachname", " class=\"textfield\"");
+		$FIELD = new TextField("cu_lastname", "Nachname", " class=\"textField\"");
 		$FIELD->set_v_required(true);
 		$FIELD->set_v_maxlength(50);
 		$F_REGISTRATION->add_field($FIELD);
 		
 		// E-Mail
-		$FIELD = new TextField("cu_email", "E-Mail", " class=\"textfield\"");
+		$FIELD = new TextField("cu_email", "E-Mail", " class=\"textField\"");
 		$FIELD->set_v_required(true);
 		$FIELD->set_v_isunique(true);
 		$FIELD->set_v_email(true);			// Gültige E-Mail Adresse
@@ -90,7 +91,7 @@ class UCRegistration extends UC {
 		$F_REGISTRATION->add_field($FIELD);
 		
 		// Telefon
-		$FIELD = new TextField("cu_phone", "Telefon", " class=\"textfield\"", 20);
+		$FIELD = new TextField("cu_phone", "Telefon", " class=\"textField\"", 20);
 		$FIELD->set_v_maxlength(20);		// Maximal 20 Zeichen
 		$F_REGISTRATION->add_field($FIELD);
 		

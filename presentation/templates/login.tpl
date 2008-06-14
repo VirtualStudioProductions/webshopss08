@@ -19,6 +19,13 @@
 			<p>Sie k&ouml;nnen sich jederzeit wieder aus dem System ausloggen, indem Sie im oberen
 			Men&uuml; auf <em>Logout</em> klicken!</p>
 			<p>Viel Spa&szlig; auch weiterhin in unserem Shop!</p>
+			
+			{if $smarty.session.USER.cu_admin == 1}
+			
+				<p>Sie sind ein Administrator. Klicken Sie oben im Hauptmen&uuml; auf <em>Admin</em>,
+				um den Webshop zu administrieren.</p>
+			
+			{/if}
 		
 		{else}
 		

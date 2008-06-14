@@ -28,7 +28,9 @@ class UCContact extends UC {
 		// Kontakt Formular erzeugen
 		$F_CONTACT = new Form(
 							"contact",
-							array("name", "email", "homepage", "phone", "subject", "message"),
+							FORM_LAYOUT_DIR,
+							array("name", "email", "homepage",
+									"phone", "subject", "message"),
 							"",
 							"",
 							"",
@@ -40,8 +42,8 @@ class UCContact extends UC {
 		$F_CONTACT->set_show_reset_button(false);			// Reset Button ausschalten
 		$F_CONTACT->set_submit_value("Abschicken!");		// Text des Submit Buttons
 		
-		// Automatische Weiterleitung um GET-Parameter erweitern
-		$F_CONTACT->set_redirect_url("&confirm=1");
+		// Bestätigung bei Erfolg anzeigen lassen
+		$F_CONTACT->set_confirmation_on_success(true);
 		
 		// Zu Beginn fokusiertes Feld festlegen
 		$F_CONTACT->set_focus_field("name");
@@ -50,32 +52,32 @@ class UCContact extends UC {
 		// Formular Felder hinzufügen
 		
 		// Name
-		$FIELD = new TextField("name", "Name", " class=\"textfield\"");
+		$FIELD = new TextField("name", "Name", " class=\"textField\"");
 		$FIELD->set_v_required(true);		// Pflichtfeld
 		$FIELD->set_v_nospecial(true);		// Keine Sonderzeichen
 		$FIELD->set_v_maxlength(50);
 		$F_CONTACT->add_field($FIELD);
 		
 		// E-Mail
-		$FIELD = new TextField("email", "E-Mail", " class=\"textfield\"");
+		$FIELD = new TextField("email", "E-Mail", " class=\"textField\"");
 		$FIELD->set_v_required(true);
 		$FIELD->set_v_email(true);			// Gültige E-Mail Adresse
 		$FIELD->set_v_maxlength(50);
 		$F_CONTACT->add_field($FIELD);
 		
 		// Homepage
-		$FIELD = new TextField("homepage", "Homepage", " class=\"textfield\"");
+		$FIELD = new TextField("homepage", "Homepage", " class=\"textField\"");
 		$FIELD->set_v_maxlength(100);
 		$FIELD->set_v_link(true);			// Gültiger Link
 		$F_CONTACT->add_field($FIELD);
 		
 		// Telefon
-		$FIELD = new TextField("phone", "Telefon", " class=\"textfield\"", 20);
+		$FIELD = new TextField("phone", "Telefon", " class=\"textField\"", 20);
 		$FIELD->set_v_maxlength(20);		// Maximal 20 Zeichen
 		$F_CONTACT->add_field($FIELD);
 		
 		// Betreff
-		$FIELD = new TextField("subject", "Betreff", " class=\"textfield\"");
+		$FIELD = new TextField("subject", "Betreff", " class=\"textField\"");
 		$FIELD->set_v_required(true);		// Pflichtfeld
 		$FIELD->set_v_maxlength(75);
 		$F_CONTACT->add_field($FIELD);
