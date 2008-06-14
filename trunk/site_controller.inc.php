@@ -48,7 +48,7 @@ switch ($_GET["site"]) {
 	case "admin":
 		
 		// nur falls wirklich ein Admin eingeloggt ist
-		require_once("admincheck.inc.php");
+		require_once("admin_check.inc.php");
 		
 		require_once("presentation/sites/admin/SITEAdmin.class.php");
 		$SITE = new SITEAdmin();
@@ -59,7 +59,7 @@ switch ($_GET["site"]) {
 	case "adminbasedata":
 		
 		// nur falls wirklich ein Admin eingeloggt ist
-		require_once("admincheck.inc.php");
+		require_once("admin_check.inc.php");
 		
 		require_once("presentation/sites/admin/SITEAdminBaseData.class.php");
 		$SITE = new SITEAdminBaseData();

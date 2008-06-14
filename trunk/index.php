@@ -37,7 +37,9 @@ try {
     	));
 } 
 catch(PDOException $e) {
-   	echo $e->getMessage(); // eventuell noch anders behandeln falls die db connection fehlschlägt
+	 // Eventuell noch anders behandeln falls
+	 // die db connection fehlschlägt
+   	echo $e->getMessage();
 }
 
 
@@ -46,10 +48,20 @@ $TEMPLATE_ENGINE = new Smarty();
 
 
 // Zentrale Kontrollstruktur einbinden
-require_once("sitecontroller.inc.php");
+require_once("site_controller.inc.php");
 
 
-// Am Objekt SITE die Funktion display aufrufen, um die Seite anzuzeigen
+// Am Objekt SITE die Funktion display aufrufen,
+// um die Seite anzuzeigen
 $SITE->display();
+
+
+// Die cached Templates wieder löschen, damit diese
+// nicht im Eclipse-Projekt auftauchen.
+// Nur falls dies als Debugging-Einstellung gesetzt
+// ist.
+if (EMPTY_CACHED_TEMPLATES == true) {
+	require_once("empty_cached_templates.inc.php");
+}
 
 ?>
