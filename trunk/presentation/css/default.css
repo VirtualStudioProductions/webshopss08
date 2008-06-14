@@ -365,6 +365,16 @@ p.center {
 	text-align: center;
 }
 
+p.confirmation {
+	color: #007700;
+	font-weight: bold;
+}
+
+p.error {
+	color: #770000;
+	font-weight: bold;
+}
+
 /* Klassen für Formulare: */
 
 .textField {

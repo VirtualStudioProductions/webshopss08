@@ -1,6 +1,7 @@
 <?php
 
 require_once("dao/DAOCategory.class.php");
+require_once("dao/DAOSubCategory.class.php");
 require_once("dao/DAOTrace.class.php");
 
 
@@ -13,6 +14,11 @@ class UC {
 	protected $DAOCategory;
 	
 	/** 
+	 * DAO für die SubCategory Tabelle
+	 */
+	protected $DAOSubCategory;
+	
+	/** 
 	 * DAO für die Trace Tabelle
 	 */
 	protected $DAOTrace;
@@ -21,8 +27,9 @@ class UC {
 	// Konstruktor
 	public function UC() {
 		
-		$this->DAOCategory	= new DAOCategory();
-		$this->DAOTrace		= new DAOTrace();
+		$this->DAOCategory		= new DAOCategory();
+		$this->DAOSubCategory	= new DAOSubCategory();
+		$this->DAOTrace			= new DAOTrace();
 		
 		// Besucher verfolgen, aber nur falls dieser
 		// Cookies aktiviert hat

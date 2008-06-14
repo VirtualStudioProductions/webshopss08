@@ -21,23 +21,30 @@ class SITEAdminBaseData extends SITE {
 		// Attribute initialisieren
 		$this->template = TPL_AdminBaseData;
 		$this->F_NEWDATA = $this->useCase->createNewDataForm();
-														
-		// Private Funktion fillTemplate aufrufen
-		$this->fillTemplate();
-		
+
 		// Private Funktion actions aufrufen
 		$this->actions();
+		
+		// Private Funktion fillTemplate aufrufen
+		$this->fillTemplate();
 		
 	} // # END SITEAdminBaseData
 	
 	
 	private function actions() {
 		
-		// Formularverarbeitung
+		// Formularverarbeitung des neuen Datensatz anlegen - Formulares
 		if ($_POST["s_" . $this->F_NEWDATA->get_form_name()]) {
 			$msg = $this->F_NEWDATA->process_form();
 			$this->TEMPLATE_ENGINE->assign("msg", $msg);
 		}
+		
+		// Datensatz löschen
+		$baseDataDeleted = false;
+		if ($_GET["delete"] == 1) {
+			$baseDataDeleted = $this->useCase->deleteBaseDataRow();
+		}
+		$this->TEMPLATE_ENGINE->assign("baseDataDeleted", $baseDataDeleted);
 		
 		
 	} // # END actions

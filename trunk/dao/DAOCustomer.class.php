@@ -97,6 +97,29 @@ class DAOCustomer extends DAO {
 		
 	} // # END getAllCustomers
 	
+	
+	/**
+	 * Löscht einen Kunden aus der Datenbank.
+	 * 
+	 * @param $cu_id	Die ID des Kunden, der gelöscht werden
+	 * 					soll
+	 *
+	 * @return bool		Wahrheitswert, ob der Datensatz gelöscht
+	 * 					wurde
+	 */
+	public function deleteCustomer($cu_id) {
+		
+		$query = "DELETE FROM `" . TBL_CUSTOMER . "` " .
+					"WHERE `cu_id` = :cu_id";
+		$stmt = $this->DATA_ACCESS->prepare($query);
+		$stmt->bindValue(":cu_id", $cu_id, PDO::PARAM_INT);
+		$deleted = $stmt->execute();
+		
+		return $deleted;
+		
+		
+	} // # END deleteCustomer
+	
 }
 
 ?>
