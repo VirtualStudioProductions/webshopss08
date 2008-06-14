@@ -33,7 +33,7 @@ class UCRegistration extends UC {
 									"cu_lastname", "cu_phone", "cu_email", "cu_number"),
 							TBL_CUSTOMER,
 							"",					// keine WHERE Klausel nötig
-							"id",
+							"cu_id",
 							"extention",		// Eigene Formular-Verarbeitung wird angehängt
 							$this,				// Dieser UC ist der Eigentümer des Formulares
 							$DATA_ACCESS);
@@ -136,6 +136,7 @@ class UCRegistration extends UC {
 			
 	
 		return "WS_". $zeros . $number;
+		
 		
 	} // # END computeCustomerNumber
 	

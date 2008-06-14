@@ -17,6 +17,15 @@
 
 
 <div class="formColLeft">
+	<p><label for="fk_sub_id"><strong>Unter-Kategorie:</strong></label></p>
+</div>
+<div class="formColRight">
+	{fk_sub_id}
+</div>
+<div class="clear"></div>
+
+
+<div class="formColLeft">
 	<p><label for="ar_price"><strong>Preis:</strong></label></p>
 </div>
 <div class="formColRight">

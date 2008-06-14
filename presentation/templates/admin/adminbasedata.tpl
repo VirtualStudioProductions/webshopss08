@@ -17,6 +17,26 @@
 		
 		<h4>Bestehende {$baseDataTitle} bearbeiten oder l&ouml;schen</h4>
 		
+		<a name="editbasedata"></a>
+		
+		{if $smarty.get.delete == 1}
+		
+			{if $baseDataDeleted == true}
+			
+				<p class="confirmation">
+					Der {$baseDataTitle} - Datensatz wurde erfolgreich gel&ouml;scht.
+				</p>
+			
+			{else}
+			
+				<p class="error">
+					Der {$baseDataTitle} - Datensatz konnte nicht gel&ouml;scht werden.
+				</p>
+			
+			{/if}
+		
+		{/if}
+		
 		
 		{if $smarty.get.basedata == "article"}
 		
@@ -39,7 +59,7 @@
 						<td align="center" width="100">{$currentArticle.ar_price|escape} &euro;</td>
 						<td align="center" width="50">{$currentArticle.ar_stock|escape}</td>
 						<td align="center"><a href="{$smarty.server.PHP_SELF}?site=adminbasedata&amp;basedata={$smarty.get.basedata}&amp;edit=1&amp;ar_id={$currentArticle.ar_id}&amp;handheld={$smarty.get.handheld}" title="Diesen Artikel bearbeiten">Bearb.</a></td>
-						<td align="center"><a href="{$smarty.server.PHP_SELF}?site=adminbasedata&amp;basedata={$smarty.get.basedata}&amp;delete=1&amp;ar_id={$currentArticle.ar_id}&amp;handheld={$smarty.get.handheld}" title="Diesen Artikel l&ouml;schen">L&ouml;schen</a></td>
+						<td align="center"><a href="{$smarty.server.PHP_SELF}?site=adminbasedata&amp;basedata={$smarty.get.basedata}&amp;delete=1&amp;ar_id={$currentArticle.ar_id}&amp;handheld={$smarty.get.handheld}#editbasedata" title="Diesen Artikel l&ouml;schen">L&ouml;schen</a></td>
 					</tr>
 				{/foreach}
 				
@@ -71,7 +91,7 @@
 						<td>{$currentCustomer.cu_phone|escape}</td>
 						<td align="center">{$currentCustomer.cu_admin|escape}</td>
 						<td align="center"><a href="{$smarty.server.PHP_SELF}?site=adminbasedata&amp;basedata={$smarty.get.basedata}&amp;edit=1&amp;cu_id={$currentCustomer.cu_id}&amp;handheld={$smarty.get.handheld}" title="Diesen Kunde bearbeiten">Bearb.</a></td>
-						<td align="center"><a href="{$smarty.server.PHP_SELF}?site=adminbasedata&amp;basedata={$smarty.get.basedata}&amp;delete=1&amp;cu_id={$currentCustomer.cu_id}&amp;handheld={$smarty.get.handheld}" title="Diesen Kunde l&ouml;schen">L&ouml;schen</a></td>
+						<td align="center"><a href="{$smarty.server.PHP_SELF}?site=adminbasedata&amp;basedata={$smarty.get.basedata}&amp;delete=1&amp;cu_id={$currentCustomer.cu_id}&amp;handheld={$smarty.get.handheld}#editbasedata" title="Diesen Kunde l&ouml;schen">L&ouml;schen</a></td>
 					</tr>
 				{/foreach}
 				
@@ -91,7 +111,7 @@
 					<tr>
 						<td>{$currentCategory.name|escape:"htmlall"}</td>
 						<td align="center"><a href="{$smarty.server.PHP_SELF}?site=adminbasedata&amp;basedata={$smarty.get.basedata}&amp;edit=1&amp;cat_id={$currentCategory.cat_id}&amp;handheld={$smarty.get.handheld}" title="Diese Kategorie bearbeiten">Bearb.</a></td>
-						<td align="center"><a href="{$smarty.server.PHP_SELF}?site=adminbasedata&amp;basedata={$smarty.get.basedata}&amp;delete=1&amp;cat_id={$currentCategory.cat_id}&amp;handheld={$smarty.get.handheld}" title="Diese Kategorie l&ouml;schen">L&ouml;schen</a></td>
+						<td align="center"><a href="{$smarty.server.PHP_SELF}?site=adminbasedata&amp;basedata={$smarty.get.basedata}&amp;delete=1&amp;cat_id={$currentCategory.cat_id}&amp;handheld={$smarty.get.handheld}#editbasedata" title="Diese Kategorie l&ouml;schen">L&ouml;schen</a></td>
 					</tr>
 				{/foreach}
 				
@@ -113,7 +133,7 @@
 						<td>{$currentSubCategory.sub_name|escape:"htmlall"}</td>
 						<td>{$currentSubCategory.cat_name|escape:"htmlall"}</td>
 						<td align="center"><a href="{$smarty.server.PHP_SELF}?site=adminbasedata&amp;basedata={$smarty.get.basedata}&amp;edit=1&amp;sub_id={$currentSubCategory.sub_id}&amp;handheld={$smarty.get.handheld}" title="Diese Unter-Kategorie bearbeiten">Bearb.</a></td>
-						<td align="center"><a href="{$smarty.server.PHP_SELF}?site=adminbasedata&amp;basedata={$smarty.get.basedata}&amp;delete=1&amp;sub_id={$currentSubCategory.sub_id}&amp;handheld={$smarty.get.handheld}" title="Diese Unter-Kategorie l&ouml;schen">L&ouml;schen</a></td>
+						<td align="center"><a href="{$smarty.server.PHP_SELF}?site=adminbasedata&amp;basedata={$smarty.get.basedata}&amp;delete=1&amp;sub_id={$currentSubCategory.sub_id}&amp;handheld={$smarty.get.handheld}#editbasedata" title="Diese Unter-Kategorie l&ouml;schen">L&ouml;schen</a></td>
 					</tr>
 				{/foreach}
 				

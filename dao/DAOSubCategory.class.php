@@ -26,8 +26,6 @@ class DAOSubCategory extends DAO {
 			"		ON SC.fk_cat_id = C.cat_id " .
 			"ORDER BY C.cat_name ASC";
 		
-		print $query;
-		
 		$stmt = $this->DATA_ACCESS->prepare($query);
 		$stmt->execute();
 		$subCategories = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -36,6 +34,24 @@ class DAOSubCategory extends DAO {
 		
 		
 	} // # END getAllSubCategoriesWithParent
+	
+	
+	public function getAllSubCategoriesFromParent($cat_id) {
+		
+		$query =
+			"SELECT * " .
+			"FROM `" . TBL_SUBCATEGORY . "`" .
+			"WHERE `fk_cat_id` = :cat_id";
+		
+		$stmt = $this->DATA_ACCESS->prepare($query);
+		$stmt->bindValue(":cat_id", $cat_id, PDO::PARAM_INT);
+		$stmt->execute();
+		$subCategories = $stmt->fetchAll(PDO::FETCH_ASSOC);
+		
+		return $subCategories;
+		
+		
+	} // # END getAllSubCategoriesFromParent
 	
 }
 

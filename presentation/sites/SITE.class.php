@@ -1,5 +1,9 @@
 <?php
 
+// Smarty Template Engine einbinden
+require_once("api/smarty/Smarty.class.php");
+
+
 abstract class SITE {
 	
 	
@@ -17,11 +21,11 @@ abstract class SITE {
 	
 	
 	public function SITE($useCase) {
-
-		global $TEMPLATE_ENGINE; // Aus index.php
 		
 		$this->useCase			= $useCase;
-		$this->TEMPLATE_ENGINE	= $TEMPLATE_ENGINE;
+		
+		// Neues Smarty Objekt als Template-Engine erzeugen
+		$this->TEMPLATE_ENGINE	= new Smarty();
 	
 	} // # END SITE
 	
@@ -72,6 +76,7 @@ abstract class SITE {
 		$this->TEMPLATE_ENGINE->display("index.tpl");
 	
 	} // # END display
+	
 }
 
 ?>

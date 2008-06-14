@@ -410,7 +410,7 @@ class Form {
 			$name = strtoupper($this->form_name);
 			$layout .= "\n\n<!-- ## ".$name." -->\n";
 			$layout .= "<!--  - FORM HEADER -->\n<a name=\"msg_".$this->form_name."\"></a>\n";
-			if ($_GET["confirm"] == 1) {
+			if ($_GET["confirm"] == 1 && !$_POST["s_".$this->form_name.""]) {
 				$layout .= "<p style=\"color: #007700; font-weight: bold;\">".$this->confirmation_on_success_msg."</p>\n";
 			}
 			if ($msg["general_error"] != "") {
