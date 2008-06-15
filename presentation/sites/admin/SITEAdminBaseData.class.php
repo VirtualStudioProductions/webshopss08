@@ -9,8 +9,8 @@ require_once("logic/admin/UCAdminBaseData.class.php");
 class SITEAdminBaseData extends SITE {
 	
 	
-	/** Das Datensatz hinzufügen - Formular */
-	protected $F_NEWDATA;
+	/** Das Formular */
+	protected $F_BASEDATA;
 	
 	
 	public function SITEAdminBaseData() {
@@ -20,7 +20,21 @@ class SITEAdminBaseData extends SITE {
 
 		// Attribute initialisieren
 		$this->template = TPL_AdminBaseData;
-		$this->F_NEWDATA = $this->useCase->createNewDataForm();
+		
+		if ($_GET["edit"] == 1 &&
+			(	is_numeric($_GET["ar_id"])
+				|| is_numeric($_GET["cat_id"])
+				|| is_numeric($_GET["sub_id"])
+				|| is_numeric($_GET["cu_id"])
+			)) {
+			
+			$this->TEMPLATE_ENGINE->assign("update", true);
+			$this->F_BASEDATA = $this->useCase->createBaseDataForm(true);
+		}
+		else {
+			$this->TEMPLATE_ENGINE->assign("update", false);
+			$this->F_BASEDATA = $this->useCase->createBaseDataForm(false);
+		}
 
 		// Private Funktion actions aufrufen
 		$this->actions();
@@ -33,11 +47,12 @@ class SITEAdminBaseData extends SITE {
 	
 	private function actions() {
 		
-		// Formularverarbeitung des neuen Datensatz anlegen - Formulares
-		if ($_POST["s_" . $this->F_NEWDATA->get_form_name()]) {
-			$msg = $this->F_NEWDATA->process_form();
+		// Formularverarbeitung des Formulares
+		if ($_POST["s_" . $this->F_BASEDATA->get_form_name()]) {
+			$msg = $this->F_BASEDATA->process_form();
 			$this->TEMPLATE_ENGINE->assign("msg", $msg);
 		}
+
 		
 		// Datensatz löschen
 		$baseDataDeleted = false;
@@ -59,9 +74,9 @@ class SITEAdminBaseData extends SITE {
 		
 		$this->TEMPLATE_ENGINE->assign("baseDataTitle", $this->useCase->getBaseDataTitle());
 		
-		// Das Formular erzeugen, mit dem neue Datensätze angelegt werden können
-		// und an das Template zuweisen
-		$this->TEMPLATE_ENGINE->assign("F_NEWDATA", $this->F_NEWDATA);
+		// Das Formular an das Template zuweisen
+		$this->TEMPLATE_ENGINE->assign("F_BASEDATA", $this->F_BASEDATA);
+		
 		
 		// Alle Einträge zum jeweiligen Stammdatum aus der Logik holen
 		// und an das Template zuweisen
