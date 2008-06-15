@@ -20,35 +20,35 @@ class UCRegistration extends UC {
 	
 	
 	public function createRegistrationForm() {
-		
+
 		// Datenbankverbindung sichtbar machen mit global
 		global $DATA_ACCESS;
-		
+				
 		
 		// Registration Formular erzeugen
-		$F_REGISTRATION = new Form(
-							"registration",
-							FORM_LAYOUT_DIR,
-							array("cu_username", "cu_password", "cu_firstname",
-									"cu_lastname", "cu_phone", "cu_email", "cu_number"),
-							TBL_CUSTOMER,
-							"",					// keine WHERE Klausel nötig
-							"cu_id",
-							"extention",		// Eigene Formular-Verarbeitung wird angehängt
-							$this,				// Dieser UC ist der Eigentümer des Formulares
-							$DATA_ACCESS);
-		
+		$FORM = new Form(
+						"registration",
+						FORM_LAYOUT_DIR,
+						array("cu_username", "cu_password", "cu_firstname",
+								"cu_lastname", "cu_phone", "cu_email", "cu_number"),
+						TBL_CUSTOMER,
+						"",					// keine WHERE Klausel nötig
+						"cu_id",
+						"extention",		// Eigene Formular-Verarbeitung wird angehängt
+						$this,				// Dieser UC ist der Eigentümer des Formulares
+						$DATA_ACCESS);
+				
 		// Formular-Eigenschaften
-		$F_REGISTRATION->set_show_reset_button(false);					// Reset Button ausschalten
-		$F_REGISTRATION->set_submit_value("Jetzt registrieren!");		// Text des Submit Buttons
-		
+		$FORM->set_show_reset_button(false);				// Reset Button ausschalten
+		$FORM->set_submit_value("Jetzt registrieren!");		// Text des Submit Buttons
+				
 		// Bestätigung bei Erfolg anzeigen lassen
-		$F_REGISTRATION->set_confirmation_on_success(true);
-		
+		$FORM->set_confirmation_on_success(true);
+				
 		// Zu Beginn fokusiertes Feld festlegen
-		$F_REGISTRATION->set_focus_field("cu_username");
+		$FORM->set_focus_field("cu_username");
 		
-		
+				
 		// Formular Felder hinzufügen
 		
 		// Username
@@ -59,7 +59,7 @@ class UCRegistration extends UC {
 		$FIELD->set_v_nospecial(true);		// Keine Sonderzeichen
 		$FIELD->set_v_minlength(6);
 		$FIELD->set_v_maxlength(50);
-		$F_REGISTRATION->add_field($FIELD);
+		$FORM->add_field($FIELD);
 		
 		// Passwort
 		$FIELD = new PasswordField("cu_password", "Passwort", " class=\"textField\"");
@@ -68,19 +68,19 @@ class UCRegistration extends UC {
 		$FIELD->set_v_minlength(6);			// Mindestens 6 Zeichen
 		$FIELD->set_v_maxlength(50);
 		$FIELD->set_crypt(true);			// Verschlüsseln
-		$F_REGISTRATION->add_field($FIELD);
+		$FORM->add_field($FIELD);
 		
 		// Vorname
 		$FIELD = new TextField("cu_firstname", "Vorname", " class=\"textField\"");
 		$FIELD->set_v_required(true);
 		$FIELD->set_v_maxlength(50);
-		$F_REGISTRATION->add_field($FIELD);
-		
+		$FORM->add_field($FIELD);
+			
 		// Nachname
 		$FIELD = new TextField("cu_lastname", "Nachname", " class=\"textField\"");
 		$FIELD->set_v_required(true);
 		$FIELD->set_v_maxlength(50);
-		$F_REGISTRATION->add_field($FIELD);
+		$FORM->add_field($FIELD);
 		
 		// E-Mail
 		$FIELD = new TextField("cu_email", "E-Mail", " class=\"textField\"");
@@ -88,22 +88,22 @@ class UCRegistration extends UC {
 		$FIELD->set_v_isunique(true);
 		$FIELD->set_v_email(true);			// Gültige E-Mail Adresse
 		$FIELD->set_v_maxlength(50);
-		$F_REGISTRATION->add_field($FIELD);
+		$FORM->add_field($FIELD);
 		
 		// Telefon
 		$FIELD = new TextField("cu_phone", "Telefon", " class=\"textField\"", 20);
 		$FIELD->set_v_maxlength(20);		// Maximal 20 Zeichen
-		$F_REGISTRATION->add_field($FIELD);
+		$FORM->add_field($FIELD);
 		
 		// Kundennummer
 		$FIELD = new HiddenField("cu_number", $this->computeCustomerNumber());
 		$FIELD->set_v_isunique(true);
 		$FIELD->set_v_required(true);
 		$FIELD->set_v_maxlength(10);
-		$F_REGISTRATION->add_field($FIELD);
-	
+		$FORM->add_field($FIELD);
 		
-		return $F_REGISTRATION;
+		
+		return $FORM;
 		
 	
 	} // # END createRegistrationForm

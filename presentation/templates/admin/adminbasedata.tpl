@@ -53,7 +53,7 @@
 				
 				{foreach from=$allBaseData item=currentArticle}
 					<tr>
-						<td>{$currentArticle.ar_number|escape}</td>
+						<td align="center">{$currentArticle.ar_number|escape}</td>
 						<td>{$currentArticle.ar_title|escape}</td>
 						<td>{$currentArticle.ar_description|escape|truncate:80:" ..."}</td>
 						<td align="center" width="100">{$currentArticle.ar_price|escape} &euro;</td>
@@ -110,8 +110,8 @@
 				{foreach from=$allBaseData item=currentCategory}
 					<tr>
 						<td>{$currentCategory.name|escape:"htmlall"}</td>
-						<td align="center"><a href="{$smarty.server.PHP_SELF}?site=adminbasedata&amp;basedata={$smarty.get.basedata}&amp;edit=1&amp;cat_id={$currentCategory.cat_id}&amp;handheld={$smarty.get.handheld}" title="Diese Kategorie bearbeiten">Bearb.</a></td>
-						<td align="center"><a href="{$smarty.server.PHP_SELF}?site=adminbasedata&amp;basedata={$smarty.get.basedata}&amp;delete=1&amp;cat_id={$currentCategory.cat_id}&amp;handheld={$smarty.get.handheld}#editbasedata" title="Diese Kategorie l&ouml;schen">L&ouml;schen</a></td>
+						<td align="center"><a href="{$smarty.server.PHP_SELF}?site=adminbasedata&amp;basedata={$smarty.get.basedata}&amp;edit=1&amp;cat_id={$currentCategory.id}&amp;handheld={$smarty.get.handheld}" title="Diese Kategorie bearbeiten">Bearb.</a></td>
+						<td align="center"><a href="{$smarty.server.PHP_SELF}?site=adminbasedata&amp;basedata={$smarty.get.basedata}&amp;delete=1&amp;cat_id={$currentCategory.id}&amp;handheld={$smarty.get.handheld}#editbasedata" title="Diese Kategorie l&ouml;schen">L&ouml;schen</a></td>
 					</tr>
 				{/foreach}
 				
