@@ -17,9 +17,9 @@ class UCBasket extends UC {
 		
 	
 	/** Methode um bestimmten article zu erhalten */
-	public function getBasket($arNumber) {
+	public function getselectedArticle() {
 		$DAO = new DAOBasket();
-		return $DAO->getBasket($arNumber);
+		return $DAO->getselectedArticle();
 		
 	}
 }  // # END UCArticle

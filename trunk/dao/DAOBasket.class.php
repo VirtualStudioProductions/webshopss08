@@ -11,9 +11,15 @@ require_once("DAO.class.php");
 
 class DAOBasket extends DAO {
 	
-	public function getArticle($arNumber){
+	public function getSelectedArticle(){
 		
-		$sql="SELECT `ar_number`, `ar_title`, `ar_price`, `ar_description`, `ar_stock` " .
+		// Index um Array zu befüllen
+		$i = 0;
+		
+		// Alle ausgewählten Artikel werden aus der Datenbank gelesen und in $basket abgespeichert
+		foreach($_SESSION["basket"] as $arNumber) {
+
+		$sql="SELECT `ar_number`, `ar_title`, `ar_price`, `ar_stock` " .
 		  "FROM " . TBL_ARTICLE . " " .
 		  "WHERE `ar_number` = :arNumber;";
 
@@ -22,31 +28,16 @@ class DAOBasket extends DAO {
 		$stmt->execute();
 		
 		$article = $stmt->fetch(PDO::FETCH_ASSOC);
-
-		return $article;
-	
-	} // # END getArticle
-	
-	
-	/**
-	 * liefert alle Artikel einer Kategorie zurück. Diese werden im Main Window angezeigt sobald der User auf eine der Kategorien klickt
-	 * evtl könnt man hier auch die Anzahl der zurückgegebenen Artikel begrenzen und dann mehrere Seiten draus machn
-	 * @param String $category 
-	 */
-	public function getAllCategoryArticles($category){
+			
+		$selectedArticle[$i] = $article;
 		
+		$i++;
 		
-	}
+		}
+		
+		return $selectedArticle;
 	
-	/**
-	 * liefert alle Artikel einer UnterKategorie zurück. Diese werden im Main Window angezeigt sobald der User auf eine Unterkategorien klickt
-	 * evtl könnt man hier auch die Anzahl der zurückgegebenen Artikel begrenzen und dann mehrere Seiten draus machn
-	 * @param String $subcategory 
-	 */
-	public function getAllSubCategoryArticles($subcategory){
-		
-		
-	}
+	} // # END getSelectedArticle
 	
 }
 

@@ -15,7 +15,7 @@ class SITEBasket extends SITE {
 		$this->template = TPL_Basket;
 		
 		// Private Funktion fillTemplate aufrufen
-		//$this->fillTemplate();
+		$this->fillTemplate();
 		
 	} // # END SITEItemOverview
 	
@@ -27,10 +27,17 @@ class SITEBasket extends SITE {
 		
 		parent::fillTemplate(); //Zuerst die von SITE.class.php geerbte fillTemplate Funktion aufrufen um die Kategorieansicht anzuzeigen
 		// Immer mit this auf Attribute zugreifen !!
-		$article = $this->useCase->getArticle($this->arNumber);
+		
+		
+		// TEST Befüllung von $_SESSION["basket"]
+		$_SESSION["basket"][0] = 1;
+		$_SESSION["basket"][1] = 2;
+		$_SESSION["basket"][2] = 3;
+		
+		$selectedArticle = $this->useCase->getSelectedArticle();
 		
 		// Formular an das Template zuweisen
-		$this->TEMPLATE_ENGINE->assign("article", $article);
+		$this->TEMPLATE_ENGINE->assign("selectedArticle", $selectedArticle);
 		
 	} // # END fillTemplate
 

@@ -12,6 +12,11 @@ class UCArticle extends UC {
 	
 	public function UCArticle() {
 		parent::UC(); //Aufruf Elternkonstruktor
+		
+		# Session-Warenkorb Array anlegen (falls nicht vorhanden)
+		if($_SESSION["basket"] != null) {
+			
+		}
 			
 	}
 		
