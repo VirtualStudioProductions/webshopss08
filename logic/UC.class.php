@@ -79,14 +79,15 @@ class UC {
 	
 	public function listAllCategories() {
 	$db_raw = $this->DAOCategory->getAllCategories();
-	
+	/*
 	$i = 0;
 	foreach ($db_raw as &$value) {
     $db_raw[$i]["name"] = htmlentities($value["name"]);
     $i++;
 	}
 	//print_r ($db_raw);
-		return $db_raw;
+	*/
+	return $db_raw;
 	
 	} // # END listAllCategories
 
@@ -94,15 +95,20 @@ class UC {
 	public function listAllSubCategories($c_id) {
 	
 	$db_raw = $this->DAOCategory->getSelectedSubcategories($c_id);	
-	$i = 0;
+	
+	/*$i = 0;
 	foreach ($db_raw as &$value) {
     	$db_raw[$i]["name"] = htmlentities($value["name"]);
     	$i++;
-	}
+	}*/
 	
 	return $db_raw;
 	} // # END listAllSubCategories
 	
-	
+/*
+	public function listCategoryId($subcategory_id){
+		$cat_id = $this->DAOCategory->getCategoryId($subcategory_id);
+		return $cat_id;
+	}*/
 }
 ?>

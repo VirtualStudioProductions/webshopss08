@@ -1,11 +1,29 @@
 	
 	
-	W&auml;hlen Sie eine der folgenden Unterkategorien: ich bin vollverzinst und checke nichts und will nur testens iwe breit hier der text ist bevor er umgebrochen wird weil er sonst zu unleserlich wird...
+	W&auml;hlen Sie eine der folgenden Unterkategorien:
 		<div class="subcategoryitembig">
-				<ul>
+				
 				{foreach from=$subcategories item=currentSubCategory}
-					<li><a href="index.php?site=category&cat={$currentCategory.id}&sub={$currentSubCategory.id}">{$currentSubCategory.name}</a></li>
-					{*<li>{$currentSubCategory.name}</li>*}
+					<a href="index.php?site=category&amp;cat={$smarty.get.cat}&amp;sub={$currentSubCategory.id}">{$currentSubCategory.name|escape}</a>   :::   
 				{/foreach}
-				</ul>
+				
+		</div>
+		
+		<div class="articletable">
+			<table border="1">
+				<tr>
+					<th>Artikelname</th>
+					<th>Artikelbeschreibung</th>
+					<th>Lagerbestand</th>
+					<th>Preis</th>
+				</tr>
+			{foreach from=$subcat_articles item=currentArticle}	
+				<tr>
+					<td><a href="index.php?site=article&arNumber={$currentArticle.number}">{$currentArticle.title|escape}</a></td>
+					<td>{$currentArticle.description|truncate}</td>
+					<td>{$currentArticle.stock}</td>
+					<td>{$currentArticle.price}</td>
+				</tr>
+			{/foreach}
+			</table>
 		</div>
