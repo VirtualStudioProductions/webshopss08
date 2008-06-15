@@ -78,7 +78,7 @@ switch ($_GET["site"]) {
 	case "basket":
 		
 		require_once("presentation/sites/SITEBasket.class.php");
-		$SITE = new SITEArticle();
+		$SITE = new SITEBasket();
 		
 		break;
 		
