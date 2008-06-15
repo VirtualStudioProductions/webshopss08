@@ -48,6 +48,29 @@ class DAOCategory extends DAO {
 		return $arr;
 	}
 	
+	
+	/**
+	 * Löscht eine Kategorie aus der Datenbank.
+	 * 
+	 * @param $cat_id	Die ID der Kategorie, die gelöscht werden
+	 * 					soll
+	 *
+	 * @return bool		Wahrheitswert, ob der Datensatz gelöscht
+	 * 					wurde
+	 */
+	public function deleteCategory($cat_id) {
+		
+		$query = "DELETE FROM `" . TBL_CATEGORY . "` " .
+					"WHERE `cat_id` = :cat_id";
+		$stmt = $this->DATA_ACCESS->prepare($query);
+		$stmt->bindValue(":cat_id", $cat_id, PDO::PARAM_INT);
+		$deleted = $stmt->execute();
+		
+		return $deleted;
+		
+		
+	} // # END deleteCategory
+	
 }
 
 ?>

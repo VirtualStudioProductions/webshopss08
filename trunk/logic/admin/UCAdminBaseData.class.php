@@ -121,32 +121,36 @@ class UCAdminBaseData extends UC {
 	
 	public function deleteBaseDataRow() {
 		
-		switch ($this->baseData) {
+		if ($_SESSION["USER"]["cu_admin"] == 1) {
+		
+			switch ($this->baseData) {
+	
+				case "article":
+					if (is_numeric($_GET["ar_id"])) {
+						$deleted = $this->DAO->deleteArticle($_GET["ar_id"]);
+					}
+					break;				
+					
+				case "customer":
+					if (is_numeric($_GET["cu_id"])) {
+						$deleted = $this->DAO->deleteCustomer($_GET["cu_id"]);
+					}
+					break;
+					
+				case "category":
+					if (is_numeric($_GET["cat_id"])) {
+						$deleted = $this->DAO->deleteCategory($_GET["cat_id"]);
+					}
+					break;
+					
+				case "subcategory":
+					if (is_numeric($_GET["sub_id"])) {
+						$deleted = $this->DAO->deleteSubCategory($_GET["sub_id"]);
+					}
+					break;
 
-			case "article":
-				if (is_numeric($_GET["ar_id"])) {
-					$deleted = $this->DAO->deleteArticle($_GET["ar_id"]);
-				}
-				break;				
-				
-			case "customer":
-				if (is_numeric($_GET["cu_id"])) {
-					$deleted = $this->DAO->deleteCustomer($_GET["cu_id"]);
-				}
-				break;
-				
-			case "category":
-				if (is_numeric($_GET["cat_id"])) {
-					$deleted = $this->DAO->deleteCategory($_GET["cat_id"]);
-				}
-				break;
-				
-			case "subcategory":
-				if (is_numeric($_GET["sub_id"])) {
-					$deleted = $this->DAO->deleteSubCategory($_GET["sub_id"]);
-				}
-				break;
-
+			}
+			
 		}
 		
 		return $deleted;
@@ -168,11 +172,11 @@ class UCAdminBaseData extends UC {
 				break;
 				
 			case "category":
-				
+				$form = $this->createNewCategoryForm();
 				break;
 				
 			case "subcategory":
-				
+				$form = $this->createNewSubCategoryForm();
 				break;
 			
 		}
@@ -190,35 +194,35 @@ class UCAdminBaseData extends UC {
 		
 		
 		// Formular erstellen
-		$F_CUSTOMER = new Form(
-							"newcustomer",
-							FORM_LAYOUT_DIR_ADMIN,
-							array("cu_username", "cu_password", "cu_firstname",
-									"cu_lastname", "cu_phone", "cu_email", "cu_number",
-									"cu_admin"),
-							TBL_CUSTOMER,
-							"",
-							"cu_id",
-							"",
-							"",
-							$DATA_ACCESS);
+		$FORM = new Form(
+						"newcustomer",
+						FORM_LAYOUT_DIR_ADMIN,
+						array("cu_username", "cu_password", "cu_firstname",
+								"cu_lastname", "cu_phone", "cu_email", "cu_number",
+								"cu_admin"),
+						TBL_CUSTOMER,
+						"",
+						"cu_id",
+						"",
+						"",
+						$DATA_ACCESS);
 		
 		// Formular-Eigenschaften
-		$F_CUSTOMER->set_show_reset_button(false);
-		$F_CUSTOMER->set_submit_value("Kunde anlegen!");
-		$F_CUSTOMER->set_action($_SERVER["PHP_SELF"] .
+		$FORM->set_show_reset_button(false);
+		$FORM->set_submit_value("Kunde anlegen!");
+		$FORM->set_action($_SERVER["PHP_SELF"] .
 								"?site=" . $_GET["site"] .
 								"&basedata=" . $_GET["basedata"] .
 								"&handheld=" . $_GET["handheld"]);
 		
 		// Bestätigung bei Erfolg anzeigen lassen
-		$F_CUSTOMER->set_confirmation_on_success(true);
-		$F_CUSTOMER->set_confirmation_on_success_msg(
+		$FORM->set_confirmation_on_success(true);
+		$FORM->set_confirmation_on_success_msg(
 			"Der neue " . $this->baseDataTitle . " - Datensatz wurde
 			erfolgreich hinzugef&uuml;gt!");
 		
 		// Zu Beginn fokusiertes Feld festlegen
-		$F_CUSTOMER->set_focus_field("cu_username");
+		$FORM->set_focus_field("cu_username");
 		
 		
 		// Formular Felder hinzufügen
@@ -231,7 +235,7 @@ class UCAdminBaseData extends UC {
 		$FIELD->set_v_nospecial(true);
 		$FIELD->set_v_minlength(6);
 		$FIELD->set_v_maxlength(50);
-		$F_CUSTOMER->add_field($FIELD);
+		$FORM->add_field($FIELD);
 		
 		// Passwort
 		$FIELD = new PasswordField("cu_password", "Passwort", " class=\"textField\"");
@@ -240,19 +244,19 @@ class UCAdminBaseData extends UC {
 		$FIELD->set_v_minlength(6);
 		$FIELD->set_v_maxlength(50);
 		$FIELD->set_crypt(true);
-		$F_CUSTOMER->add_field($FIELD);
+		$FORM->add_field($FIELD);
 		
 		// Vorname
 		$FIELD = new TextField("cu_firstname", "Vorname", " class=\"textField\"");
 		$FIELD->set_v_required(true);
 		$FIELD->set_v_maxlength(50);
-		$F_CUSTOMER->add_field($FIELD);
+		$FORM->add_field($FIELD);
 		
 		// Nachname
 		$FIELD = new TextField("cu_lastname", "Nachname", " class=\"textField\"");
 		$FIELD->set_v_required(true);
 		$FIELD->set_v_maxlength(50);
-		$F_CUSTOMER->add_field($FIELD);
+		$FORM->add_field($FIELD);
 		
 		// E-Mail
 		$FIELD = new TextField("cu_email", "E-Mail", " class=\"textField\"");
@@ -260,29 +264,29 @@ class UCAdminBaseData extends UC {
 		$FIELD->set_v_isunique(true);
 		$FIELD->set_v_email(true);
 		$FIELD->set_v_maxlength(50);
-		$F_CUSTOMER->add_field($FIELD);
+		$FORM->add_field($FIELD);
 		
 		// Telefon
 		$FIELD = new TextField("cu_phone", "Telefon", " class=\"textField\"", 20);
 		$FIELD->set_v_maxlength(20);
-		$F_CUSTOMER->add_field($FIELD);
+		$FORM->add_field($FIELD);
 		
 		// Admin
 		$FIELD = new CheckBox("cu_admin", "Admin", 1);
 		$FIELD->set_v_numeric(true);
 		$FIELD->set_v_maxlength(1);
 		$FIELD->set_v_maxvalue(1);
-		$F_CUSTOMER->add_field($FIELD);
+		$FORM->add_field($FIELD);
 		
 		// Kundennummer
 		$FIELD = new HiddenField("cu_number", $this->computeCustomerNumber());
 		$FIELD->set_v_isunique(true);
 		$FIELD->set_v_required(true);
 		$FIELD->set_v_maxlength(10);
-		$F_CUSTOMER->add_field($FIELD);
+		$FORM->add_field($FIELD);
 		
 		
-		return $F_CUSTOMER;
+		return $FORM;
 		
 		
 	} // # END createNewCustomerForm
@@ -326,34 +330,34 @@ class UCAdminBaseData extends UC {
 		
 		
 		// Formular erstellen
-		$F_ARTICLE = new Form(
-							"newarticle",
-							FORM_LAYOUT_DIR_ADMIN,
-							array("ar_number", "ar_title", "ar_price",
-							"ar_description", "ar_stock", "fk_sub_id"),
-							TBL_ARTICLE,
-							"",
-							"ar_id",
-							"",
-							"",
-							$DATA_ACCESS);
+		$FORM = new Form(
+						"newarticle",
+						FORM_LAYOUT_DIR_ADMIN,
+						array("ar_number", "ar_title", "ar_price",
+						"ar_description", "ar_stock", "fk_sub_id"),
+						TBL_ARTICLE,
+						"",
+						"ar_id",
+						"",
+						"",
+						$DATA_ACCESS);
 		
 		// Formular-Eigenschaften
-		$F_ARTICLE->set_show_reset_button(false);
-		$F_ARTICLE->set_submit_value("Artikel anlegen!");
-		$F_ARTICLE->set_action($_SERVER["PHP_SELF"] .
+		$FORM->set_show_reset_button(false);
+		$FORM->set_submit_value("Artikel anlegen!");
+		$FORM->set_action($_SERVER["PHP_SELF"] .
 								"?site=" . $_GET["site"] .
 								"&basedata=" . $_GET["basedata"] .
 								"&handheld=" . $_GET["handheld"]);
 		
 		// Bestätigung bei Erfolg anzeigen lassen
-		$F_ARTICLE->set_confirmation_on_success(true);
-		$F_ARTICLE->set_confirmation_on_success_msg(
+		$FORM->set_confirmation_on_success(true);
+		$FORM->set_confirmation_on_success_msg(
 			"Der neue " . $this->baseDataTitle . " - Datensatz wurde
 			erfolgreich hinzugef&uuml;gt!");
 		
 		// Zu Beginn fokusiertes Feld festlegen
-		$F_ARTICLE->set_focus_field("ar_number");
+		$FORM->set_focus_field("ar_number");
 		
 		
 		// Formular Felder hinzufügen
@@ -366,14 +370,14 @@ class UCAdminBaseData extends UC {
 		$FIELD->set_v_nospecial(true);
 		$FIELD->set_v_maxlength(10);
 		$FIELD->set_v_numeric(true);
-		$F_ARTICLE->add_field($FIELD);
+		$FORM->add_field($FIELD);
 		
 		// Bezeichnung
 		$FIELD = new TextField("ar_title", "Bezeichnung", " class=\"textField\"", 100);
 		$FIELD->set_v_required(true);
 		$FIELD->set_v_minlength(5);
 		$FIELD->set_v_maxlength(100);
-		$F_ARTICLE->add_field($FIELD);
+		$FORM->add_field($FIELD);
 		
 		
 		
@@ -404,7 +408,7 @@ class UCAdminBaseData extends UC {
 		
 		$FIELD->set_v_required(true);
 		
-		$F_ARTICLE->add_field($FIELD);
+		$FORM->add_field($FIELD);
 		
 		
 		
@@ -413,25 +417,147 @@ class UCAdminBaseData extends UC {
 		$FIELD->set_v_required(true);
 		$FIELD->set_v_numeric(true);
 		$FIELD->set_v_maxlength(11);
-		$F_ARTICLE->add_field($FIELD);
+		$FORM->add_field($FIELD);
 		
 		// Stückzahl
 		$FIELD = new TextField("ar_stock", "St&uuml;ckzahl", " class=\"smallTextField\"", 10);
 		$FIELD->set_v_required(true);
 		$FIELD->set_v_numeric(true);
 		$FIELD->set_v_maxlength(10);
-		$F_ARTICLE->add_field($FIELD);
+		$FORM->add_field($FIELD);
 		
 		// Beschreibung
 		$FIELD = new TextArea("ar_description", "Beschreibung", "", 8, 40);
 		$FIELD->set_v_required(true);
-		$F_ARTICLE->add_field($FIELD);
+		$FORM->add_field($FIELD);
 	
 		
-		return $F_ARTICLE;
+		return $FORM;
 		
 		
 	} // # END createNewArticleForm
+	
+	
+	private function createNewCategoryForm() {
+		
+		global $DATA_ACCESS;
+		
+		
+		// Formular erstellen
+		$FORM = new Form(
+						"newcategory",
+						FORM_LAYOUT_DIR_ADMIN,
+						array("cat_name"),
+						TBL_CATEGORY,
+						"",
+						"cat_id",
+						"",
+						"",
+						$DATA_ACCESS);
+		
+		// Formular-Eigenschaften
+		$FORM->set_show_reset_button(false);
+		$FORM->set_submit_value("Kategorie anlegen!");
+		$FORM->set_action($_SERVER["PHP_SELF"] .
+								"?site=" . $_GET["site"] .
+								"&basedata=" . $_GET["basedata"] .
+								"&handheld=" . $_GET["handheld"]);
+		
+		// Bestätigung bei Erfolg anzeigen lassen
+		$FORM->set_confirmation_on_success(true);
+		$FORM->set_confirmation_on_success_msg(
+			"Der neue " . $this->baseDataTitle . " - Datensatz wurde
+			erfolgreich hinzugef&uuml;gt!");
+		
+		// Zu Beginn fokusiertes Feld festlegen
+		$FORM->set_focus_field("cat_name");
+		
+		
+		// Formular Felder hinzufügen
+		
+		// Name
+		$FIELD = new TextField("cat_name", "Name", " class=\"textField\"", 32);
+		$FIELD->set_v_required(true);
+		$FIELD->set_v_isunique(true);
+		$FIELD->set_v_maxlength(32);
+		$FORM->add_field($FIELD);
+				
+		
+		return $FORM;
+		
+		
+	} // # END createNewCategoryForm
+	
+	
+	private function createNewSubCategoryForm() {
+		
+		global $DATA_ACCESS;
+		
+		
+		// Formular erstellen
+		$FORM = new Form(
+						"newsubcategory",
+						FORM_LAYOUT_DIR_ADMIN,
+						array("sub_name", "fk_cat_id"),
+						TBL_SUBCATEGORY,
+						"",
+						"sub_id",
+						"",
+						"",
+						$DATA_ACCESS);
+		
+		// Formular-Eigenschaften
+		$FORM->set_show_reset_button(false);
+		$FORM->set_submit_value("Unter-Kategorie anlegen!");
+		$FORM->set_action($_SERVER["PHP_SELF"] .
+								"?site=" . $_GET["site"] .
+								"&basedata=" . $_GET["basedata"] .
+								"&handheld=" . $_GET["handheld"]);
+		
+		// Bestätigung bei Erfolg anzeigen lassen
+		$FORM->set_confirmation_on_success(true);
+		$FORM->set_confirmation_on_success_msg(
+			"Der neue " . $this->baseDataTitle . " - Datensatz wurde
+			erfolgreich hinzugef&uuml;gt!");
+		
+		// Zu Beginn fokusiertes Feld festlegen
+		$FORM->set_focus_field("sub_name");
+		
+		
+		// Formular Felder hinzufügen
+		
+		// Name
+		$FIELD = new TextField("sub_name", "Name", " class=\"textField\"", 30);
+		$FIELD->set_v_required(true);
+		$FIELD->set_v_maxlength(30);
+		$FORM->add_field($FIELD);
+		
+		
+		// Eltern-Kategorie
+		$FIELD = new SelectField("fk_cat_id", "Eltern-Kategorie", " class=\"textField\"");
+		
+		$OPTION = new SelectOption("-- Bitte ausw&auml;hlen --", "");
+		$FIELD->add_option($OPTION);
+		$OPTION = new SelectOption("", "");
+		$FIELD->add_option($OPTION);
+		
+		$categories = $this->DAOCategory->getAllCategories();
+		foreach ($categories as &$currentCategory) {
+			
+			$OPTION = new SelectOption(htmlentities($currentCategory["name"]), $currentCategory["id"]);
+    		$FIELD->add_option($OPTION);
+			
+		}
+		
+		$FIELD->set_v_required(true);
+		
+		$FORM->add_field($FIELD);	
+		
+		
+		return $FORM;
+		
+		
+	} // # END createNewSubCategoryForm
 	
 }
 

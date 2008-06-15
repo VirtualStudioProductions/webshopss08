@@ -53,6 +53,29 @@ class DAOSubCategory extends DAO {
 		
 	} // # END getAllSubCategoriesFromParent
 	
+	
+	/**
+	 * Löscht eine Unter-Kategorie aus der Datenbank.
+	 * 
+	 * @param $sub_id	Die ID der Unter-Kategorie, die gelöscht werden
+	 * 					soll
+	 *
+	 * @return bool		Wahrheitswert, ob der Datensatz gelöscht
+	 * 					wurde
+	 */
+	public function deleteSubCategory($sub_id) {
+		
+		$query = "DELETE FROM `" . TBL_SUBCATEGORY . "` " .
+					"WHERE `sub_id` = :sub_id";
+		$stmt = $this->DATA_ACCESS->prepare($query);
+		$stmt->bindValue(":sub_id", $sub_id, PDO::PARAM_INT);
+		$deleted = $stmt->execute();
+		
+		return $deleted;
+		
+		
+	} // # END deleteSubCategory
+	
 }
 
 ?>

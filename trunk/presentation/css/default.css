@@ -7,7 +7,7 @@
  */
  
 body {
-	font-family: Verdana, Arial;
+	font-family: sans-serif, verdana, arial;
 	font-size: 80%;
 	line-height: 1.8em;
 	background-color: #cccccc;
@@ -87,6 +87,7 @@ th {
 
 table {
 	background-color: #000095;
+	margin-left: 10px;
 }
 
 /* Nur gültig bei div Tags, die eine
@@ -231,7 +232,7 @@ div.categoryitem ul {
 	left: 0px;
 	right: 0px;
 	height: 19px;
-	font-size: 0.8em;
+	font-size: 0.9em;
 	line-height: 19px;
 	text-align: center;
 	font-weight: bold;

@@ -3,7 +3,6 @@
 // Config Datei einbinden
 require_once("config.inc.php");
 
-
 // Cookies testen, nur falls noch nicht getestet für diese
 // Seite und keine POST-Daten gesendet wurden.
 

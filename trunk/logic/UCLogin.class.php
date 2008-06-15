@@ -27,30 +27,30 @@ class UCLogin extends UC {
 		
 		// Datenbankverbindung sichtbar machen mit global
 		global $DATA_ACCESS;
-		
-		
+				
+				
 		// Login Formular erzeugen
-		$F_LOGIN = new Form(
-							"login",
-							FORM_LAYOUT_DIR,
-							array("username", "password"),
-							"",
-							"",
-							"",
-							"replacement",		// Standard-Formular-Verarbeitung wird mit eigener ersetzt
-							$this,				// Dieser UC ist der Eigentümer des Formulares
-							$DATA_ACCESS);
-		
+		$FORM = new Form(
+						"login",
+						FORM_LAYOUT_DIR,
+						array("username", "password"),
+						"",
+						"",
+						"",
+						"replacement",		// Standard-Formular-Verarbeitung wird mit eigener ersetzt
+						$this,				// Dieser UC ist der Eigentümer des Formulares
+						$DATA_ACCESS);
+				
 		// Formular-Eigenschaften
-		$F_LOGIN->set_show_reset_button(false);			// Reset Button ausschalten
-		$F_LOGIN->set_submit_value("Login!");			// Text des Submit Buttons
-		
+		$FORM->set_show_reset_button(false);		// Reset Button ausschalten
+		$FORM->set_submit_value("Login!");			// Text des Submit Buttons
+				
 		// Zu Beginn fokusiertes Feld festlegen
-		$F_LOGIN->set_focus_field("username");
-		
-		
+		$FORM->set_focus_field("username");
+				
+				
 		// Formular Felder hinzufügen
-		
+				
 		// Username
 		$FIELD = new TextField("username", "Username", " class=\"textField\"");
 		$FIELD->set_v_required(true);		// Pflichtfeld
@@ -58,17 +58,17 @@ class UCLogin extends UC {
 		$FIELD->set_v_nospace(true);		// Keine Leerzeichen
 		$FIELD->set_v_nospecial(true);		// Keine Sonderzeichen
 		$FIELD->set_v_nosql(true);			// Keine SQL Dingens
-		$F_LOGIN->add_field($FIELD);
+		$FORM->add_field($FIELD);
 		
 		// Passwort
 		$FIELD = new PasswordField("password", "Passwort", " class=\"textField\"");
 		$FIELD->set_v_required(true);
 		$FIELD->set_v_nospace(true);
 		$FIELD->set_v_minlength(6);			// Mindestens 6 Zeichen
-		$F_LOGIN->add_field($FIELD);
-	
+		$FORM->add_field($FIELD);
+
 		
-		return $F_LOGIN;
+		return $FORM;
 		
 	
 	} // # END createLoginForm
@@ -80,6 +80,7 @@ class UCLogin extends UC {
 	public function logout() {
 		
 		$_SESSION["USER"] = null;
+		session_destroy();
 		header("Location: " . $_SERVER["PHP_SELF"] . "?site=startpage&handheld=" . $_GET["handheld"]);
 	
 	} // # END logout

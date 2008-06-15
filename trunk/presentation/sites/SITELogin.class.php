@@ -23,8 +23,7 @@ class SITELogin extends SITE {
 		
 		// Login Formular erzeugen
 		$this->F_LOGIN = $this->useCase->createLoginForm();
-										
-										
+						
 		// Private Funktion fillTemplate aufrufen
 		$this->fillTemplate();
 		

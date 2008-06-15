@@ -496,7 +496,7 @@ class Form {
 				
 				// no layout assigned
 				$layout .= $this->show_error("Diesem Formular wurde noch kein Layout
-											zugewiesen oder das Layout konnte nicht geöffnet
+											zugewiesen oder das Layout konnte nicht ge&ouml;ffnet
 											werden!",
 											self::ERROR_NORMAL,
 											true);
