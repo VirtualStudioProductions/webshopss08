@@ -37,6 +37,7 @@ define("TPL_AdminBaseData",			"admin/adminbasedata"	. TPL_ENDING);
 define("TPL_Startpage",				"startpage" 			. TPL_ENDING);
 define("TPL_Article",				"article" 				. TPL_ENDING);
 define("TPL_Category",				"subcategories"			. TPL_ENDING);
+define("TPL_Basket",		"basket" 		. TPL_ENDING);
 
 // ------------------------------------------------------------
 
@@ -55,8 +56,10 @@ define("DB_PREFIX",					"ws_");
 define("TBL_CUSTOMER",				DB_PREFIX . "customer");
 define("TBL_TRACE",					DB_PREFIX . "trace");
 define("TBL_ARTICLE",				DB_PREFIX . "article");
+define("TBL_BASKET",				DB_PREFIX . "basket");
 define("TBL_CATEGORY",				DB_PREFIX . "category");
 define("TBL_SUBCATEGORY",			DB_PREFIX . "subcategory");
+
 
 // ------------------------------------------------------------
 

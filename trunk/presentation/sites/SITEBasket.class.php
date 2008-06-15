@@ -15,7 +15,7 @@ class SITEBasket extends SITE {
 		$this->template = TPL_Basket;
 		
 		// Private Funktion fillTemplate aufrufen
-		$this->fillTemplate();
+		//$this->fillTemplate();
 		
 	} // # END SITEItemOverview
 	
