@@ -48,6 +48,7 @@ class DAOCategory extends DAO {
 		return $arr;
 	}
 	
+
 	
 	/**
 	 * Löscht eine Kategorie aus der Datenbank.
@@ -71,6 +72,7 @@ class DAOCategory extends DAO {
 		
 	} // # END deleteCategory
 	
+
 }
 
 ?>

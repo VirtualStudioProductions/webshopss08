@@ -283,21 +283,26 @@ div.categoryitem ul {
 	font-weight: bold;
 }
 
+
 .subcategoryitembig {
-	color: #00ff00;
-	position: absolute;
-	left: 100px;
-	top: 100px;
-	font-size: 2em;
-}
+	color: #000000;
+	position: relative;
+	top: 0px;
+
 
 .subcategoryitembig a {
 	color: #000000;
 }
 
 .subcategoryitembig a:hover {
+	font-size: 1em;
 	color: #ff0000;
 	text-decoration: underline;
+}
+
+.articletable{
+	position: relative;
+	top: 20px;
 }
 
 .itemtitle {

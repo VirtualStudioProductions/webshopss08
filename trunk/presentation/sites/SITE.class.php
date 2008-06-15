@@ -47,7 +47,14 @@ abstract class SITE {
 		
 		$subcategories = $this->useCase->listAllSubCategories($c_id);
 		$this->TEMPLATE_ENGINE->assign("subcategories", $subcategories);
-		
+		/*
+		$s_id = $_GET["sub"];
+		print("die subcategory id ist:");
+		print_r($s_id);
+		$this->TEMPLATE_ENGINE->assign("s_id", $s_id); //im Template auch verfügbar als s_id
+		$category = $this->useCase->listCategoryId($s_id);
+		$this->TEMPLATE_ENGINE->assign("category", $category);
+		*/
 		// Seitentitel zuweisen
 		$this->TEMPLATE_ENGINE->assign("PAGE_TITLE", PAGE_TITLE);
 		

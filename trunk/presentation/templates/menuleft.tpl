@@ -4,20 +4,19 @@
 		
 		{if $currentCategory.id eq $c_id} {*wir sind bei der ausgewählten Kategorie -> diese auflisten und ihre Unterkategorien mit anzeigen*}
 			<div class="category">
-				<a href="index.php?site=category&cat={$currentCategory.id}">{$currentCategory.name}</a>
+				<a href="index.php?site=category&amp;cat={$currentCategory.id}">{$currentCategory.name|escape}</a>
 			</div>	
 		
 			<div class="categoryitem">
 				<ul>
 				{foreach from=$subcategories item=currentSubCategory}
-					<li><a href="index.php?site=category&cat={$currentCategory.id}&sub={$currentSubCategory.id}">{$currentSubCategory.name}</a></li>
-					{*<li>{$currentSubCategory.name}</li>*}
+					<li><a href="index.php?site=category&amp;cat={$currentCategory.id}&amp;sub={$currentSubCategory.id}">{$currentSubCategory.name|escape}</a></li>
 				{/foreach}
 				</ul>
 			</div>
 		{else} {*es handelt sich nicht um die ausgewählte Kategorie, deshalb nur den Kategorienamen anzeigen*}
 			<div class="category">
-				<a href="index.php?site=category&cat={$currentCategory.id}">{$currentCategory.name}</a>
+				<a href="index.php?site=category&amp;cat={$currentCategory.id}">{$currentCategory.name|escape}</a>
 			</div>	
 		{/if}
 	{/foreach}
