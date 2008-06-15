@@ -159,24 +159,24 @@ class UCAdminBaseData extends UC {
 	} // # END deleteBaseDataRow
 	
 	
-	public function createNewDataForm() {
+	public function createBaseDataForm($update) {
 		
 		switch ($this->baseData) {
 			
 			case "article":
-				$form = $this->createNewArticleForm();
+				$form = $this->createArticleForm($update);
 				break;				
 				
 			case "customer":
-				$form = $this->createNewCustomerForm();
+				$form = $this->createCustomerForm($update);
 				break;
 				
 			case "category":
-				$form = $this->createNewCategoryForm();
+				$form = $this->createCategoryForm($update);
 				break;
 				
 			case "subcategory":
-				$form = $this->createNewSubCategoryForm();
+				$form = $this->createSubCategoryForm($update);
 				break;
 			
 		}
@@ -185,41 +185,66 @@ class UCAdminBaseData extends UC {
 		return $form;
 		
 		
-	} // # END createNewDataForm
+	} // # END createBaseDataForm
 	
 	
-	private function createNewCustomerForm() {
+	private function createCustomerForm($update) {
 		
 		global $DATA_ACCESS;
+		
+		if ($update == true) {
+			if (!(is_numeric($_GET["cu_id"]))) {
+				header("Location: " . $_SERVER["PHP_SELF"] .
+						"?site=admin&basedata=" . $_GET["basedata"] .
+						"&handheld=" . $_GET["handheld"]);
+			}
+			$name = "editcustomer";
+			$sql_where = "WHERE `cu_id` = '" . $_GET["cu_id"] . "'";
+			$submit_value = "&Auml;nderungen speichern!";
+			$confirmation_on_success_msg =
+				"Die &Auml;nderungen am " . $this->baseDataTitle . "
+				- Datensatz wurden erfolgreich gespeichert!";
+		}
+		else {
+			$name = "newcustomer";
+			$sql_where = "";
+			$submit_value = "Kunde anlegen!";
+			$confirmation_on_success_msg =
+				"Der neue " . $this->baseDataTitle . " - Datensatz wurde
+				erfolgreich hinzugef&uuml;gt!";
+		}
 		
 		
 		// Formular erstellen
 		$FORM = new Form(
-						"newcustomer",
+						$name,
 						FORM_LAYOUT_DIR_ADMIN,
 						array("cu_username", "cu_password", "cu_firstname",
 								"cu_lastname", "cu_phone", "cu_email", "cu_number",
 								"cu_admin"),
 						TBL_CUSTOMER,
-						"",
+						$sql_where,
 						"cu_id",
 						"",
 						"",
 						$DATA_ACCESS);
 		
 		// Formular-Eigenschaften
-		$FORM->set_show_reset_button(false);
-		$FORM->set_submit_value("Kunde anlegen!");
-		$FORM->set_action($_SERVER["PHP_SELF"] .
-								"?site=" . $_GET["site"] .
-								"&basedata=" . $_GET["basedata"] .
-								"&handheld=" . $_GET["handheld"]);
+		$FORM->set_layout_file("basecustomer");
+		$FORM->set_submit_value($submit_value);
+		
+		if ($update == false) {
+			$FORM->set_show_reset_button(false);
+			
+			$FORM->set_action($_SERVER["PHP_SELF"] .
+									"?site=" . $_GET["site"] .
+									"&basedata=" . $_GET["basedata"] .
+									"&handheld=" . $_GET["handheld"]);
+		}
 		
 		// Bestätigung bei Erfolg anzeigen lassen
 		$FORM->set_confirmation_on_success(true);
-		$FORM->set_confirmation_on_success_msg(
-			"Der neue " . $this->baseDataTitle . " - Datensatz wurde
-			erfolgreich hinzugef&uuml;gt!");
+		$FORM->set_confirmation_on_success_msg($confirmation_on_success_msg);
 		
 		// Zu Beginn fokusiertes Feld festlegen
 		$FORM->set_focus_field("cu_username");
@@ -289,7 +314,7 @@ class UCAdminBaseData extends UC {
 		return $FORM;
 		
 		
-	} // # END createNewCustomerForm
+	} // # END createCustomerForm
 	
 	
 	/**
@@ -324,37 +349,62 @@ class UCAdminBaseData extends UC {
 	} // # END computeCustomerNumber
 	
 	
-	private function createNewArticleForm() {
+	private function createArticleForm($update) {
 		
 		global $DATA_ACCESS;
+		
+		if ($update == true) {
+			if (!(is_numeric($_GET["ar_id"]))) {
+				header("Location: " . $_SERVER["PHP_SELF"] .
+						"?site=admin&basedata=" . $_GET["basedata"] .
+						"&handheld=" . $_GET["handheld"]);
+			}
+			$name = "editarticle";
+			$sql_where = "WHERE `ar_id` = '" . $_GET["ar_id"] . "'";
+			$submit_value = "&Auml;nderungen speichern!";
+			$confirmation_on_success_msg =
+				"Die &Auml;nderungen am " . $this->baseDataTitle . "
+				- Datensatz wurden erfolgreich gespeichert!";
+		}
+		else {
+			$name = "newarticle";
+			$sql_where = "";
+			$submit_value = "Artikel anlegen!";
+			$confirmation_on_success_msg =
+				"Der neue " . $this->baseDataTitle . " - Datensatz wurde
+				erfolgreich hinzugef&uuml;gt!";
+		}
 		
 		
 		// Formular erstellen
 		$FORM = new Form(
-						"newarticle",
+						$name,
 						FORM_LAYOUT_DIR_ADMIN,
 						array("ar_number", "ar_title", "ar_price",
 						"ar_description", "ar_stock", "fk_sub_id"),
 						TBL_ARTICLE,
-						"",
+						$sql_where,
 						"ar_id",
 						"",
 						"",
 						$DATA_ACCESS);
 		
 		// Formular-Eigenschaften
-		$FORM->set_show_reset_button(false);
-		$FORM->set_submit_value("Artikel anlegen!");
-		$FORM->set_action($_SERVER["PHP_SELF"] .
-								"?site=" . $_GET["site"] .
-								"&basedata=" . $_GET["basedata"] .
-								"&handheld=" . $_GET["handheld"]);
+		$FORM->set_layout_file("basearticle");
+		$FORM->set_submit_value($submit_value);
+		
+		if ($update == false) {
+			$FORM->set_show_reset_button(false);
+			
+			$FORM->set_action($_SERVER["PHP_SELF"] .
+									"?site=" . $_GET["site"] .
+									"&basedata=" . $_GET["basedata"] .
+									"&handheld=" . $_GET["handheld"]);
+		}
 		
 		// Bestätigung bei Erfolg anzeigen lassen
 		$FORM->set_confirmation_on_success(true);
-		$FORM->set_confirmation_on_success_msg(
-			"Der neue " . $this->baseDataTitle . " - Datensatz wurde
-			erfolgreich hinzugef&uuml;gt!");
+		$FORM->set_confirmation_on_success_msg($confirmation_on_success_msg);
 		
 		// Zu Beginn fokusiertes Feld festlegen
 		$FORM->set_focus_field("ar_number");
@@ -435,39 +485,64 @@ class UCAdminBaseData extends UC {
 		return $FORM;
 		
 		
-	} // # END createNewArticleForm
+	} // # END createArticleForm
 	
 	
-	private function createNewCategoryForm() {
+	private function createCategoryForm($update) {
 		
 		global $DATA_ACCESS;
+		
+		if ($update == true) {
+			if (!(is_numeric($_GET["cat_id"]))) {
+				header("Location: " . $_SERVER["PHP_SELF"] .
+						"?site=admin&basedata=" . $_GET["basedata"] .
+						"&handheld=" . $_GET["handheld"]);
+			}
+			$name = "editcategory";
+			$sql_where = "WHERE `cat_id` = '" . $_GET["cat_id"] . "'";
+			$submit_value = "&Auml;nderungen speichern!";
+			$confirmation_on_success_msg =
+				"Die &Auml;nderungen am " . $this->baseDataTitle . "
+				- Datensatz wurden erfolgreich gespeichert!";
+		}
+		else {
+			$name = "newcategory";
+			$sql_where = "";
+			$submit_value = "Kategorie anlegen!";
+			$confirmation_on_success_msg =
+				"Der neue " . $this->baseDataTitle . " - Datensatz wurde
+				erfolgreich hinzugef&uuml;gt!";
+		}
 		
 		
 		// Formular erstellen
 		$FORM = new Form(
-						"newcategory",
+						$name,
 						FORM_LAYOUT_DIR_ADMIN,
 						array("cat_name"),
 						TBL_CATEGORY,
-						"",
+						$sql_where,
 						"cat_id",
 						"",
 						"",
 						$DATA_ACCESS);
 		
 		// Formular-Eigenschaften
-		$FORM->set_show_reset_button(false);
-		$FORM->set_submit_value("Kategorie anlegen!");
-		$FORM->set_action($_SERVER["PHP_SELF"] .
-								"?site=" . $_GET["site"] .
-								"&basedata=" . $_GET["basedata"] .
-								"&handheld=" . $_GET["handheld"]);
+		$FORM->set_layout_file("basecategory");
+		$FORM->set_submit_value($submit_value);
+		
+		if ($update == false) {
+			$FORM->set_show_reset_button(false);
+			
+			$FORM->set_action($_SERVER["PHP_SELF"] .
+									"?site=" . $_GET["site"] .
+									"&basedata=" . $_GET["basedata"] .
+									"&handheld=" . $_GET["handheld"]);
+		}
 		
 		// Bestätigung bei Erfolg anzeigen lassen
 		$FORM->set_confirmation_on_success(true);
-		$FORM->set_confirmation_on_success_msg(
-			"Der neue " . $this->baseDataTitle . " - Datensatz wurde
-			erfolgreich hinzugef&uuml;gt!");
+		$FORM->set_confirmation_on_success_msg($confirmation_on_success_msg);
 		
 		// Zu Beginn fokusiertes Feld festlegen
 		$FORM->set_focus_field("cat_name");
@@ -486,39 +561,64 @@ class UCAdminBaseData extends UC {
 		return $FORM;
 		
 		
-	} // # END createNewCategoryForm
+	} // # END createCategoryForm
 	
 	
-	private function createNewSubCategoryForm() {
+	private function createSubCategoryForm($update) {
 		
 		global $DATA_ACCESS;
+		
+		if ($update == true) {
+			if (!(is_numeric($_GET["sub_id"]))) {
+				header("Location: " . $_SERVER["PHP_SELF"] .
+						"?site=admin&basedata=" . $_GET["basedata"] .
+						"&handheld=" . $_GET["handheld"]);
+			}
+			$name = "editsubcategory";
+			$sql_where = "WHERE `sub_id` = '" . $_GET["sub_id"] . "'";
+			$submit_value = "&Auml;nderungen speichern!";
+			$confirmation_on_success_msg =
+				"Die &Auml;nderungen am " . $this->baseDataTitle . "
+				- Datensatz wurden erfolgreich gespeichert!";
+		}
+		else {
+			$name = "newsubcategory";
+			$sql_where = "";
+			$submit_value = "Unter-Kategorie anlegen!";
+			$confirmation_on_success_msg =
+				"Der neue " . $this->baseDataTitle . " - Datensatz wurde
+				erfolgreich hinzugef&uuml;gt!";
+		}
 		
 		
 		// Formular erstellen
 		$FORM = new Form(
-						"newsubcategory",
+						$name,
 						FORM_LAYOUT_DIR_ADMIN,
 						array("sub_name", "fk_cat_id"),
 						TBL_SUBCATEGORY,
-						"",
+						$sql_where,
 						"sub_id",
 						"",
 						"",
 						$DATA_ACCESS);
 		
 		// Formular-Eigenschaften
-		$FORM->set_show_reset_button(false);
-		$FORM->set_submit_value("Unter-Kategorie anlegen!");
-		$FORM->set_action($_SERVER["PHP_SELF"] .
-								"?site=" . $_GET["site"] .
-								"&basedata=" . $_GET["basedata"] .
-								"&handheld=" . $_GET["handheld"]);
+		$FORM->set_layout_file("basesubcategory");
+		$FORM->set_submit_value($submit_value);
+		
+		if ($update == false) {
+			$FORM->set_show_reset_button(false);
+			
+			$FORM->set_action($_SERVER["PHP_SELF"] .
+									"?site=" . $_GET["site"] .
+									"&basedata=" . $_GET["basedata"] .
+									"&handheld=" . $_GET["handheld"]);
+		}
 		
 		// Bestätigung bei Erfolg anzeigen lassen
 		$FORM->set_confirmation_on_success(true);
-		$FORM->set_confirmation_on_success_msg(
-			"Der neue " . $this->baseDataTitle . " - Datensatz wurde
-			erfolgreich hinzugef&uuml;gt!");
+		$FORM->set_confirmation_on_success_msg($confirmation_on_success_msg);
 		
 		// Zu Beginn fokusiertes Feld festlegen
 		$FORM->set_focus_field("sub_name");
@@ -557,7 +657,7 @@ class UCAdminBaseData extends UC {
 		return $FORM;
 		
 		
-	} // # END createNewSubCategoryForm
+	} // # END createSubCategoryForm
 	
 }
 

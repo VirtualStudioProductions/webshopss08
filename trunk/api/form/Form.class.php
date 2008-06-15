@@ -21,7 +21,7 @@ class Form {
 	 * author:					Alexander Weickmann <Alexander.Weickmann@gmx.de> (Eistoeter)
 	 * release date:			14.06.2008
 	 * start of the project:	29.11.2005
-	 * version:					5.3
+	 * version:					5.4
 	 * requirement:				scripted for php5.1 and mysql
 	 * description:				this class was coded only to simplify data-processing coming
 	 *                          from standard forms (for example guestbooks, newsscripts,
@@ -45,6 +45,9 @@ class Form {
 	
 	/** path to the layout files */
 	private $layout_dir;
+	
+	/** the layout file */
+	private $layout_file;
 	
 	/** the fields of the form */
 	private $fields;
@@ -186,6 +189,7 @@ class Form {
 	public function set_fatal_color($color)						{ $this->fatal_color						= $color; }
 
 	public function set_MAX_FILE_SIZE($size)					{ $this->MAX_FILE_SIZE						= $size; }
+	public function set_layout_file($layout_file)				{ $this->layout_file = $layout_file; $this->layout = "".$this->layout_dir."".$this->layout_file.".lay.tpl"; }
 	public function set_action($action)							{ $this->action								= $action; }
 	public function set_method($method)							{ $this->method								= $method; }
 	public function set_show_reset_button($set)					{ $this->show_reset_button					= $set; }
@@ -229,14 +233,15 @@ class Form {
 						
 						
 		$this->namelist					= $namelist;
-		$this->error_color				= "#00BBBB";
-		$this->warning_color			= "#00BB00";
-		$this->fatal_color				= "#BB0000";
+		$this->error_color				= "#00bbbb";
+		$this->warning_color			= "#00bb00";
+		$this->fatal_color				= "#bb0000";
 
 		// general
 		$this->form_name					= $form_name;
 		$this->layout_dir					= $layout_dir;
-		$this->layout						= "".$this->layout_dir."".$this->form_name.".lay.tpl";
+		$this->layout_file					= $this->form_name;
+		$this->layout						= "".$this->layout_dir."".$this->layout_file.".lay.tpl";
 		$this->MAX_FILE_SIZE				= 25600;
 		$this->enctype						= "";
 		$this->action						= $_SERVER["PHP_SELF"] . "?" . $_SERVER["argv"][0];
@@ -245,7 +250,7 @@ class Form {
 		$this->show_submit_button			= true;
 		$this->show_form_end				= true;
 		$this->submit_value					= "Abschicken!";
-		$this->reset_value					= "Rückgängig!";
+		$this->reset_value					= "R&uuml;ckg&auml;ngig!";
 		$this->css							= "";
 		$this->reset_css					= "";
 		$this->submit_css					= "";
@@ -380,7 +385,7 @@ class Form {
 			// get mysql data
 			if ($this->sql_where != "") {
 
-				if (!$_POST["s_".$this->form["name"].""]) {
+				if (!$_POST["s_".$this->get_form_name().""]) {
 					
 					$sql = "SELECT * FROM `".$this->sql_tblname."` ".$this->sql_where."";
 					$select = $this->PDO_DATA_ACCESS->query($sql);
@@ -825,16 +830,39 @@ class Form {
 
 					if ($value != "") {
 						
-						$query1 = "SELECT `".$this->fields[$key]->get_name()."` FROM `".$this->sql_tblname."` WHERE `".$this->fields[$key]->get_name()."` = :value";
-						$stmt1 = $this->PDO_DATA_ACCESS->prepare($query1);
-						$stmt1->bindParam(":value", $value);
-						$stmt1->execute();
+						// form is an update form so when checking the field
+						// to be unique ignore the value the entry has himself
+						$checkFurther = true;
+						if ($this->sql_where != "") {
+							
+							$sql = "SELECT `".$this->fields[$key]->get_name()."` FROM `".$this->sql_tblname."` ".$this->sql_where."";
+							$select = $this->PDO_DATA_ACCESS->query($sql);
+							$res = $select->fetchAll(PDO::FETCH_ASSOC);
+							
+							if ($res[0][$this->fields[$key]->get_name()] != $value) {
+								$checkFurther = true;
+							}
+							else {
+								$checkFurther = false;
+							}
+						}
+						
+						
+						if ($checkFurther == true) {
+							
+							$query1 = "SELECT * FROM `".$this->sql_tblname."` WHERE `".$this->fields[$key]->get_name()."` = :value";
 
-						if ($stmt1->fetch()) {
+							$stmt1 = $this->PDO_DATA_ACCESS->prepare($query1);
+							$stmt1->bindParam(":value", $value);
+							$stmt1->execute();
 
-							$msg["error"][$this->namelist[$n]] = "Es existiert bereits ein Eintrag mit ".$value." als <strong>".$this->fields[$key]->get_caption()."</strong>.";
-							$msg["valid"] = false;
-
+							if ($stmt1->fetchAll(PDO::FETCH_ASSOC)) {
+	
+								$msg["error"][$this->namelist[$n]] = "Es existiert bereits ein Eintrag mit ".$value." als <strong>".$this->fields[$key]->get_caption()."</strong>.";
+								$msg["valid"] = false;
+	
+							}
+						
 						}
 
 					}
