@@ -10,7 +10,7 @@
 		</div>
 		
 		<div class="articletable">
-			<table border="1">
+			<table>
 				<tr>
 					<th>Artikelname</th>
 					<th>Artikelbeschreibung</th>
