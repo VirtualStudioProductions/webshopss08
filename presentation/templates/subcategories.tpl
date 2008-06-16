@@ -9,8 +9,8 @@
 				
 		</div>
 		
-		<div class="articletable">
-			<table>
+		<div>
+			<table class="articletable">
 				<tr>
 					<th>Artikelname</th>
 					<th>Artikelbeschreibung</th>

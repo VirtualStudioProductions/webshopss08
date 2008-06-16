@@ -79,36 +79,38 @@ class UC {
 	
 	public function listAllCategories() {
 	$db_raw = $this->DAOCategory->getAllCategories();
-	/*
+	
+	//die Kategorienamen durch die htmlentities Funktion laufen lassen um Sonderzeichen korrekt darzustellen
 	$i = 0;
 	foreach ($db_raw as &$value) {
-    $db_raw[$i]["name"] = htmlentities($value["name"]);
-    $i++;
+    	$db_raw[$i]["name"] = htmlentities($value["name"]);
+    	$i++;
 	}
-	//print_r ($db_raw);
-	*/
+	
 	return $db_raw;
 	
 	} // # END listAllCategories
 
-	//braucht die Kategorie id um die Unterkategorien zurückliefern zu können. Zirkelschluss? ->in DTO verlagern?
+
+	
+	/**
+	 * braucht die Kategorie id um die Unterkategorien zurückliefern zu können. Zirkelschluss? ->in DTO verlagern?
+	 *
+	 * @param int $c_id
+	 * @return char $Array mit Unterkategorienamen
+	 */
 	public function listAllSubCategories($c_id) {
 	
 	$db_raw = $this->DAOCategory->getSelectedSubcategories($c_id);	
 	
-	/*$i = 0;
+	$i = 0;
 	foreach ($db_raw as &$value) {
     	$db_raw[$i]["name"] = htmlentities($value["name"]);
     	$i++;
-	}*/
+	}
 	
 	return $db_raw;
 	} // # END listAllSubCategories
 	
-/*
-	public function listCategoryId($subcategory_id){
-		$cat_id = $this->DAOCategory->getCategoryId($subcategory_id);
-		return $cat_id;
-	}*/
 }
 ?>
