@@ -53,6 +53,46 @@ class DAOArticle extends DAO {
 	
 	}
 	
+	/**
+	 * Holt alle Artikel aus der Datenbank.
+	 *
+	 * @return array Assoziatives Array mit allen Artikeln
+	 */
+	public function getAllArticles() {
+		
+		$query = "SELECT * FROM `" . TBL_ARTICLE . "` ORDER BY `ar_number` ASC";
+		$stmt = $this->DATA_ACCESS->prepare($query);
+		$stmt->execute();
+		$articles = $stmt->fetchAll(PDO::FETCH_ASSOC);
+		
+		return $articles;
+		
+		
+	} // # END getAllArticles
+	
+	
+	/**
+	 * Löscht einen Artikel aus der Datenbank.
+	 * 
+	 * @param $ar_id	Die ID des Artikels, der gelöscht werden
+	 * 					soll
+	 *
+	 * @return bool		Wahrheitswert, ob der Datensatz gelöscht
+	 * 					wurde
+	 */
+	public function deleteArticle($ar_id) {
+		
+		$query = "DELETE FROM `" . TBL_ARTICLE . "` " .
+					"WHERE `ar_id` = :ar_id";
+		$stmt = $this->DATA_ACCESS->prepare($query);
+		$stmt->bindValue(":ar_id", $ar_id, PDO::PARAM_INT);
+		$deleted = $stmt->execute();
+		
+		return $deleted;
+		
+		
+	} // # END deleteArticle
+	
 }
 
 ?>
