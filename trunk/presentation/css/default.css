@@ -301,6 +301,7 @@ div.categoryitem ul {
 }
 
 .articletable{
+	width:730px;
 	position: relative;
 	top: 20px;
 }
