@@ -1,0 +1,66 @@
+WEBSHOP SS 2008
+RELEASE PLAN
+
+Liste mit Dingen die bis zum 27.06 erledigt sein müssen und
+noch zum fertigen Webshop fehlen
+
+
+DESIGN UND LAYOUT
+
+-	Handheld Design funktionstüchtig machen (Alex)
+
+-	Hintergrund im oberen Menü etwas dunkler machen,
+	wegen Kontrast (Alex)
+	
+KATEGORIEN
+
+-	Wenn man auf eine Kategorie klickt öffnet sich die
+	Liste mit den Dingen, die in dieser Kategorie enthalten
+	sind. Diese Seite braucht noch eine Überschrift (h2),
+	die besagt, in welcher Kategorie man sich gerade befindet
+	(Thomas)
+	
+-	Auf der gleichen Seite sind die Unterkategorien gelistet.
+	Bei dieser Auflistung ist am Schluss 1x ::: zu viel (Thomas)
+	
+
+STARTSEITE
+
+-	Die Startseite ist noch völlig leer. Hier muss man sich
+	etwas einfallen lassen, was man hier machen könnte.
+	Eventuell kann man dazu die ws_trace verwenden, um dem
+	Besucher geeignete Artikel vorzuschlagen. Oder auch
+	irgendwas anderes. Hauptsache wir haben eine Startseite
+	(Thomas)
+	
+	
+ARTIKELSEITE
+
+-	Die aktuelle Überschrift ist die Bezeichnung des Artikels.
+	h2 sollte aber sein "Artikel - Details" und dann als h3
+	die Bezeichnung des Artikels (Andi)
+	
+-	Die Eltern-Kategorie, in der sich der Artikel befindet, sollte
+	im linken Menü immer noch aufgeklappt bleiben (Andi)
+	
+-	Im oberen Bereich der Artikelseite sollte der Benutzer seinen
+	Pfad nachvollziehen können und auch wieder zurückspringen
+	können. Also in der Form von z.B.:
+	Sie sind hier: Grafikkarten -> AGP -> NVIDIA Geforce ... (Andi)
+
+
+STAMMDATENVERWALTUNG
+
+-	Bei Artikeln sollte man auch ein Bild mit hochladen können
+	(Alex)
+	
+-	Beim Bearbeiten von Kunden darf das Passwort nicht
+	von vornherein aus der DB ausgelesen werden. Falls man dann
+	das Feld leer ist soll nichts weiter passieren (Alex)
+	
+-	Bevor man ein Stammdatum löscht sollte mittels JavaScript
+	ein Bestätigungsfenster kommen, ob man dies auch wirklich
+	möchte (Alex)
+	
+-	Alle Formulare mit kritischen Daten sollten über https
+	ablaufen (Alex)
