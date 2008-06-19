@@ -9,7 +9,9 @@ ALLGEMEIN
 
 -	Es muss sichergestellt sein, dass jeder Link
 	$_GET["handheld"] mitgibt, damit das HandHeld-Design
-	eingestellt bleibt, wenn man irgendwo klickt.
+	eingestellt bleibt, wenn man irgendwo klickt (Alle)
+	
+-	XHTML muss valide sein (Alle)
 
 
 DESIGN UND LAYOUT
@@ -17,7 +19,7 @@ DESIGN UND LAYOUT
 -	Handheld Design funktionstüchtig machen (Alex) ERLEDIGT
 
 -	Hintergrund im oberen Menü etwas dunkler machen,
-	wegen Kontrast (Alex)
+	wegen Kontrast (Alex) ERLEDIGT
 	
 	
 KATEGORIEN
