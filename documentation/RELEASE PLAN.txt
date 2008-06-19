@@ -62,5 +62,11 @@ STAMMDATENVERWALTUNG
 	ein Bestätigungsfenster kommen, ob man dies auch wirklich
 	möchte (Alex)
 	
+
+SONSTIGES
+	
 -	Alle Formulare mit kritischen Daten sollten über https
 	ablaufen (Alex)
+	
+-	Jede Seite sollte ihre Meta-Daten bekommen (Titel etc.)
+	(Alex)
