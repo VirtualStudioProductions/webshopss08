@@ -4,69 +4,80 @@ body {
 	line-height: 1.4em;
 }
 
-input, textarea {
+input, textarea, select {
 	font-size: 1.0em;
+	font-family: sans-serif, verdana, arial;
 }
+
 
 #sitebox {
-	margin: 3px;
+	position: relative;
+	width: 100%;
+	margin: 0 auto 0 auto;
 }
 
-#banner {
-	background-image: url('../images/handheld/banner.jpg');
-	height: 42px;
+#bannerleft {
+	background-image: url('../images/handheld/bannerleft.jpg');
+	width: 240px;
 }
 
 #designselection {
-	width: 37px;
-	height: 13px;
+	width: 31px;
+	height: 11px;
 	line-height: 11px;
 	padding: 1px;
 	font-size: 0.7em;
 }
 
-#bannerleft {
-	background-image: url('../images/handheld/bannerleft.jpg');
-	height: 40px;
-}
-
 #mainmenu {
-	line-height: 13px;
-	font-size: 0.8em;
-	padding-right: 6px;
-	height: 18px;
-	background-image: url('../images/handheld/mainmenu.jpg');
+	font-size: 0.82em;
+	padding-right: 4px;
+	line-height: 12px;
 }
 
 #menuleft {
+	top: 0;
+	padding-top: 5px;
+	padding-bottom: 5px;
 	width: 100%;
-	height: 50px;
-	top: 60px;
-	bottom: auto;
+	position: relative;
 	font-size: 0.85em;
 	line-height: 15px;
-	background-repeat: repeat-x;
-	background-image: url('../images/handheld/menuleft.jpg');
+	background-repeat: repeat;
 	border-bottom: 1px solid #333333;
-	overflow: auto;
+	background-image: url('../images/handheld/menuleft.jpg');
 }
 
 #content {
-	top: 111px;
+	position: relative;
+	top: 0;
 	left: 0;
-	bottom: 16px;
 	border-top: 1px solid #333333;
-	font-size: 0.8em;
+	font-size: 0.85em;
 	padding: 7px;
 }
 
 #footer {
+	position: relative;
 	background-image: url('../images/handheld/footer.jpg');
 	height: 16px;
-	line-height: 9px;
+	line-height: 13px;
 	font-size: 0.7em;
 }
 
 #footer span {
 	font-size: 13pt;
+}
+
+
+.formColLeft {
+	width: 100%;
+}
+
+.formColRight {
+	margin: 15px 15px 15px 0;
+}
+
+.textField {
+	width: 150px;
 }

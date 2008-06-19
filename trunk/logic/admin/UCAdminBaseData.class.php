@@ -477,7 +477,11 @@ class UCAdminBaseData extends UC {
 		$FORM->add_field($FIELD);
 		
 		// Beschreibung
-		$FIELD = new TextArea("ar_description", "Beschreibung", "", 8, 40);
+		$cols = 40;
+		if ($_GET["handheld"] == 1) {
+			$cols = 25;
+		}
+		$FIELD = new TextArea("ar_description", "Beschreibung", "", 8, $cols);
 		$FIELD->set_v_required(true);
 		$FORM->add_field($FIELD);
 	

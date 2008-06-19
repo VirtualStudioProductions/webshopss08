@@ -37,7 +37,7 @@ define("TPL_AdminBaseData",			"admin/adminbasedata"	. TPL_ENDING);
 define("TPL_Startpage",				"startpage" 			. TPL_ENDING);
 define("TPL_Article",				"article" 				. TPL_ENDING);
 define("TPL_Category",				"subcategories"			. TPL_ENDING);
-define("TPL_Basket",		"basket" 		. TPL_ENDING);
+define("TPL_Basket",				"basket" 				. TPL_ENDING);
 
 // ------------------------------------------------------------
 

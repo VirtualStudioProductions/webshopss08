@@ -61,6 +61,7 @@ input, textarea {
 textarea {
 	border: 1px solid #000095;
 	color: #000095;
+	margin-left: 5px;
 }
 
 form {
@@ -137,8 +138,8 @@ div.categoryitem ul {
 	border-right: 1px solid #000000;
 	border-bottom: 1px solid #000000;
 	background-color: #000000;
-	width: 55px;
-	height: 13px;
+	width: 47px;
+	height: 12px;
 	line-height: 11px;
 	padding: 1px;
 	font-size: 0.8em;
