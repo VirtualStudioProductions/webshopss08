@@ -5,12 +5,20 @@ Liste mit Dingen die bis zum 27.06 erledigt sein müssen und
 noch zum fertigen Webshop fehlen
 
 
+ALLGEMEIN
+
+-	Es muss sichergestellt sein, dass jeder Link
+	$_GET["handheld"] mitgibt, damit das HandHeld-Design
+	eingestellt bleibt, wenn man irgendwo klickt.
+
+
 DESIGN UND LAYOUT
 
--	Handheld Design funktionstüchtig machen (Alex)
+-	Handheld Design funktionstüchtig machen (Alex) ERLEDIGT
 
 -	Hintergrund im oberen Menü etwas dunkler machen,
 	wegen Kontrast (Alex)
+	
 	
 KATEGORIEN
 
@@ -47,6 +55,12 @@ ARTIKELSEITE
 	Pfad nachvollziehen können und auch wieder zurückspringen
 	können. Also in der Form von z.B.:
 	Sie sind hier: Grafikkarten -> AGP -> NVIDIA Geforce ... (Andi)
+	
+	
+WARENKORB
+
+-	Der Warenkorb sollte funktionieren (ohne, dass man das Ganze
+	dann auch bestellen kann) (Andi)
 
 
 STAMMDATENVERWALTUNG

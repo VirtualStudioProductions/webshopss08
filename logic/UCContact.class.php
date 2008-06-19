@@ -83,7 +83,11 @@ class UCContact extends UC {
 		$FORM->add_field($FIELD);
 		
 		// Nachricht
-		$FIELD = new TextArea("message", "Nachricht", "", 8, 40);
+		$cols = 40;
+		if ($_GET["handheld"] == 1) {
+			$cols = 25;
+		}
+		$FIELD = new TextArea("message", "Nachricht", "", 8, $cols);
 		$FIELD->set_v_required(true);		// Pflichtfeld
 		$FORM->add_field($FIELD);
 		
