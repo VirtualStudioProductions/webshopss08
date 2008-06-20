@@ -8,6 +8,9 @@
 				<table border="1">
 					<tr>
 							<td>
+								Menge
+							</td>
+							<td>
 								Artikelnummer
 							</td>
 	
@@ -31,6 +34,10 @@
 					{foreach from=$selectedArticle item=article}
 				
 						<tr>
+							<td>
+								{$article.ar_count}
+							</td>
+							
 							<td>
 								{$article.ar_number}
 							</td>
