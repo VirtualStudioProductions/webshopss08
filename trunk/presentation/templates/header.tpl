@@ -38,6 +38,6 @@
 		{if $smarty.session.USER == null}
 			<a title="Registrieren Sie sich und werden Sie Kunde!" href="{$smarty.server.PHP_SELF}?site=registration&amp;handheld={$smarty.get.handheld}">Registrieren</a> ::
 		{/if}
-		<a href="#">Warenkorb</a>
+		<a title="Warenkorb" href="{$smarty.server.PHP_SELF}?site=basket&amp;handheld={$smarty.get.handheld}">Warenkorb</a>
 	</div>
 
