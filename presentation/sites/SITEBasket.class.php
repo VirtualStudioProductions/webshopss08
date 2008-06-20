@@ -24,28 +24,37 @@ class SITEBasket extends SITE {
 		if(($_GET["arNumber"] != null) && ($_GET["delete"] == 0)) {
 			$present = 0;
 			foreach($_SESSION["basket"] as $article) {
-				if($article == $_GET["arNumber"]) {
+				if($article["arNumber"] == $_GET["arNumber"]) {
 					$present = 1;
-					$i++;
 				}
 			}
 			
 			if($present == 0) {
-				$_SESSION["basket"][$_SESSION["basketindex"]] = $_GET["arNumber"];
+				$_SESSION["basket"][$_SESSION["basketindex"]]["arNumber"] = $_GET["arNumber"];
+				$_SESSION["basket"][$_SESSION["basketindex"]]["count"] = 1;
 				$_SESSION["basketindex"]++;
 			}
+			else {
+				for($j = 0; $j < $_SESSION["basketindex"];$j++) {
+					if($_SESSION["basket"][$j]["arNumber"] == $_GET["arNumber"]) {
+						$_SESSION["basket"][$j]["count"]++;
+					}
+				}
+			}			
 		}
+		
 		
 		if(($_GET["arNumber"] != null) && ($_GET["delete"] == 1)) {
 			
 			$i = 0;
 			foreach($_SESSION["basket"] as $article) {
-				if(($article != null) && ($article != $_GET["arNumber"])) {
+				if(($article["arNumber"] != null) && ($article["arNumber"] != $_GET["arNumber"])) {
 					$cleanedbasket[$i] = $article;
 					$i++;
 				}
 			}
 			$_SESSION["basket"] = $cleanedbasket;
+			$_SESSION["basketindex"] = $i;
 		}
 		
 	} // # END SITEItemOverview
@@ -61,8 +70,19 @@ class SITEBasket extends SITE {
 		
 		$selectedArticle = $this->useCase->getSelectedArticle();
 		
+		$k = 0;
+		while($selectedArticle[$k] != null) {
+			foreach($_SESSION["basket"] as $countArticle) {
+				if($selectedArticle[$k]["ar_number"] == $countArticle["arNumber"]) {
+					$selectedArticle[$k]["ar_count"] = $countArticle["count"];
+				}
+			}
+			$k++;
+		}
+		
 		// Formular an das Template zuweisen
 		$this->TEMPLATE_ENGINE->assign("selectedArticle", $selectedArticle);
+
 		
 	} // # END fillTemplate
 
