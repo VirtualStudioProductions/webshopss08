@@ -17,6 +17,37 @@ class SITEBasket extends SITE {
 		// Private Funktion fillTemplate aufrufen
 		$this->fillTemplate();
 		
+		if($_SESSION["basketindex"] == null) {
+			$_SESSION["basketindex"] = 0;
+		}
+		
+		if(($_GET["arNumber"] != null) && ($_GET["delete"] == 0)) {
+			$present = 0;
+			foreach($_SESSION["basket"] as $article) {
+				if($article == $_GET["arNumber"]) {
+					$present = 1;
+					$i++;
+				}
+			}
+			
+			if($present == 0) {
+				$_SESSION["basket"][$_SESSION["basketindex"]] = $_GET["arNumber"];
+				$_SESSION["basketindex"]++;
+			}
+		}
+		
+		if(($_GET["arNumber"] != null) && ($_GET["delete"] == 1)) {
+			
+			$i = 0;
+			foreach($_SESSION["basket"] as $article) {
+				if(($article != null) && ($article != $_GET["arNumber"])) {
+					$cleanedbasket[$i] = $article;
+					$i++;
+				}
+			}
+			$_SESSION["basket"] = $cleanedbasket;
+		}
+		
 	} // # END SITEItemOverview
 	
 	
@@ -27,12 +58,6 @@ class SITEBasket extends SITE {
 		
 		parent::fillTemplate(); //Zuerst die von SITE.class.php geerbte fillTemplate Funktion aufrufen um die Kategorieansicht anzuzeigen
 		// Immer mit this auf Attribute zugreifen !!
-		
-		
-		// TEST Befüllung von $_SESSION["basket"]
-		$_SESSION["basket"][0] = 1;
-		$_SESSION["basket"][1] = 2;
-		$_SESSION["basket"][2] = 3;
 		
 		$selectedArticle = $this->useCase->getSelectedArticle();
 		

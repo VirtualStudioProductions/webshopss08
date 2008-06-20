@@ -24,6 +24,7 @@
 							</td>
 
 							<td>
+								
 							</td>
 					
 						</tr>
@@ -47,7 +48,9 @@
 							</td>
 
 							<td>
-							Loeschen
+								<a title="Aus dem Warenkorb entfernen" href="index.php?site=basket&arNumber={$article.ar_number}&delete=1" class="shoppingcart">
+									L&ouml;schen
+								</a>
 							</td>
 					
 						</tr>
