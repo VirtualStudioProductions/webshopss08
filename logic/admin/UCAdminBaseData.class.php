@@ -380,7 +380,7 @@ class UCAdminBaseData extends UC {
 		$FORM = new Form(
 						$name,
 						FORM_LAYOUT_DIR_ADMIN,
-						array("ar_number", "ar_title", "ar_price",
+						array("ar_number", "ar_title", "ar_picture", "ar_price",
 						"ar_description", "ar_stock", "fk_sub_id"),
 						TBL_ARTICLE,
 						$sql_where,
@@ -461,6 +461,16 @@ class UCAdminBaseData extends UC {
 		$FORM->add_field($FIELD);
 		
 		
+		
+		// Bild
+		$FIELD = new FileField(	"ar_picture",
+								"Bild",
+								"image",
+								"presentation/images/article/",
+								array("image/pjpeg", "image/jpg", "image/jpeg", "image/png", "image/x-png"),
+								"",
+								array ("x" => 200, "y" => 150, "check" => "same"));
+		$FORM->add_field($FIELD);
 		
 		// Preis
 		$FIELD = new TextField("ar_price", "Preis", " class=\"smallTextField\"", 11);

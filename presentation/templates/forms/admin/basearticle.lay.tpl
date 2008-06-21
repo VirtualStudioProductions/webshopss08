@@ -26,6 +26,15 @@
 
 
 <div class="formColLeft">
+	<p><label for="ar_picture"><strong>Bild:</strong></label></p>
+</div>
+<div class="formColRight">
+	{ar_picture}
+</div>
+<div class="clear"></div>
+
+
+<div class="formColLeft">
 	<p><label for="ar_price"><strong>Preis:</strong></label></p>
 </div>
 <div class="formColRight">

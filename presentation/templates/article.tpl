@@ -20,8 +20,8 @@
 					
 				</div>
 				
-				<a title="In den Warenkorb einf&uuml;gen" href="index.php?site=basket&amp;arNumber={$article.ar_number}&amp;action=1">
-					<img src="presentation/images/shoppingcart.jpg" alt="In den Warenkorb legen" />
+				<a title="In den Warenkorb einf&uuml;gen" href="index.php?site=basket&amp;arNumber={$article.ar_number}&amp;action=1&amp;handheld={$smarty.get.handheld}">
+					<img id="articleimage" src="presentation/images/shoppingcart.jpg" alt="In den Warenkorb legen" />
 				</a>
 				
 			</div>
@@ -29,7 +29,7 @@
 			<div class="clear"></div>
 			
 			<div id="articleimagebox">
-				<img id="articleimage" src="presentation/images/article/article_{$article.ar_number}.jpg" alt="{$article.ar_title}" width="200" height="150" />
+				<img src="presentation/images/article/{$article.ar_picture}" alt="{$article.ar_title}" width="200" height="150" />
 			</div>
 			
 			<div class="articledescription">
