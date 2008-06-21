@@ -36,6 +36,14 @@
 						<tr>
 							<td>
 								{$article.ar_count}
+								<a title="Menge um eine Einheit erh&ouml;hen" href="index.php?site=basket&arNumber={$article.ar_number}&action=2" class="shoppingcart">
+									<img src="presentation/images/inc.jpg" height=20% width=20% alt="Menge um eine Einheit erh&ouml;hen" />
+								</a>
+								
+								<a title="Menge um eine Einheit verringern" href="index.php?site=basket&arNumber={$article.ar_number}&action=3" class="shoppingcart">
+									<img src="presentation/images/dec.jpg" height=20% width=20% alt="Menge um eine Einheit erh&ouml;hen" />
+								</a>
+								
 							</td>
 							
 							<td>
@@ -55,8 +63,8 @@
 							</td>
 
 							<td>
-								<a title="Aus dem Warenkorb entfernen" href="index.php?site=basket&arNumber={$article.ar_number}&delete=1" class="shoppingcart">
-									L&ouml;schen
+								<a title="Aus dem Warenkorb entfernen" href="index.php?site=basket&arNumber={$article.ar_number}&action=0" class="shoppingcart">
+									<img src="presentation/images/loeschen.jpg" height=30% width=30% alt="In den Warenkorb legen" />
 								</a>
 							</td>
 					

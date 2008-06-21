@@ -14,15 +14,13 @@ class SITEBasket extends SITE {
 		
 		$this->template = TPL_Basket;
 		
-		// Private Funktion fillTemplate aufrufen
-		$this->fillTemplate();
-		
 		if($_SESSION["basketindex"] == null) {
 			$_SESSION["basketindex"] = 0;
 		}
-		
-		if(($_GET["arNumber"] != null) && ($_GET["delete"] == 0)) {
-			$present = 0;
+		/*
+		//Code um Artikel hinzuzufügen
+		$present = 0;
+		if(($_GET["arNumber"] != null) && ($_GET["action"] == 1)) {
 			foreach($_SESSION["basket"] as $article) {
 				if($article["arNumber"] == $_GET["arNumber"]) {
 					$present = 1;
@@ -34,18 +32,31 @@ class SITEBasket extends SITE {
 				$_SESSION["basket"][$_SESSION["basketindex"]]["count"] = 1;
 				$_SESSION["basketindex"]++;
 			}
-			else {
-				for($j = 0; $j < $_SESSION["basketindex"];$j++) {
-					if($_SESSION["basket"][$j]["arNumber"] == $_GET["arNumber"]) {
-						$_SESSION["basket"][$j]["count"]++;
-					}
+					
+		}
+		*/
+		//Code um Artikelmenge zu erhöhen
+		if(($_GET["arNumber"] != null) && ($_GET["action"] == 2)) {
+			for($z1 = 0; $z1 < $_SESSION["basketindex"]; $z1++) {
+				if($_SESSION["basket"][$z1]["arNumber"] == $_GET["arNumber"]) {
+					$_SESSION["basket"][$z1]["count"]++;
+				}
+			}			
+		}
+
+		/*
+		//Code um Artikelmenge zu verringern
+		if(($_GET["arNumber"] != null) && ($_GET["action"] == 3)) {
+			for($z2 = 0; $z2 < $_SESSION["basketindex"];$z2++) {
+				if($_SESSION["basket"][$z2]["arNumber"] == $_GET["arNumber"]) {
+					$_SESSION["basket"][$z2]["count"]--;
 				}
 			}			
 		}
 		
-		
-		if(($_GET["arNumber"] != null) && ($_GET["delete"] == 1)) {
-			
+		//Code um Artikel zu entfernen
+		if(($_GET["arNumber"] != null) && ($_GET["action"] == 0)) {
+			print("artikel löschen");
 			$i = 0;
 			foreach($_SESSION["basket"] as $article) {
 				if(($article["arNumber"] != null) && ($article["arNumber"] != $_GET["arNumber"])) {
@@ -56,6 +67,9 @@ class SITEBasket extends SITE {
 			$_SESSION["basket"] = $cleanedbasket;
 			$_SESSION["basketindex"] = $i;
 		}
+		*/
+		// Private Funktion fillTemplate aufrufen
+		$this->fillTemplate();
 		
 	} // # END SITEItemOverview
 	
@@ -69,8 +83,12 @@ class SITEBasket extends SITE {
 		// Immer mit this auf Attribute zugreifen !!
 		
 		$selectedArticle = $this->useCase->getSelectedArticle();
-		
+
 		$k = 0;
+		
+		print_r($selectedArticle);
+		print_r($_SESSION);
+	
 		while($selectedArticle[$k] != null) {
 			foreach($_SESSION["basket"] as $countArticle) {
 				if($selectedArticle[$k]["ar_number"] == $countArticle["arNumber"]) {
@@ -79,7 +97,7 @@ class SITEBasket extends SITE {
 			}
 			$k++;
 		}
-		
+		print_r($selectedArticle);
 		// Formular an das Template zuweisen
 		$this->TEMPLATE_ENGINE->assign("selectedArticle", $selectedArticle);
 
