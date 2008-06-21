@@ -12,14 +12,6 @@ ALLGEMEIN
 	eingestellt bleibt, wenn man irgendwo klickt (Alle)
 	
 -	XHTML muss valide sein (Alle)
-
-
-DESIGN UND LAYOUT
-
--	Handheld Design funktionstüchtig machen (Alex) ERLEDIGT
-
--	Hintergrund im oberen Menü etwas dunkler machen,
-	wegen Kontrast (Alex) ERLEDIGT
 	
 	
 KATEGORIEN
@@ -45,10 +37,6 @@ STARTSEITE
 	
 	
 ARTIKELSEITE
-
--	Die aktuelle Überschrift ist die Bezeichnung des Artikels.
-	h2 sollte aber sein "Artikel - Details" und dann als h3
-	die Bezeichnung des Artikels (Andi)
 	
 -	Die Eltern-Kategorie, in der sich der Artikel befindet, sollte
 	im linken Menü immer noch aufgeklappt bleiben (Andi)
@@ -57,12 +45,6 @@ ARTIKELSEITE
 	Pfad nachvollziehen können und auch wieder zurückspringen
 	können. Also in der Form von z.B.:
 	Sie sind hier: Grafikkarten -> AGP -> NVIDIA Geforce ... (Andi)
-	
-	
-WARENKORB
-
--	Der Warenkorb sollte funktionieren (ohne, dass man das Ganze
-	dann auch bestellen kann) (Andi)
 
 
 STAMMDATENVERWALTUNG
