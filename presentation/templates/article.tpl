@@ -1,31 +1,37 @@
 		<!-- das Hauptfenster der Seite. Hier wird die Artikelliste angezeigt bzw die detaillierten Informationen zu einem Artikel -->
-			<div class="itemtitle">
-				<h2>Artikel - Details</h2>
-			</div>
-			<div class="itemtitle">
-				<h3>{$article.ar_title}</h3>
-			</div>
-			<div class="itembuyarea">
-				<div class="itemstatus">
-					<div class="itemprice">
+			
+			<h2>Artikel - Details</h2>
+			
+			
+			<h3>{$article.ar_title}</h3>
+
+
+			<div id="articlebuyarea">
+			
+				<div id="articlestatus">
+				
+					<div id="articleprice">
 						{$article.ar_price} &euro;			
 					</div>
-					<div class="itemstock">
+					
+					<div id="articlestock">
 						{$article.ar_stock} St&uuml;ck auf Lager
 					</div>
+					
 				</div>
-				<a title="In den Warenkorb einf&uuml;gen" href="index.php?site=basket&arNumber={$article.ar_number}&action=1" class="shoppingcart">
+				
+				<a title="In den Warenkorb einf&uuml;gen" href="index.php?site=basket&amp;amp;arNumber={$article.ar_number}&amp;action=1">
 					<img src="presentation/images/shoppingcart.jpg" alt="In den Warenkorb legen" />
 				</a>
+				
 			</div>
 			
-			<div class="clear">
+			<div class="clear"></div>
+			
+			<div id="articleimagebox">
+				<img id="articleimage" src="presentation/images/article/article_{$article.ar_number}.jpg" alt="{$article.ar_title}" width="200" height="150" />
 			</div>
 			
-			<div class="imagebox">
-				<img class="image" src="presentation/images/article_{$article.ar_number}.jpg" alt="{$article.ar_title}" width="200" height="150" />
+			<div class="articledescription">
+				{$article.ar_description}			 	
 			</div>
-			
-			<div class="itemdescription">
-			{$article.ar_description}			 	
-			</div> <!-- Ende itemdescription-->
