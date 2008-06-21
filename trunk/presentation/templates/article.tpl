@@ -20,7 +20,7 @@
 					
 				</div>
 				
-				<a title="In den Warenkorb einf&uuml;gen" href="index.php?site=basket&amp;amp;arNumber={$article.ar_number}&amp;action=1">
+				<a title="In den Warenkorb einf&uuml;gen" href="index.php?site=basket&amp;arNumber={$article.ar_number}&amp;action=1">
 					<img src="presentation/images/shoppingcart.jpg" alt="In den Warenkorb legen" />
 				</a>
 				

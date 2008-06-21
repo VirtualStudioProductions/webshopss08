@@ -42,25 +42,25 @@
 					<tr>
 				
 						<td width="5%" align="center">
-							{$article.ar_count}
+							{$article.ar_count|escape}
 						</td>
 								
 						<td width="15%" align="center">
-							{$article.ar_number}
+							{$article.ar_number|escape}
 						</td>
 		
 						<td width="50%">
 							<a title="{$article.ar_title}" href="index.php?site=article&amp;arNumber={$article.ar_number}&amp;handheld={$smarty.get.handheld}">
-								{$article.ar_title}	
+								{$article.ar_title|escape}	
 							</a>
 						</td>
 							
 						<td width="5%" align="center">
-							{$article.ar_stock}
+							{$article.ar_stock|escape}
 						</td>
 					
 						<td width="10%" align="center">
-							{$article.ar_price}
+							{$article.ar_price|escape}
 						</td>
 	
 						<td width="15%" align="center">
