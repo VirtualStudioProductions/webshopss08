@@ -87,9 +87,6 @@ class SITEBasket extends SITE {
 		$selectedArticle = $this->useCase->getSelectedArticle();
 
 		$k = 0;
-		
-		print_r($selectedArticle);
-		print_r($_SESSION);
 	
 		while($selectedArticle[$k] != null) {
 			foreach($_SESSION["basket"] as $countArticle) {
@@ -99,7 +96,6 @@ class SITEBasket extends SITE {
 			}
 			$k++;
 		}
-		print_r($selectedArticle);
 		// Formular an das Template zuweisen
 		$this->TEMPLATE_ENGINE->assign("selectedArticle", $selectedArticle);
 
