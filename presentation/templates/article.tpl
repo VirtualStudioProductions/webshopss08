@@ -1,8 +1,10 @@
 		<!-- das Hauptfenster der Seite. Hier wird die Artikelliste angezeigt bzw die detaillierten Informationen zu einem Artikel -->
 			<div class="itemtitle">
-				<h2>{$article.ar_title}</h2>
+				<h2>Artikel - Details</h2>
 			</div>
-			
+			<div class="itemtitle">
+				<h3>{$article.ar_title}</h3>
+			</div>
 			<div class="itembuyarea">
 				<div class="itemstatus">
 					<div class="itemprice">
