@@ -5,30 +5,30 @@
 			
 			<div class="basketline">
 			
-				<table border="1">
+				<table>
 					<tr>
-							<td>
+							<th>
 								Menge
-							</td>
-							<td>
+							</th>
+							<th>
 								Artikelnummer
-							</td>
+							</th>
 	
-							<td>
+							<th>
 								Bezeichnung	
-							</td>
+							</th>
 						
-							<td>
+							<th>
 								Lagerbestand
-							</td>
+							</th>
 					
-							<td>
+							<th>
 								Preis
-							</td>
+							</th>
 
-							<td>
-								
-							</td>
+							<th>
+								L&ouml;schen
+							</th>
 					
 						</tr>
 					{foreach from=$selectedArticle item=article}
