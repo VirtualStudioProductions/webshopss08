@@ -1,0 +1,21 @@
+#subcategoryitembig {
+	color: #000000;
+	position: relative;
+	top: 0px;
+}
+
+#subcategoryitembig a {
+	/*color: #000000;*/
+}
+
+#subcategoryitembig a:hover {
+	font-size: 1.0em;
+	color: #ff0000;
+	text-decoration: underline;
+}
+
+#articletable {
+	width: 730px;
+	position: relative;
+	top: 20px;
+}

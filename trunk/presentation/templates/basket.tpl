@@ -1,83 +1,91 @@
 		<!-- das Hauptfenster der Seite. Hier werden alle zur Bestellung ausgewählten Artikel angezeigt -->
-			<div class="itemtitle">
-				<h2>Ihr Warenkorb</h2>
-			</div>
+
+			<h2>Ihr Warenkorb</h2>
+
+		
 			{if $cookiesEnabled}
 			
-				<div class="basketline">
 			
-					<table>
-						<tr>
-								<th width="5%">
-									Menge
-								</th>
-								<th width="15%">
-									Artikelnummer
-								</th>
+				<table>
+				
+					<tr>
+				
+						<th width="5%">
+							Menge
+						</th>
+				
+						<th width="15%">
+							Artikelnummer
+						</th>
 	
-								<th width="50%">
-									Bezeichnung	
-								</th>
+						<th width="50%">
+							Bezeichnung	
+						</th>
 						
-								<th width="5%">
-									Lager
-								</th>
+						<th width="5%">
+							Lager
+						</th>
 						
-								<th width="10%">
-									Preis
-								</th>
+						<th width="10%">
+							Preis
+						</th>
 
-								<th width="15%">
-									Bearbeiten
-								</th>
+						<th width="15%">
+							Bearbeiten
+						</th>
 					
-							</tr>
-						{foreach from=$selectedArticle item=article}
+					</tr>
+					
 				
-							<tr>
-								<td>
-									{$article.ar_count}
-									
-								</td>
+					{foreach from=$selectedArticle item=article}
+				
+					<tr>
+				
+						<td width="5%" align="center">
+							{$article.ar_count}
+						</td>
 								
-								<td>
-									{$article.ar_number}
-								</td>
+						<td width="15%" align="center">
+							{$article.ar_number}
+						</td>
 		
-								<td>
-									<a title="{$article.ar_title}" href="index.php?site=article&arNumber={$article.ar_number}" class="shoppingcart">
-										{$article.ar_title}	
-									</a>
-								</td>
+						<td width="50%">
+							<a title="{$article.ar_title}" href="index.php?site=article&amp;arNumber={$article.ar_number}&amp;handheld={$smarty.get.handheld}">
+								{$article.ar_title}	
+							</a>
+						</td>
 							
-								<td>
-									{$article.ar_stock}
-								</td>
+						<td width="5%" align="center">
+							{$article.ar_stock}
+						</td>
 					
-								<td>
-									{$article.ar_price}
-								</td>
+						<td width="10%" align="center">
+							{$article.ar_price}
+						</td>
 	
-								<td>
-									<a title="Menge um eine Einheit erh&ouml;hen" href="index.php?site=basket&arNumber={$article.ar_number}&action=2" class="shoppingcart">
-										<img src="presentation/images/inc.jpg" height="20px" width="20px" alt="Menge um eine Einheit erh&ouml;hen" />
-									</a>
+						<td width="15%" align="center">
+							<a title="Menge um eine Einheit erh&ouml;hen" href="index.php?site=basket&amp;arNumber={$article.ar_number}&amp;action=2&amp;handheld={$smarty.get.handheld}">
+								<img src="presentation/images/inc.jpg" height="20" width="20" alt="Menge um eine Einheit erh&ouml;hen" />
+							</a>
 									
-									<a title="Menge um eine Einheit verringern" href="index.php?site=basket&arNumber={$article.ar_number}&action=3" class="shoppingcart">
-										<img src="presentation/images/dec.jpg" height="20px" width="20px" alt="Menge um eine Einheit erh&ouml;hen" />
-									</a>
-									<a title="Aus dem Warenkorb entfernen" href="index.php?site=basket&arNumber={$article.ar_number}&action=0" class="shoppingcart">
-										<img src="presentation/images/loeschen.jpg" height="20px" width="20px" alt="In den Warenkorb legen" />
-									</a>
-								</td>
+							<a title="Menge um eine Einheit verringern" href="index.php?site=basket&amp;arNumber={$article.ar_number}&amp;action=3&amp;handheld={$smarty.get.handheld}">
+								<img src="presentation/images/dec.jpg" height="20" width="20" alt="Menge um eine Einheit erh&ouml;hen" />
+							</a>
 						
-							</tr>
+							<a title="Aus dem Warenkorb entfernen" href="index.php?site=basket&amp;arNumber={$article.ar_number}&amp;action=0&amp;handheld={$smarty.get.handheld}">
+								<img src="presentation/images/loeschen.jpg" height="20" width="20" alt="In den Warenkorb legen" />
+							</a>
+						</td>
+						
+					</tr>
 					
-						{/foreach}
+					{/foreach}
 				
-					</table>
+				</table>
 			
-				</div>
+				
 			{else}
+			
 					{include file="nocookies.tpl"}
+					
 			{/if}

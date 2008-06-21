@@ -8,6 +8,8 @@
 {if $smarty.get.site == "adminbasedata"}<link rel="stylesheet" href="presentation/css/admin/adminbasedata.css" type="text/css" />{/if}
 {if $smarty.get.site == "contact"}<link rel="stylesheet" href="presentation/css/contact.css" type="text/css" />{/if}
 {if $smarty.get.site == "login"}<link rel="stylesheet" href="presentation/css/login.css" type="text/css" />{/if}
+{if $smarty.get.site == "article"}<link rel="stylesheet" href="presentation/css/article.css" type="text/css" />{/if}
+{if $smarty.get.site == "category"}<link rel="stylesheet" href="presentation/css/category.css" type="text/css" />{/if}
 <title>{$PAGE_TITLE}</title>
 </head>
 
