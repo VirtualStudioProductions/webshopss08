@@ -941,75 +941,79 @@ class Form {
 		}
 			
 		$data = $_FILES[$field->get_name()];
+		
+		
+		// check if data exists already
+		$step = true;
+		$file = "".$field->get_file_dir()."".$data["name"].""; // file name
+		if ($data["name"] != "") {
 
-		// upload image data
-		if ($field->get_data_type() == "image") {
+			if (file_exists($file))	{
 
-			// check that the image isn't larger than the maximum allowed file size
-			if ($data["size"] > $_POST["MAX_FILE_SIZE"]) {
-
-				$kb = $_POST["MAX_FILE_SIZE"] / 1024;
-				$msg["error"][$field->get_name()] = "<strong>".$field->get_caption()."</strong>: Die maximale Dateigröße beträgt ".$kb." KB!";
+				$msg["error"][$field->get_name()] = "<strong>".$field->get_caption()."</strong>: Dieser Dateiname existiert bereits.";
 				$msg["valid"] = false;
+				$step = false;
 					
 			}
 
 		}
+		
+
+		// upload image data	
+		if ($field->get_data_type() == "image") {
+	
+			// check that the image isn't larger than the maximum allowed file size
+			if ($data["size"] > $_POST["MAX_FILE_SIZE"]) {
+
+				$kb = $_POST["MAX_FILE_SIZE"] / 1024;
+				$msg["error"][$field->get_name()] = "<strong>".$field->get_caption()."</strong>: Die maximale Dateigr&ouml;&szlig;e betr&auml;gt ".$kb." KB!";
+				$msg["valid"] = false;
+						
+			}
+	
+		}
+			
 
 		// check if the data has been uploaded and if the file type is allowed
 		if (!is_uploaded_file($data["tmp_name"])) {
 
-			$msg["error"][$field->get_name()] = "<strong>".$field->get_caption()."</strong>: Datei konnte nicht hochgeladen werden! Datei zu groß?";
+			$msg["error"][$field->get_name()] = "<strong>".$field->get_caption()."</strong>: Datei konnte nicht hochgeladen werden! Datei zu gro&szlig;?";
 			$msg["valid"] = false;
-
+	
 		}
 		else {
-
+	
 			$file_types = $field->get_file_types();
 			$count = count($file_types);
 			$var = false;
 
 			for ($i = 0; $i < $count; $i++) {
-
 				if ($data["type"] == $file_types[$i]) {
 					$var = true;
 				}
-
+	
 			}
-
+	
 			if (!$var) {
-
+	
 				$msg["error"][$field->get_name()] = "<strong>".$field->get_caption()."</strong>: Dieser Dateityp (".$data["type"].") ist nicht erlaubt!";
 				$msg["valid"] = false;
-
+	
 			}
-
-		}
-
-		// check if data exists already
-		$file = "".$field->get_file_dir()."".$data["name"].""; // file name
-		if ($data["name"] != "") {
-
-			$query = "SELECT `".$field->get_name()."` FROM `".$this->sql_tblname."` WHERE `".$this->sql_id."` = :sql_id";
-			$stmt = $this->PDO_DATA_ACCESS->prepare($query);
-			$stmt->bindParam(":sql_id", $_POST["id"]);
-			$stmt->execute();
-			$res = $stmt->fetchAll();
-
-			if (file_exists($file) && $data["name"] != $res[0])	{
-
-				$msg["error"][$field->get_name()] = "<strong>".$field->get_caption()."</strong>: Dieser Dateiname existiert bereits.";
-				$msg["valid"] = false;
-					
-			}
-
+		
 		}
 
 
 		if ($msg["valid"]) {
 
 			// create new data
-			if ($this->sql_where != "" && $data["name"] != "") {
+			if ($this->sql_where != "" && $data["name"] != "" && $field->get_process_field() == true) {
+				// datensatz noch holen
+				$query = "SELECT `".$field->get_name()."` FROM `".$this->sql_tblname."` WHERE `".$this->sql_id."` = :sql_id";
+				$stmt = $this->PDO_DATA_ACCESS->prepare($query);
+				$stmt->bindParam(":sql_id", $_POST["id"]);
+				$stmt->execute();
+				$res = $stmt->fetch(PDO::FETCH_BOTH);
 				if (is_file("".$field->get_file_dir()."".$res[0]."")) { unlink("".$field->get_file_dir()."".$res[0].""); }
 			}
 
@@ -1077,17 +1081,27 @@ class Form {
 
 			}
 
+
 			if ($check == false) {
 
-				$query = "UPDATE `".$this->sql_tblname."` SET `".$field->get_name()."` = '' WHERE `".$this->sql_id."` = :sql_id";
-				$stmt = $this->PDO_DATA_ACCESS->prepare($query);
-				$stmt->bindParam(":sql_id", $_POST["id"]);
-				$stmt->execute();
+				if ($field->get_process_field() == true) {
+					$query = "UPDATE `".$this->sql_tblname."` SET `".$field->get_name()."` = '' WHERE `".$this->sql_id."` = :sql_id";
+					$stmt = $this->PDO_DATA_ACCESS->prepare($query);
+					$stmt->bindParam(":sql_id", $_POST["id"]);
+					$stmt->execute();
+				}
 
 				unlink($file);
 					
 			}
 
+		}
+		else {
+
+			if ($msg["error"][$field->get_name()] == "") {
+				$msg["error"][$field->get_name()] = "<strong>".$field->get_caption()."</strong>: Verarbeitung unterbrochen, da andere Formulardaten nicht g&uuml;ltig sind.";
+			}
+			
 		}
 
 		

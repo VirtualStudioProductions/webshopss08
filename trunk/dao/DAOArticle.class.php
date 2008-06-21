@@ -14,9 +14,10 @@ class DAOArticle extends DAO {
 	
 	public function getArticle($arNumber){
 		
-		$sql="SELECT `ar_number`, `ar_title`, `ar_price`, `ar_description`, `ar_stock` " .
-		  "FROM " . TBL_ARTICLE . " " .
-		  "WHERE `ar_number` = :arNumber;";
+		$sql =
+			"SELECT * " .
+		 	 "FROM " . TBL_ARTICLE . " " .
+		 	 "WHERE `ar_number` = :arNumber;";
 
 		$stmt = $this->DATA_ACCESS->prepare($sql);
 		$stmt->bindValue(":arNumber", $arNumber);
@@ -82,11 +83,14 @@ class DAOArticle extends DAO {
 	 */
 	public function deleteArticle($ar_id) {
 		
+		$article = $this->getArticle($ar_id);
+		
 		$query = "DELETE FROM `" . TBL_ARTICLE . "` " .
 					"WHERE `ar_id` = :ar_id";
 		$stmt = $this->DATA_ACCESS->prepare($query);
 		$stmt->bindValue(":ar_id", $ar_id, PDO::PARAM_INT);
 		$deleted = $stmt->execute();
+		unlink("presentation/images/article/" . $article["ar_picture"]);
 		
 		return $deleted;
 		

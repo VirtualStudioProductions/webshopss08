@@ -22,6 +22,11 @@ class FileField extends Field {
  	private $data_type;
  	
  	/**
+ 	 * Rename the file to the content of the other field
+ 	 */
+ 	private $rename_to_other_field;
+ 	
+ 	/**
 	 * dir into that the uploaded data will be saved
 	 * (example: "images/")
 	 */
@@ -46,10 +51,11 @@ class FileField extends Field {
 	/** ******************* */
  	
  	
-	public function get_data_type()				{ return $this->data_type;			}
- 	public function get_file_dir()				{ return $this->file_dir;			}
- 	public function get_file_types()			{ return $this->file_types;			}
- 	public function get_image_dimensions()		{ return $this->image_dimensions;	}
+	public function get_data_type()							{ return $this->data_type;							}
+ 	public function get_file_dir()							{ return $this->file_dir;							}
+ 	public function get_file_types()						{ return $this->file_types;							}
+ 	public function get_image_dimensions()					{ return $this->image_dimensions;					}
+	public function set_rename_to_other_field($field_name)	{ $this->rename_to_other_field = $field_name;		}
  	
  	
  	
@@ -70,10 +76,11 @@ class FileField extends Field {
 						
 		$this->Field($name, $caption, $css);
 		
-		$this->data_type		 = $data_type;
-		$this->file_dir			 = $file_dir;
-		$this->file_types		 = $file_types;
-		$this->image_dimensions	 = $image_dimensions;
+		$this->data_type					= $data_type;
+		$this->rename_to_other_field		= "";
+		$this->file_dir						= $file_dir;
+		$this->file_types					= $file_types;
+		$this->image_dimensions				= $image_dimensions;
 		
 	} // # END FileField
 	
