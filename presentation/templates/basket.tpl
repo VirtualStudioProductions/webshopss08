@@ -8,26 +8,26 @@
 			
 					<table>
 						<tr>
-								<th>
+								<th width="5%">
 									Menge
 								</th>
-								<th>
+								<th width="15%">
 									Artikelnummer
 								</th>
 	
-								<th>
+								<th width="50%">
 									Bezeichnung	
 								</th>
 						
-								<th>
-									Lagerbestand
+								<th width="5%">
+									Lager
 								</th>
 						
-								<th>
+								<th width="10%">
 									Preis
 								</th>
 
-								<th>
+								<th width="15%">
 									Bearbeiten
 								</th>
 					
