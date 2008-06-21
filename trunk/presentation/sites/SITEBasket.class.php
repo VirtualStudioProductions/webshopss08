@@ -17,7 +17,7 @@ class SITEBasket extends SITE {
 		if($_SESSION["basketindex"] == null) {
 			$_SESSION["basketindex"] = 0;
 		}
-		/*
+		
 		//Code um Artikel hinzuzufügen
 		$present = 0;
 		if(($_GET["arNumber"] != null) && ($_GET["action"] == 1)) {
@@ -34,7 +34,7 @@ class SITEBasket extends SITE {
 			}
 					
 		}
-		*/
+		
 		//Code um Artikelmenge zu erhöhen
 		if(($_GET["arNumber"] != null) && ($_GET["action"] == 2)) {
 			for($z1 = 0; $z1 < $_SESSION["basketindex"]; $z1++) {
@@ -44,7 +44,7 @@ class SITEBasket extends SITE {
 			}			
 		}
 
-		/*
+		
 		//Code um Artikelmenge zu verringern
 		if(($_GET["arNumber"] != null) && ($_GET["action"] == 3)) {
 			for($z2 = 0; $z2 < $_SESSION["basketindex"];$z2++) {
@@ -67,7 +67,7 @@ class SITEBasket extends SITE {
 			$_SESSION["basket"] = $cleanedbasket;
 			$_SESSION["basketindex"] = $i;
 		}
-		*/
+		
 		// Private Funktion fillTemplate aufrufen
 		$this->fillTemplate();
 		
