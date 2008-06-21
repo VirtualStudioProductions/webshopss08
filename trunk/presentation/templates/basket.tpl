@@ -27,7 +27,7 @@
 							</th>
 
 							<th>
-								L&ouml;schen
+								Bearbeiten
 							</th>
 					
 						</tr>
@@ -36,13 +36,6 @@
 						<tr>
 							<td>
 								{$article.ar_count}
-								<a title="Menge um eine Einheit erh&ouml;hen" href="index.php?site=basket&arNumber={$article.ar_number}&action=2" class="shoppingcart">
-									<img src="presentation/images/inc.jpg" height=20% width=20% alt="Menge um eine Einheit erh&ouml;hen" />
-								</a>
-								
-								<a title="Menge um eine Einheit verringern" href="index.php?site=basket&arNumber={$article.ar_number}&action=3" class="shoppingcart">
-									<img src="presentation/images/dec.jpg" height=20% width=20% alt="Menge um eine Einheit erh&ouml;hen" />
-								</a>
 								
 							</td>
 							
@@ -63,8 +56,15 @@
 							</td>
 
 							<td>
+								<a title="Menge um eine Einheit erh&ouml;hen" href="index.php?site=basket&arNumber={$article.ar_number}&action=2" class="shoppingcart">
+									<img src="presentation/images/inc.jpg" height="20px" width="20px" alt="Menge um eine Einheit erh&ouml;hen" />
+								</a>
+								
+								<a title="Menge um eine Einheit verringern" href="index.php?site=basket&arNumber={$article.ar_number}&action=3" class="shoppingcart">
+									<img src="presentation/images/dec.jpg" height="20px" width="20px" alt="Menge um eine Einheit erh&ouml;hen" />
+								</a>
 								<a title="Aus dem Warenkorb entfernen" href="index.php?site=basket&arNumber={$article.ar_number}&action=0" class="shoppingcart">
-									<img src="presentation/images/loeschen.jpg" height=30% width=30% alt="In den Warenkorb legen" />
+									<img src="presentation/images/loeschen.jpg" height="20px" width="20px" alt="In den Warenkorb legen" />
 								</a>
 							</td>
 					
