@@ -1,5 +1,6 @@
 		<!-- das Hauptfenster der Seite. Hier wird die Artikelliste angezeigt bzw die detaillierten Informationen zu einem Artikel -->
 			
+						
 			<h2>Artikel - Details</h2>
 			
 			

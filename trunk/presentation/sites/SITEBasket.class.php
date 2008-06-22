@@ -21,9 +21,11 @@ class SITEBasket extends SITE {
 		//Code um Artikel hinzuzufügen
 		$present = 0;
 		if(($_GET["arNumber"] != null) && ($_GET["action"] == 1 && $_GET["wsctest"] == 1)) {
-			foreach($_SESSION["basket"] as $article) {
-				if($article["arNumber"] == $_GET["arNumber"]) {
-					$present = 1;
+			if($_SESSION["basket"] != null) {
+				foreach($_SESSION["basket"] as $article) {
+					if($article["arNumber"] == $_GET["arNumber"]) {
+						$present = 1;
+					}
 				}
 			}
 			
