@@ -48,9 +48,6 @@ ARTIKELSEITE
 
 
 STAMMDATENVERWALTUNG
-
--	Bei Artikeln sollte man auch ein Bild mit hochladen können
-	(Alex)
 	
 -	Beim Bearbeiten von Kunden darf das Passwort nicht
 	von vornherein aus der DB ausgelesen werden. Falls man dann
