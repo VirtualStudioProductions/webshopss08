@@ -1,14 +1,16 @@
 		W&auml;hlen Sie eine der folgenden Unterkategorien:
 
-		<div id="subcategoryitembig">
+		<div id="subcategories">
 				
 				{foreach from=$subcategories item=currentSubCategory}
-					<a href="index.php?site=category&amp;cat={$smarty.get.cat}&amp;sub={$currentSubCategory.id}&amp;handheld={$smarty.get.handheld}" title="{$currentSubCategory.name}">{$currentSubCategory.name}</a> ::: 
+					
+					<a href="index.php?site=category&amp;cat={$smarty.get.cat}&amp;sub={$currentSubCategory.id}&amp;handheld={$smarty.get.handheld}" title="{$currentSubCategory.name}">{$currentSubCategory.name}</a> 
+					&nbsp;&nbsp;
 				{/foreach}
 				
 		</div>
 		
-		{if $smarty.get.sub != ""}
+		{if $smarty.get.sub != null}
 		
 			<div>
 	
