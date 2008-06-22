@@ -1,14 +1,14 @@
-#subcategoryitembig {
+#subcategories {
 	color: #000000;
 	position: relative;
 	top: 0px;
 }
 
-#subcategoryitembig a {
+#subcategories a {
 	/*color: #000000;*/
 }
 
-#subcategoryitembig a:hover {
+#subcategories a:hover {
 	font-size: 1.0em;
 	color: #ff0000;
 	text-decoration: underline;
