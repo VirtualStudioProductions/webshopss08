@@ -31,6 +31,7 @@ class SITEArticle extends SITE {
 		
 		parent::fillTemplate(); //Zuerst die von SITE.class.php geerbte fillTemplate Funktion aufrufen um die Kategorieansicht anzuzeigen
 		// Immer mit this auf Attribute zugreifen !!
+
 		$article = $this->useCase->getArticle($this->arNumber);
 		
 		// Formular an das Template zuweisen
