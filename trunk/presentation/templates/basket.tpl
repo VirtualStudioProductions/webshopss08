@@ -61,7 +61,7 @@
 							</td>
 					
 							<td width="10%" align="center">
-								{$article.ar_price|escape}
+								{$article.ar_price|escape} &euro;
 							</td>
 		
 							<td width="15%" align="center">
@@ -101,7 +101,7 @@
 							</th>
 						
 							<th width="10%">
-								{$sum}
+								{$sum} &euro;
 							</th>
 
 							<th width="15%">
