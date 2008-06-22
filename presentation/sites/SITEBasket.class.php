@@ -96,8 +96,16 @@ class SITEBasket extends SITE {
 			}
 			$k++;
 		}
+		
+		// Summe berechnen
+		$sum = 0;
+		foreach($selectedArticle as $article) {
+			$sum += $article["ar_price"];
+		}
+		
 		// Formular an das Template zuweisen
 		$this->TEMPLATE_ENGINE->assign("selectedArticle", $selectedArticle);
+		$this->TEMPLATE_ENGINE->assign("sum", $sum);
 
 		
 	} // # END fillTemplate
