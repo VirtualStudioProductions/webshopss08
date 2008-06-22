@@ -58,7 +58,6 @@ class SITEBasket extends SITE {
 		
 		//Code um Artikel zu entfernen
 		if(($_GET["arNumber"] != null) && ($_GET["action"] == 0 && $_GET["wsctest"] == 1)) {
-			print("artikel löschen");
 			$i = 0;
 			foreach($_SESSION["basket"] as $article) {
 				if(($article["arNumber"] != null) && ($article["arNumber"] != $_GET["arNumber"])) {
@@ -99,8 +98,10 @@ class SITEBasket extends SITE {
 		
 		// Summe berechnen
 		$sum = 0;
-		foreach($selectedArticle as $article) {
-			$sum += $article["ar_price"];
+		if($selectedArticle[0] != null) {
+			foreach($selectedArticle as $article) {
+					$sum = $sum + ($article["ar_count"]* $article["ar_price"]);
+			}	
 		}
 		
 		// Formular an das Template zuweisen
