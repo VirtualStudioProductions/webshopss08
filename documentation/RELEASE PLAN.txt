@@ -21,10 +21,10 @@ KATEGORIEN
 	sind. Diese Seite braucht noch eine Überschrift (h2),
 	die besagt, in welcher Kategorie man sich gerade befindet
 	(Thomas)
-	
+	Status: OK
 -	Auf der gleichen Seite sind die Unterkategorien gelistet.
 	Bei dieser Auflistung ist am Schluss 1x ::: zu viel (Thomas)
-	
+	Status: OK
 
 STARTSEITE
 
@@ -34,12 +34,13 @@ STARTSEITE
 	Besucher geeignete Artikel vorzuschlagen. Oder auch
 	irgendwas anderes. Hauptsache wir haben eine Startseite
 	(Thomas)
-	
+	Status: in Bearbeitung
 	
 ARTIKELSEITE
 	
 -	Die Eltern-Kategorie, in der sich der Artikel befindet, sollte
 	im linken Menü immer noch aufgeklappt bleiben (Andi)
+	Status: OK
 	
 -	Im oberen Bereich der Artikelseite sollte der Benutzer seinen
 	Pfad nachvollziehen können und auch wieder zurückspringen
