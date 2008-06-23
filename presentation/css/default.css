@@ -283,6 +283,10 @@ div.categoryitem ul {
 	background-color: #bbbbff;
 }
 
+.categoryitemselected {
+	background-color: #9999ff;
+}
+
 .category {
 	color: rgb(250, 250, 250);
 	margin: 0px auto 0 5px;

@@ -10,7 +10,11 @@
 			<div class="categoryitem">
 				<ul>
 				{foreach from=$subcategories item=currentSubCategory}
-					<li><a href="index.php?site=category&amp;cat={$currentCategory.id}&amp;sub={$currentSubCategory.id}&amp;handheld={$smarty.get.handheld}" title="{$currentSubCategory.name}">{$currentSubCategory.name}</a></li>
+					{if $smarty.get.sub == $currentSubCategory.id} {*wenn schon eine Unterkategorie ausgewählt wurde, diese farbig hinterlegen zur besseren Übersicht*}
+						<li><a class="categoryitemselected" href="index.php?site=category&amp;cat={$currentCategory.id}&amp;sub={$currentSubCategory.id}&amp;handheld={$smarty.get.handheld}" title="{$currentSubCategory.name}">{$currentSubCategory.name}</a></li>
+					{else}
+						<li><a href="index.php?site=category&amp;cat={$currentCategory.id}&amp;sub={$currentSubCategory.id}&amp;handheld={$smarty.get.handheld}" title="{$currentSubCategory.name}">{$currentSubCategory.name}</a></li>
+					{/if}
 				{/foreach}
 				</ul>
 			</div>
