@@ -43,7 +43,7 @@ W&auml;hlen Sie eine der folgenden Unterkategorien:
 		{foreach from=$subcat_articles item=currentArticle}	
 				
 			<tr>
-				<td><a href="index.php?site=article&amp;arNumber={$currentArticle.number}&amp;handheld={$smarty.get.handheld}" title="{$currentArticle.title}">{$currentArticle.title}</a></td>
+				<td><a href="index.php?site=article&amp;cat={$smarty.get.cat}&amp;sub={$smarty.get.sub}&amp;arNumber={$currentArticle.number}&amp;handheld={$smarty.get.handheld}" title="{$currentArticle.title}">{$currentArticle.title}</a></td>
 				<td>{$currentArticle.description|truncate}</td>
 				<td align="center">{$currentArticle.stock}</td>
 				<td align="center">{$currentArticle.price} &euro;</td>
