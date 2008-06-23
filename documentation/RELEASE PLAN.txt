@@ -34,7 +34,7 @@ STARTSEITE
 	Besucher geeignete Artikel vorzuschlagen. Oder auch
 	irgendwas anderes. Hauptsache wir haben eine Startseite
 	(Thomas)
-	Status: in Bearbeitung
+	Status: OK
 	
 ARTIKELSEITE
 	
