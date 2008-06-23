@@ -29,17 +29,14 @@
 	color: #F10000;
 	font-size: 3.2em;
 	font-weight: bold;
-	line-height: 60px;
-	/*float: right;*/
-	
+	line-height: 60px;	
 }
 
 .addtobasket {
 	position: relative;
-	bottom: -10px;
+	bottom: 0px;
 	right: 0px;
 	left: auto;
 	top: auto;
 	float: right;
-	
 }
