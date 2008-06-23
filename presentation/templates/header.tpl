@@ -4,7 +4,9 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /> {* Tags ohne End-Tag werden so geschlossen!! *}
 <link rel="stylesheet" href="presentation/css/default.css" type="text/css" />
+<link rel="stylesheet" href="presentation/css/startpage.css" type="text/css" />
 {if $smarty.get.handheld == 1}<link rel="stylesheet" href="presentation/css/handheld.css" type="text/css" />{/if}
+
 {if $smarty.get.site == "adminbasedata"}<link rel="stylesheet" href="presentation/css/admin/adminbasedata.css" type="text/css" />{/if}
 {if $smarty.get.site == "contact"}<link rel="stylesheet" href="presentation/css/contact.css" type="text/css" />{/if}
 {if $smarty.get.site == "login"}<link rel="stylesheet" href="presentation/css/login.css" type="text/css" />{/if}

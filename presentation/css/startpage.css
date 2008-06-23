@@ -1,0 +1,45 @@
+/***************************************/
+/* alle Klassen der Startseite         */
+/***************************************/
+
+.newarticle {
+	width: 360px;
+	height: 300px;
+	border: 1px solid black;
+	float: left;
+	margin: 3px 3px 0px 0px;
+	padding: 5px 5px 5px 5px;
+}
+
+.newarticleimagebox {
+	
+	position: relative;
+	top: 0px;
+	left: 80px;
+	bottom: auto;
+	right: auto;
+}
+
+.newarticleprice {
+	position: relative;
+	top: 25px;
+	left: 0px;
+	bottom: auto;
+	right: auto;
+	color: #F10000;
+	font-size: 3.2em;
+	font-weight: bold;
+	line-height: 60px;
+	float: left;
+	
+}
+
+.addtobasket {
+	
+	position: relative;
+	bottom: auto;
+	right: auto;
+	left: 30px;
+	top: 20px;
+	
+}
