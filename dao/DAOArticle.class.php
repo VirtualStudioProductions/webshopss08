@@ -43,7 +43,8 @@ class DAOArticle extends DAO {
 					  "`ar_description` AS `description`," .   
 					  "`ar_stock` 		AS `stock`" .    
 				" FROM " . TBL_ARTICLE . 
-			    " WHERE `fk_sub_id` = :sub_id"; 
+			    " WHERE `fk_sub_id` = :sub_id" . 
+				" ORDER BY `ar_title` ASC"; 
 	
 		$stmt = $this->DATA_ACCESS->prepare($sql);
 		$stmt->bindValue(":sub_id", $sub_id);
@@ -70,6 +71,38 @@ class DAOArticle extends DAO {
 		
 		
 	} // # END getAllArticles
+	
+	/**
+	 * Holt die neuesten Artikel aus der Datenbank.
+	 *
+	 * @return array Assoziatives Array mit den neuesten Artikeln
+	 */
+	public function getNewArticles(){
+
+		$sql = "SELECT `ar_id`			AS `id`," . 
+					  "`fk_sub_id`		AS `sub_id`," . 
+					  "`ar_number`     	AS `number`," .   
+					  "`ar_title`       AS `title`," .  
+					  "`ar_price`       AS `price`," .      
+					  "`ar_stock` 		AS `stock`," .    
+					  "`ar_picture`		AS `picture`," .
+					  "`fk_cat_id`		AS `cat_id`" .  
+				" FROM " . TBL_ARTICLE . 
+				" JOIN " . TBL_SUBCATEGORY . 
+				" ON " . TBL_ARTICLE . ".fk_sub_id = " . TBL_SUBCATEGORY . ".sub_id" . 
+				" WHERE `ar_stock` > 0" . 
+			    " ORDER BY `ar_id` DESC" . 
+				" LIMIT 0 , 4 "; //holt die 4 neuesten Artikel aus der DB, sollen mehr Artikel ausgegeben werden, kann hier das Limit verändert werden
+		
+		$stmt = $this->DATA_ACCESS->prepare($sql);
+		$stmt->execute();
+		
+		$newarticles = $stmt->fetchAll(PDO::FETCH_ASSOC);
+		//print_r($newarticles);
+		//print("ich werde aufgerufen");
+		return $newarticles;	
+	}
+	
 	
 	
 	/**

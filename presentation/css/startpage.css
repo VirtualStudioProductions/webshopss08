@@ -22,24 +22,24 @@
 
 .newarticleprice {
 	position: relative;
-	top: 25px;
+	top: auto;
 	left: 0px;
-	bottom: auto;
+	bottom: -10px;
 	right: auto;
 	color: #F10000;
 	font-size: 3.2em;
 	font-weight: bold;
 	line-height: 60px;
-	float: left;
+	/*float: right;*/
 	
 }
 
 .addtobasket {
-	
 	position: relative;
-	bottom: auto;
-	right: auto;
-	left: 30px;
-	top: 20px;
+	bottom: -10px;
+	right: 0px;
+	left: auto;
+	top: auto;
+	float: right;
 	
 }
