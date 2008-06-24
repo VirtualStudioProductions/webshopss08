@@ -11,32 +11,20 @@
 	padding: 5px 5px 5px 5px;
 }
 
+
 .newarticleimagebox {
-	
-	position: relative;
-	top: 0px;
-	left: 80px;
-	bottom: auto;
-	right: auto;
+	text-align: center;
 }
 
 .newarticleprice {
-	position: relative;
-	top: auto;
-	left: 0px;
-	bottom: -10px;
-	right: auto;
+	margin-top: 5px;
+	max-width: 174px;
 	color: #F10000;
 	font-size: 3.2em;
 	font-weight: bold;
-	line-height: 60px;	
+	line-height: 60px;		
 }
 
 .addtobasket {
-	position: relative;
-	bottom: 0px;
-	right: 0px;
-	left: auto;
-	top: auto;
 	float: right;
 }
