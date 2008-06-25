@@ -1,5 +1,5 @@
 <?php
-
+//
 $DATA_ACCESS = new PDO(
         "mysql:host=localhost;dbname=guestbook", // Treiberangaben
         "root", // Username
