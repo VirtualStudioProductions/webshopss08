@@ -20,9 +20,6 @@ class TextArea extends Field {
  	/** columns of the text area */
  	private $cols;
  	
- 	/** maximum chars the user may type */
- 	private $maxlength;
- 	
  	 	
  
  	/** ***************** */
@@ -30,13 +27,12 @@ class TextArea extends Field {
 	/** ***************** */
 	
  	
-	public function TextArea($name, $caption, $css = "", $rows = 4, $cols = 20, $maxlength = 50) {
+	public function TextArea($name, $caption, $css = "", $rows = 4, $cols = 20) {
 		
 		$this->Field($name, $caption, $css);
 		
 		$this->rows		 = $rows;
 		$this->cols		 = $cols;
-		$this->maxlength = $maxlength;
 	
 	} // # END TextArea
 	
@@ -59,7 +55,7 @@ class TextArea extends Field {
 			
 		$FIELD = $value[1];
 
-		return "<textarea id=\"".$this->name."\" name=\"".$this->name."\" rows=\"".$this->rows."\" cols=\"".$this->cols."\" maxlength=\"".$this->maxlength."\"".$this->css." ".$FIELD->get_actions().">".$value[0]."</textarea>";
+		return "<textarea id=\"".$this->name."\" name=\"".$this->name."\" rows=\"".$this->rows."\" cols=\"".$this->cols."\" ".$this->css." ".$FIELD->get_actions().">".htmlspecialchars($value[0])."</textarea>";
 	
 	} // # END get_display
 	

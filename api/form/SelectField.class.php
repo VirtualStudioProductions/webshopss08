@@ -104,7 +104,7 @@ class SelectField extends Field {
 				}
 			}
 			
-		    $replacement .= "<option value=\"".$options[$i]->get_value()."\"".$var.">".$options[$i]->get_caption()."</option>\n";
+		    $replacement .= "<option value=\"".htmlspecialchars($options[$i]->get_value())."\"".$var.">".$options[$i]->get_caption()."</option>\n";
 		    unset ($var);
 		
 		}

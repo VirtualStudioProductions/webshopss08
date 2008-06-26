@@ -19,7 +19,7 @@ class Form {
 	 * THE FORM CLASS
 	 * comment:					powerful class for form processing
 	 * author:					Alexander Weickmann <Alexander.Weickmann@gmx.de> (Eistoeter)
-	 * release date:			14.06.2008
+	 * release date:			26.06.2008
 	 * start of the project:	29.11.2005
 	 * version:					5.4
 	 * requirement:				scripted for php5.1 and mysql
@@ -244,7 +244,7 @@ class Form {
 		$this->layout						= "".$this->layout_dir."".$this->layout_file.".lay.tpl";
 		$this->MAX_FILE_SIZE				= 25600;
 		$this->enctype						= "";
-		$this->action						= $_SERVER["PHP_SELF"] . "?" . $_SERVER["argv"][0];
+		$this->action						= $_SERVER["PHP_SELF"] . "?" . htmlentities($_SERVER["argv"][0]);
 		$this->method						= "post";
 		$this->show_reset_button			= true;
 		$this->show_submit_button			= true;

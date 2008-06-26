@@ -14,7 +14,7 @@
 	</h2>
 </div>
 
-W&auml;hlen Sie eine der folgenden Unterkategorien:
+<h3>W&auml;hlen Sie eine der folgenden Unterkategorien:</h3>
 
 
 <div id="subcategories">
@@ -43,10 +43,10 @@ W&auml;hlen Sie eine der folgenden Unterkategorien:
 		{foreach from=$subcat_articles item=currentArticle}	
 				
 			<tr>
-				<td><a href="index.php?site=article&amp;cat={$smarty.get.cat}&amp;sub={$smarty.get.sub}&amp;arNumber={$currentArticle.number}&amp;handheld={$smarty.get.handheld}" title="{$currentArticle.title}">{$currentArticle.title}</a></td>
-				<td>{$currentArticle.description|truncate}</td>
-				<td align="center">{$currentArticle.stock}</td>
-				<td align="center">{$currentArticle.price} &euro;</td>
+				<td><a href="index.php?site=article&amp;cat={$smarty.get.cat}&amp;sub={$smarty.get.sub}&amp;arNumber={$currentArticle.number|escape}&amp;handheld={$smarty.get.handheld}" title="{$currentArticle.title|escape}">{$currentArticle.title|escape}</a></td>
+				<td>{$currentArticle.description|escape|truncate}</td>
+				<td align="center">{$currentArticle.stock|escape}</td>
+				<td align="center">{$currentArticle.price|escape} &euro;</td>
 			</tr>
 				
 		{/foreach}
@@ -57,9 +57,7 @@ W&auml;hlen Sie eine der folgenden Unterkategorien:
 {/if}
 
 {if $smarty.get.sub != null && $subcat_articles == null}
-	<div>
-	Leider sind derzeit keine Artikel in dieser Unterkategorie vorhanden!
-	</div>
+	<p>Leider sind derzeit keine Artikel in dieser Unterkategorie vorhanden!</p>
 {/if}
 
 

@@ -5,7 +5,13 @@ require_once("logic/UCSubCategoryArticles.class.php");
 
 class SITECategory extends SITE {
 
-		public function SITECategory() {
+	public function SITECategory() {
+		
+		// Umleitung auf Startseite, falls keine Kategorie-Nummer
+		// übergeben wurde
+		if ($_GET["cat"] == "") {
+			header("Location: " . $_SERVER["PHP_SELF"] . "?site=index.php&handheld=" . $_GET["handheld"]);
+		}
 		
 		// Äquivalent zum "super" Aufruf in Java*
 		parent::SITE(new UCSubCategoryArticles());

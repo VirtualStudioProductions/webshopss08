@@ -49,7 +49,7 @@ class PasswordField extends Field {
 	 */
 	public function get_display($value) {
 		
-		return "<input type=\"password\" id=\"".$this->name."\" name=\"".$this->name."\" value=\"".$value[0]."\" maxlength=\"".$this->maxlength."\"".$this->css." />";
+		return "<input type=\"password\" id=\"".$this->name."\" name=\"".$this->name."\" value=\"".htmlspecialchars($value[0])."\" maxlength=\"".$this->maxlength."\"".$this->css." />";
 	
 	} // # END get_display
 	

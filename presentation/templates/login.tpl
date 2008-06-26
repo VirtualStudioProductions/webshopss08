@@ -33,7 +33,7 @@
 				Loggen Sie sich ein um Zugang zu erweiterten Funktion zu bekommen. Nur wenn Sie
 				als Kunde eingeloggt sind, k&ouml;nnen Sie beispielsweise auch Bestellungen aufgeben!
 				Falls Sie noch nicht Kunde sind, k&ouml;nnen Sie sich
-				<a href="{$smarty.server.PHP_SELF}?site=registration&handheld={$smarty.get.handheld}" title="Jetzt Kunde werden!">hier</a>
+				<a href="{$smarty.server.PHP_SELF}?site=registration&amp;handheld={$smarty.get.handheld}" title="Jetzt Kunde werden!">hier</a>
 				registrieren!
 			</p>
 				

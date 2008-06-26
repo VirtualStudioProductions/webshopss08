@@ -51,7 +51,7 @@
 							</td>
 			
 							<td width="50%">
-								<a title="{$article.ar_title}" href="index.php?site=article&amp;arNumber={$article.ar_number}&amp;handheld={$smarty.get.handheld}">
+								<a title="{$article.ar_title}" href="{$smarty.server.PHP_SELF}?site=article&amp;arNumber={$article.ar_number}&amp;handheld={$smarty.get.handheld}&amp;sub={$article.fk_sub_id}">
 									{$article.ar_title|escape}	
 								</a>
 							</td>

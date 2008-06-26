@@ -78,7 +78,7 @@ class CheckBox extends Field {
 			
 		}
 					
-		return "<input type=\"checkbox\" id=\"".$this->name."\" name=\"".$this->name."\" value=\"".$this->value."\"".$this->css."".$checked." />\n";;
+		return "<input type=\"checkbox\" id=\"".$this->name."\" name=\"".$this->name."\" value=\"".htmlspecialchars($this->value)."\"".$this->css."".$checked." />\n";;
 	
 	} // # END get_display
 	
