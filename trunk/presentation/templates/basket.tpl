@@ -70,7 +70,7 @@
 								</a>
 										
 								<a title="Menge um eine Einheit verringern" href="index.php?site=basket&amp;arNumber={$article.ar_number}&amp;action=3&amp;handheld={$smarty.get.handheld}">
-									<img src="presentation/images/dec.jpg" height="20" width="20" alt="Menge um eine Einheit erh&ouml;hen" />
+									<img src="presentation/images/dec.jpg" height="20" width="20" alt="Menge um eine Einheit verringern" />
 								</a>
 						
 								<a title="Aus dem Warenkorb entfernen" href="index.php?site=basket&amp;arNumber={$article.ar_number}&amp;action=0&amp;handheld={$smarty.get.handheld}">
