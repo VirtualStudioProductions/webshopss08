@@ -130,6 +130,20 @@ class DAOArticle extends DAO {
 		
 	} // # END deleteArticle
 	
+	
+	// müsste eigentlich nach DAOSubCategory, ist mir aber jetzt wayne ;-)
+	public function getCatFromSub($sub) {
+		
+		$query = "SELECT `fk_cat_id` FROM `" . TBL_SUBCATEGORY . "`
+					WHERE `sub_id` = :sub";
+		$stmt = $this->DATA_ACCESS->prepare($query);
+		$stmt->bindValue(":sub", $sub, PDO::PARAM_INT);
+		$stmt->execute();
+
+		return $stmt->fetch(PDO::FETCH_ASSOC);
+		
+	} // # END getCatFromSub
+	
 }
 
 ?>

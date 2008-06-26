@@ -20,7 +20,7 @@ class DAOBasket extends DAO {
 		if($_SESSION["basket"] != null) {
 				foreach($_SESSION["basket"] as $article) {
 
-				$sql="SELECT `ar_number`, `ar_title`, `ar_price`, `ar_stock` " .
+				$sql="SELECT `ar_number`, `ar_title`, `ar_price`, `ar_stock`, `fk_sub_id` " .
 				  "FROM " . TBL_ARTICLE . " " .
 				  "WHERE `ar_number` = :arNumber;";
 

@@ -11,22 +11,33 @@ class UCArticle extends UC {
 	
 	
 	public function UCArticle() {
+		
 		parent::UC(); //Aufruf Elternkonstruktor
 		
 		# Session-Warenkorb Array anlegen (falls nicht vorhanden)
 		if($_SESSION["basket"] != null) {
 			
 		}
+		
+		$this->DAO = new DAOArticle();
 			
-	}
+	} // # END UCArticle
+	
+	
+	public function getCatFromSub($sub) {
+
+		return $this->DAO->getCatFromSub($sub);
+		
+	} // # END getCatFromSub
 		
 	
 	/** Methode um bestimmten article zu erhalten */
 	public function getArticle($arNumber) {
-		$DAO = new DAOArticle();
-		return $DAO->getArticle($arNumber);
 		
-	}
-}  // # END UCArticle
+		return $this->DAO->getArticle($arNumber);
+		
+	} // # END getArticle
+
+}
 
 ?>

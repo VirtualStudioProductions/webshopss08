@@ -10,8 +10,24 @@ class SITEArticle extends SITE {
 	
 	public function SITEArticle($arNumber) {
 		
+		// Umleitung auf Startseite, falls keine Artikelnummer übergeben wurde
+		// oder keine Subkategorie-Nummer übergeben wurde
+		if ($arNumber == "" || $_GET["sub"] == "") {
+			header("Location: " . $_SERVER["PHP_SELF"] . "?site=index.php&handheld=" . $_GET["handheld"]);
+		}
+		
+		// Falls keine Kategorie-Nummer übergeben wurde, aber Subkategorie-Nummer
+		// -> Kategorie Nummer durch Subkategorie-Nummer ermitteln
+		// Müsste wahrscheinlich nach SITE, mir jetzt aber wayne
+		
+		$uc = new UCArticle();
+		if ($_GET["cat"] == "" && $_GET["sub"] != "") {
+			$arr = $uc->getCatFromSub($_GET["sub"]);
+			$_GET["cat"] = $arr["fk_cat_id"];
+		}
+		
 		// Äquivalent zum "super" Aufruf in Java*
-		parent::SITE(new UCArticle());
+		parent::SITE($uc);
 		
 		$this->template = TPL_Article;
 				

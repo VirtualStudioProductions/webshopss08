@@ -238,8 +238,8 @@ class UCAdminBaseData extends UC {
 			
 			$FORM->set_action($_SERVER["PHP_SELF"] .
 									"?site=" . $_GET["site"] .
-									"&basedata=" . $_GET["basedata"] .
-									"&handheld=" . $_GET["handheld"]);
+									"&amp;basedata=" . $_GET["basedata"] .
+									"&amp;handheld=" . $_GET["handheld"]);
 		}
 		
 		// Bestätigung bei Erfolg anzeigen lassen
@@ -398,8 +398,8 @@ class UCAdminBaseData extends UC {
 			
 			$FORM->set_action($_SERVER["PHP_SELF"] .
 									"?site=" . $_GET["site"] .
-									"&basedata=" . $_GET["basedata"] .
-									"&handheld=" . $_GET["handheld"]);
+									"&amp;basedata=" . $_GET["basedata"] .
+									"&amp;handheld=" . $_GET["handheld"]);
 		}
 		
 		// Bestätigung bei Erfolg anzeigen lassen
@@ -550,8 +550,8 @@ class UCAdminBaseData extends UC {
 			
 			$FORM->set_action($_SERVER["PHP_SELF"] .
 									"?site=" . $_GET["site"] .
-									"&basedata=" . $_GET["basedata"] .
-									"&handheld=" . $_GET["handheld"]);
+									"&amp;basedata=" . $_GET["basedata"] .
+									"&amp;handheld=" . $_GET["handheld"]);
 		}
 		
 		// Bestätigung bei Erfolg anzeigen lassen
@@ -626,8 +626,8 @@ class UCAdminBaseData extends UC {
 			
 			$FORM->set_action($_SERVER["PHP_SELF"] .
 									"?site=" . $_GET["site"] .
-									"&basedata=" . $_GET["basedata"] .
-									"&handheld=" . $_GET["handheld"]);
+									"&amp;basedata=" . $_GET["basedata"] .
+									"&amp;handheld=" . $_GET["handheld"]);
 		}
 		
 		// Bestätigung bei Erfolg anzeigen lassen

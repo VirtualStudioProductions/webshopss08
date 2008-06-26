@@ -199,7 +199,7 @@ div.categoryitem ul {
 }
 
 #content {
-	background-color: rgb(250, 250, 250);
+	background-color: #ffffff;
 	background-image: url('../images/contentinlay.jpg');
 	background-repeat: no-repeat;
 	position: absolute;
@@ -225,6 +225,7 @@ div.categoryitem ul {
 #contentwidth {
 	max-width: 750px;
 	padding-bottom: 10px;
+	margin-bottom: 15px;
 }
 
 #footer {
@@ -266,6 +267,7 @@ div.categoryitem ul {
 .categoryitem {
 	background-color: rgb(250, 250, 250);
 	width: 180px;
+	line-height: 1.6em;
 	/*	border: 1px solid black;*/
 
 }
@@ -276,7 +278,8 @@ div.categoryitem ul {
 .categoryitem a {
 	color: rgb(51, 51, 51);
 	font-weight: normal;
-	font-size: 0.8em;
+	font-size: 0.9em;
+	padding: 2px;
 }
 
 .categoryitem a:hover {
@@ -284,7 +287,7 @@ div.categoryitem ul {
 }
 
 .categoryitemselected {
-	background-color: #9999ff;
+	background-color: #ddddff;
 }
 
 .category {

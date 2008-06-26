@@ -20,7 +20,7 @@
 			</div>
 		{else} {*es handelt sich nicht um die ausgewählte Kategorie, deshalb nur den Kategorienamen anzeigen*}
 			<div class="category">
-				<a href="index.php?site=category&amp;cat={$currentCategory.id}&amp;handheld={$smarty.get.handheld}">{$currentCategory.name}</a>
+				<a href="index.php?site=category&amp;cat={$currentCategory.id}&amp;handheld={$smarty.get.handheld}" title="{$currentCategory.name}">{$currentCategory.name}</a>
 			</div>	
 		{/if}
 	{/foreach}
